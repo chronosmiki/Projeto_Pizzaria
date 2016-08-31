@@ -47,8 +47,6 @@ public class LoginView extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        jPasswordField1.setText("jPasswordField1");
-
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jToggleButton1.setText("Entrar");
 
