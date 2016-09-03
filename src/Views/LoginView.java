@@ -1,13 +1,20 @@
 
 package Views;
-import ClassesAuxiliares.ShowDate;
+import ClassesAuxiliares.AtualizadorDeHorario;
+import java.text.SimpleDateFormat;
 
 
 public class LoginView extends javax.swing.JFrame {
             
+    
+     AtualizadorDeHorario ah;
+     Thread data;
 
     public LoginView() {
-        initComponents();      
+        initComponents();   
+        ah = new AtualizadorDeHorario(lbDate);
+        data = ah;
+         data.start();
     }    
   
     
@@ -246,7 +253,7 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -279,8 +286,8 @@ public class LoginView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-         Thread t = new ShowDate().getDate();
-         t.start();
+        
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new LoginView().setVisible(true);
