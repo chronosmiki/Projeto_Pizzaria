@@ -8,13 +8,11 @@ public class LoginView extends javax.swing.JFrame {
             
     
      AtualizadorDeHorario ah;
-     Thread data;
 
     public LoginView() {
         initComponents();   
         ah = new AtualizadorDeHorario(lbDate);
-        data = ah;
-         data.start();
+        ah.start();       
     }    
   
     
