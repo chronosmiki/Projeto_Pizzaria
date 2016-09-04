@@ -25,14 +25,13 @@ public class SplashScreem {
                 }
                  splash.dispose();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(700);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(SplashScreem.class.getName()).log(Level.SEVERE, null, ex);
                 }
-             LoginView login = new LoginView();
-             login.setVisible(true);
-        }          
-    });    
+                new LoginView().setVisible(true);
+            }          
+        });    
     splash.start();        
     }        
 }
