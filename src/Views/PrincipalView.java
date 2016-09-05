@@ -28,8 +28,15 @@ public class PrincipalView extends javax.swing.JFrame {
         lbDate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btSair = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        btClientes = new javax.swing.JMenuItem();
+        btProdutos = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        btUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        btSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1024, 768));
@@ -53,15 +60,41 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jMenu1.setMnemonic('A');
         jMenu1.setText("Arquivo");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        btSair.setText("Sair");
+        jMenu1.add(btSair);
 
         jMenuBar1.add(jMenu1);
 
+        jMenu3.setMnemonic('C');
+        jMenu3.setText("Cadastros");
+        jMenu3.setToolTipText("");
+
+        btClientes.setText("Clientes");
+        jMenu3.add(btClientes);
+
+        btProdutos.setText("Produtos");
+        jMenu3.add(btProdutos);
+        jMenu3.add(jSeparator1);
+
+        btUsuarios.setText("Usuários");
+        jMenu3.add(btUsuarios);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu2.setMnemonic('R');
         jMenu2.setText("Relatorios");
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setMnemonic('j');
+        jMenu4.setText("Ajuda");
+
+        btSobre.setText("Sobre");
+        jMenu4.add(btSobre);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -117,11 +150,18 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btClientes;
+    private javax.swing.JMenuItem btProdutos;
+    private javax.swing.JMenuItem btSair;
+    private javax.swing.JMenuItem btSobre;
+    private javax.swing.JMenuItem btUsuarios;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lbDate;
     // End of variables declaration//GEN-END:variables
 
