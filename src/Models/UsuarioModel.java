@@ -9,6 +9,7 @@ public class UsuarioModel {
     private String login;
     private String password;
     private int nivel;
+    private Boolean success;
     
     
 
@@ -59,5 +60,12 @@ public class UsuarioModel {
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+
+     
+      pública Boolean inserirCliente(){
+          success=inserir(ClienteModel model);
+          Return success;
+         }
+
     
 }
