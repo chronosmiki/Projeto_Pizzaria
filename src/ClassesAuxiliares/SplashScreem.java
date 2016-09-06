@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class SplashScreem {   
     
     
-    public void mostraSplash (){
+   public void mostraSplash (){
     Thread splash = new Thread(new Runnable(){
         @Override
         public void run() {
@@ -33,5 +33,5 @@ public class SplashScreem {
             }          
         });    
     splash.start();        
-    }        
+    }       
 }
