@@ -1,7 +1,7 @@
 
 package ClassesAuxiliares;
 
-import Main.Main;
+import Main.ClassePrincipal;
 import Views.LoginView;
 import Views.SplashView;
 import java.util.logging.Level;
@@ -21,7 +21,7 @@ public class SplashScreem {
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClassePrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }
                  splash.dispose();
                 try {

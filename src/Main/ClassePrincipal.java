@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Main {
+public class ClassePrincipal {
     
     public static void main(String[] args){
         
