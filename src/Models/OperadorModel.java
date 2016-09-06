@@ -1,7 +1,9 @@
 
 package Models;
 
-public class UsuarioModel {
+import ClassesAuxiliares.Msg;
+
+public class OperadorModel{
     
     private int idUsuario;
     private String nome;
@@ -11,6 +13,15 @@ public class UsuarioModel {
     private int nivel;
     private Boolean success;
     
+    
+    Object dao;
+    
+    public OperadorModel (Object object){
+      this.dao = object;
+    }
+    
+    public OperadorModel (){    
+    }
     
 
     public int getIdUsuario() {
@@ -68,5 +79,40 @@ public class UsuarioModel {
           Return success;
          }
 
+    
+    
+    
+    
+    //Metodos
+    public void cadastrarCliente(Object model) {
+           dao = (ClienteDao) dao;
+           if((dao.inserir(model)){
+           Msg.confirm(Msg.confimaCadastro);    
+        }      
+    }
+
+    
+    
+    @Override
+    public void alterarBd() {
+            if(alterar(this.model)){
+                Msg.confirm(Msg.confimaCadastro);    
+            }  
+    }
+    
+    
+    @Override
+    public void excluirBd() {
+            if(excluir(this.model)){
+               Msg.confirm(Msg.confimaCadastro);    
+        }     
+    }
+    
+    
+
+    @Override
+    public Object pesquisarBd() {
+          return pesquisar(this.model); 
+    }
     
 }
