@@ -61,7 +61,8 @@ public class UsuarioModel {
         this.nivel = nivel;
     }
 
-     
+     //Métodos relacionados ao Cliente 
+
       pública Boolean inserirCliente(){
           success=inserir(ClienteModel model);
           Return success;
