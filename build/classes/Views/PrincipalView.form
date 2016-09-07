@@ -366,9 +366,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Subtotal - R$"/>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Subtotal - R$"/>
-              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JLabel" name="lb2">
               <Properties>
@@ -699,9 +696,6 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="Sistema de Gerenciamento de Pizzaria - S&#xe3;o Paulo, 07 de setembro de 2016 - 09:59:20"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Sistema de Gerenciamento de Pizzaria - S&#xe3;o Paulo, 07 de setembro de 2016 - 09:59:20"/>
-      </AccessibilityProperties>
     </Component>
     <Container class="javax.swing.JPanel" name="painelDeFerramentas">
       <Properties>
@@ -778,6 +772,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarProdutoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCadastrarCliente">
           <Properties>

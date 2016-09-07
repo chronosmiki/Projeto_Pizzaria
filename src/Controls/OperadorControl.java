@@ -1,6 +1,7 @@
 
 package Controls;
 
+import ClassesAuxiliares.Msg;
 import Dao.*;
 import Models.*;
 
@@ -15,24 +16,27 @@ public class OperadorControl {
    private ClienteModel clienteModel;  
    private ProdutoModel produtoModel; 
    private UsuarioModel usuarioModel;
+    private PedidoModel pedidoModel;
    
    
    //RECEBE A INSTANCIA DO OBJETO A SER TRATADO NO CONSTRUTOR
    public OperadorControl(Object object){  
-    
-    if(object.equals(this.clienteModel)){
+          
+    if(object instanceof ClienteModel){
         clienteModel = (ClienteModel) object;        
     }
-    else if(object.equals(this.produtoModel)){
+    if(object instanceof ProdutoModel) {        
         produtoModel = (ProdutoModel) object;          
     } 
-    else if(object.equals(this.usuarioModel)){
+    else if(object instanceof UsuarioModel){
         usuarioModel = (UsuarioModel) object;          
    }
-    else if(object.equals(this.pedidoDao)){
-        pedidoDao = (PedidoDao) object;          
+    else if(object instanceof PedidoModel){
+        pedidoModel = (PedidoModel) object;          
    }
  }
+   
+   
    
    
    
@@ -53,9 +57,11 @@ public class OperadorControl {
     
        
     
+    
     //METODOS DE MANIPULACAO DOS PRODUTOS
-    public Boolean inserirProduto(){
-          return clienteDao.inserir(produtoModel);
+    public Boolean inserirProduto(){    
+        Msg.confirm(produtoModel.getNomeProduto() );
+          return produtoDao.inserir(produtoModel);
     }        
     public Boolean alterarProduto() {
           return produtoDao.alterar(produtoModel);                          

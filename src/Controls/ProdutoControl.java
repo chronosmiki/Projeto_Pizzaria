@@ -8,16 +8,16 @@ import Interfaces.interfaceControl;
 
 
 public class ProdutoControl extends OperadorControl implements interfaceControl
-{
-    
+{   
     
     public ProdutoControl(Object object) {      
-        super(object);
+        super(object);       
     }
     
 
+    
     @Override
-    public void inserirBd() {
+    public void inserirBd() {      
          if(inserirProduto()){
              Msg.confirm(Msg.confimaCadastro);
          }

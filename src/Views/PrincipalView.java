@@ -5,6 +5,7 @@
  */
 package Views;
 
+import ClassesAuxiliares.Modal;
 import java.awt.Frame;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JFrame;
@@ -207,7 +208,6 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lb1.getAccessibleContext().setAccessibleName("Subtotal - R$");
         lb3.getAccessibleContext().setAccessibleName("TOTAL R$");
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
@@ -380,6 +380,11 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCadastrarProduto.setFocusable(false);
         btnCadastrarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCadastrarProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarProdutoActionPerformed(evt);
+            }
+        });
 
         btnCadastrarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -516,8 +521,6 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.getAccessibleContext().setAccessibleName("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -529,6 +532,12 @@ public class PrincipalView extends javax.swing.JFrame {
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
             System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_btnSairMouseClicked
+
+    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
+        new Modal(this);
+        Modal.setDisable();;
+        new CadastroProdutoView().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
