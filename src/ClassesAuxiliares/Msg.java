@@ -6,19 +6,34 @@ import javax.swing.JOptionPane;
 
 public class Msg {
     
-    //Mensagens
+    
+    
+    //Confirmações
     public static String confimaCadastro = "Cadastro realizado com Sucesso !";
+    public static String confirmaAlteracao = "Alteração realizada com Sucesso !";
+    public static String confirmaExcluisao = "Excluido com Sucesso !";
+    
+    //Perguntas
+    public static String perguntaAlteracao = "Tem certeza que deseja realizar estas alterações ?";
+    public static String perguntaExclusao = "Tem certeza que deseja realizar esta exclusão ?";
+   
     
         
     //Métodos
     public static void confirm(String txt){
-        JOptionPane.showMessageDialog(null,txt, "Confirmação", 1);
+       JOptionPane.showMessageDialog(null,txt, "Confirmação", 1);
     }     
     
     
     
-    public static void question(String txt){
-        JOptionPane.showMessageDialog(null,txt, "Confirmação", 1);
+    public static Boolean question(String txt){
+       Boolean retorno = false; 
+       int result = 0;
+       result = JOptionPane.showConfirmDialog(null, txt ,"Confirmação", JOptionPane.YES_NO_OPTION);
+       if(result == JOptionPane.YES_OPTION){
+         retorno = true;       
+       }
+       return retorno;
     }  
     
     

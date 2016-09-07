@@ -1,14 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controls;
 
-/**
- *
- * @author Betto
- */
-public class UsuarioControl {
+import ClassesAuxiliares.Msg;
+import Interfaces.interfaceControl;
+
+public class UsuarioControl extends OperadorControl implements interfaceControl{
+    
+    
+    public UsuarioControl(Object object) {
+        super(object);
+    }
+
+    
+    
+        @Override
+    public void inserirBd() {
+           if(inserirUsuario()){
+           Msg.confirm(Msg.confimaCadastro);    
+        }            
+    }
+
+    
+    @Override
+    public void alterarBd() {
+           if(alterarUsuario()){
+           Msg.question(Msg.confimaCadastro);    
+        }     
+    }
+    
+    
+    @Override
+    public void excluirBd() {
+           if(excluirUsuario()){
+           Msg.confirm(Msg.confimaCadastro);    
+        }     
+    }
+
+    
+    @Override
+    public Object pesquisarBd() {     
+        return pesquisarUsuario();      
+    }    
+    
     
 }

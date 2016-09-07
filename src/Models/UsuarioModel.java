@@ -1,27 +1,17 @@
 
 package Models;
 
-import ClassesAuxiliares.Msg;
-import Dao.ClienteDao;
-import Dao.ProdutoDao;
-
-public class OperadorModel {
+public class UsuarioModel {
     
-   
-   
-   //VARIÁVEIS
     private int idUsuario;
     private String nome;
     private String sobrenome;
     private String login;
     private String password;
     private int nivel;
-    private Boolean success;
     
-           
-   
+    
 
-    //GETTERS E SETTERS
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -68,5 +58,6 @@ public class OperadorModel {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
-    }          
+    }
+    
 }

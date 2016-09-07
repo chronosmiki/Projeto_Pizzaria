@@ -3,26 +3,25 @@ package Controls;
 
 
 import ClassesAuxiliares.Msg;
-import Dao.ClienteDao;
 import Interfaces.interfaceControl;
 import Models.ClienteModel;
 
 
 
-public class ClienteControl extends ClienteDao implements interfaceControl{
+public class ClienteControl extends OperadorControl implements interfaceControl{
     
     public ClienteModel model = new ClienteModel();
-    
-   
-    //Recebe a instancia da Classe ProdutoModel no Construtor
-    public ClienteControl (ClienteModel model){
-        this.model = model;    
+
+    public ClienteControl(Object object) {
+        super(object);
     }
     
+   
+  
     
     @Override
     public void inserirBd() {
-           if(inserir(this.model)){
+           if(inserirCliente()){
            Msg.confirm(Msg.confimaCadastro);    
         }            
     }
@@ -30,7 +29,7 @@ public class ClienteControl extends ClienteDao implements interfaceControl{
     
     @Override
     public void alterarBd() {
-           if(alterar(this.model)){
+           if(alterarCliente()){
            Msg.question(Msg.confimaCadastro);    
         }     
     }
@@ -38,7 +37,7 @@ public class ClienteControl extends ClienteDao implements interfaceControl{
     
     @Override
     public void excluirBd() {
-           if(excluir(this.model)){
+           if(excluirCliente()){
            Msg.confirm(Msg.confimaCadastro);    
         }     
     }
@@ -46,6 +45,6 @@ public class ClienteControl extends ClienteDao implements interfaceControl{
     
     @Override
     public Object pesquisarBd() {     
-        return pesquisar(this.model);      
+        return pesquisarCliente();      
     }                      
 }

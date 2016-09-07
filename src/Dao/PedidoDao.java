@@ -4,9 +4,7 @@ package Dao;
 import Interfaces.interfaceDao;
 
 
-public class ClienteDao implements interfaceDao{
-    
-    
+public class PedidoDao implements interfaceDao{
 
     @Override
     public Boolean inserir(Object object) {
@@ -25,11 +23,7 @@ public class ClienteDao implements interfaceDao{
 
     @Override
     public Object pesquisar(Object object) {
-        
-        
-     return object;    
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
     
 }
