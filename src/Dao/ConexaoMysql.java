@@ -10,6 +10,7 @@ public class ConexaoMysql {
         private static  Connection conn;
              
                 
+
             static Connection open() throws Exception
             {                                                                                                                                                                                                        
               conn = DriverManager.getConnection("jdbc:mysql://localhost/pizza","root","@#$ucesso#@");                                                                                                                                                
@@ -27,6 +28,7 @@ public class ConexaoMysql {
               Msg.exclamation(Msg.erroConexao + ex.getMessage());
             }
             }
+                                 
 }
 
 
