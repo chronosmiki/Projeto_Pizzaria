@@ -19,27 +19,26 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
           String sql = "";          
           Statement stmt;       
           Connection conn;
-          Boolean success = false;
+          Boolean success = false;         
    
         
 //INSERE PRODUTOS    
     @Override
-    public Boolean inserir(Object object) {       
-        ProdutoModel model = (ProdutoModel) object;         
+    public Boolean inserir(Object object) {              
             produtoModel = (ProdutoModel) object;            
-                       
-    open();            
+                                     
               try {             
-                   stmt = conn.createStatement();
-              } catch (SQLException ex) {
+                   stmt = open().createStatement();
+              } catch (Exception ex) {
                     Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+                    Msg.exclamation(Msg.erroConexao + ex.getMessage());
               }
-                    sql = "INSERT INTO produtos (nome, precoUnitario)"
+                    sql = "INSERT INTO produtor (nome, precoUnitario)"
                     + "VALUES (' "
                     + produtoModel.getNomeProduto() 
                     + " ',' " 
                     + produtoModel.getValorUnitario() 
-                    +" );";
+                    +"' );";
                     
                try {                   
                         stmt.execute(sql);

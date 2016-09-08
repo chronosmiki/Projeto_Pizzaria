@@ -17,7 +17,9 @@ public class Msg {
     public static String perguntaAlteracao = "Tem certeza que deseja realizar estas alterações ?";
     public static String perguntaExclusao = "Tem certeza que deseja realizar esta exclusão ?";
    
-    
+    //Exclamações
+    public static String erroConexao = "Não foi possível realizar a operação no banco de Dados\nDetalhes do erro:\n\n";
+
         
     //Métodos
     public static void confirm(String txt){
