@@ -45,6 +45,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                         success = true;
                } catch (SQLException ex) {
                         Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+                        Msg.exclamation(Msg.erroConexao + ex.getMessage());
                }   
                 close();
                 return success;

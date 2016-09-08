@@ -10,10 +10,12 @@ public class ConexaoMysql {
         private static  Connection conn;
              
                 
-
             static Connection open() throws Exception
-            {                                                                                                                                                                                                        
-              conn = DriverManager.getConnection("jdbc:mysql://localhost/pizza","root","@#$ucesso#@");                                                                                                                                                
+            {                             
+              String driverName = "com.mysql.jdbc.Driver";                        
+              Class.forName(driverName);
+                
+              conn = DriverManager.getConnection("jdbc:mysql://localhost/pizza","root","@#$ucesso#@");                                                                                                                                                         
               return conn;
             }
 
