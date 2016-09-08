@@ -20,7 +20,7 @@ public class ConexaoMysql {
                                 Logger.getLogger(ConexaoMysql.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             if(conn.isClosed()){
-                            conn = DriverManager.getConnection("localhost:3306/mysql?zeroDateTimeBehavior=convertToNull/projeto_pizzaria","root","@#$ucesso#@");
+                            conn = DriverManager.getConnection("localhost:3306/mysql?zeroDateTimeBehavior=convertToNull/projeto_pizzaria","root","");
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(ConexaoMysql.class.getName()).log(Level.SEVERE, null, ex);
