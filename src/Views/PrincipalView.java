@@ -5,31 +5,29 @@
  */
 package Views;
 
-import ClassesAuxiliares.AtualizadorDeHorario;
-import ClassesAuxiliares.Modal;
-import ClassesAuxiliares.Msg;
-import Controls.OperadorControl;
-import Controls.ProdutoControl;
-import Models.ProdutoModel;
-import java.awt.Frame;
-import static java.awt.Frame.MAXIMIZED_BOTH;
+import ClassesAuxiliares.*;
+import Controls.*;
+import Models.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JTable;
+
 
 
 public class PrincipalView extends javax.swing.JFrame {
 
-   ProdutoControl produtoControl;
-   ProdutoModel produtoModel;
-   OperadorControl operadorControl;
-   ProdutoModel produtoPesquisado;
-   ArrayList <ProdutoModel> array = new ArrayList<>();
+   private ProdutoControl produtoControl;
+   private ProdutoModel produtoModel;
+   private OperadorControl operadorControl;
+   private ProdutoModel produtoPesquisado;
+   private ArrayList <ProdutoModel> array = new ArrayList<>();
    private static AtualizadorDeHorario ah;
     
     public PrincipalView() {
         initComponents();
          ah = new AtualizadorDeHorario(lbDate); 
          iniciaAtualizadorDeData();
+         maximize();
     }
 
     /**
@@ -93,7 +91,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
 
         painelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
@@ -106,6 +103,47 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jtDetalhesVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -136,6 +174,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jtDetalhesVenda.setGridColor(new java.awt.Color(102, 102, 102));
+        jtDetalhesVenda.setRowHeight(20);
         jScrollPane1.setViewportView(jtDetalhesVenda);
         if (jtDetalhesVenda.getColumnModel().getColumnCount() > 0) {
             jtDetalhesVenda.getColumnModel().getColumn(0).setPreferredWidth(35);
@@ -184,7 +223,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb3)
                     .addComponent(lb1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,56 +328,6 @@ public class PrincipalView extends javax.swing.JFrame {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -353,6 +342,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtProdutos.setRowHeight(20);
         jScrollPane2.setViewportView(jtProdutos);
         if (jtProdutos.getColumnModel().getColumnCount() > 0) {
             jtProdutos.getColumnModel().getColumn(0).setMinWidth(5);
@@ -429,16 +419,16 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPesq)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2)
+                    .addComponent(txtPesq))
                 .addContainerGap())
         );
         painelPesquisaProdutosLayout.setVerticalGroup(
@@ -451,8 +441,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -512,6 +502,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         lbDate.setBackground(new java.awt.Color(0, 0, 0));
         lbDate.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        lbDate.setForeground(new java.awt.Color(153, 0, 0));
         lbDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbDate.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
 
@@ -658,7 +649,7 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                    .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -672,7 +663,7 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDeFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -701,62 +692,38 @@ public class PrincipalView extends javax.swing.JFrame {
         new CadastroProdutoView().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
+    
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-           OperadorControl.pesq = ""; 
-           array.clear();
-           
-           if(txtPesq.getText().equals("") || txtPesq.getText().equals(null)){
-                for (int x = 0; x < jtProdutos.getRowCount(); x++ ){
-                         jtProdutos.removeRowSelectionInterval(x, x);               
-                 }           
-           }else{
-           
-            for (int x = 0; x < jtProdutos.getRowCount(); x++ ){
-                    jtProdutos.removeRowSelectionInterval(x, x);               
-            }
-        
-            operadorControl = new OperadorControl();
-            OperadorControl.pesq = txtPesq.getText();             
-            array = operadorControl.pesquisarProduto();
+               operadorControl = new OperadorControl();                    
+               //LIMPA O ARRAY
+                array.clear();  
+
+                //LIMPA A TABELA
+                limparTabela(jtProdutos);          
+          
+
+               //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
+                if(!txtPesq.getText().equals("")){
+                    
+                    OperadorControl.pesq = txtPesq.getText();   
+                    array = operadorControl.pesquisarProduto();           
+                }
                                    
-            for (int x = 0 ; x < array.size(); x++){
-               produtoPesquisado = (ProdutoModel) array.get(x);
-               jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
-               jtProdutos.setValueAt(produtoPesquisado.getNomeProduto(), x, 1);
-               jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);                     
-            }      
-           }
+                //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
+                for (int x = 0 ; x < array.size(); x++){
+                    produtoPesquisado = (ProdutoModel) array.get(x);
+                   jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
+                   jtProdutos.setValueAt(produtoPesquisado.getNomeProduto(), x, 1);
+                   jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);                              
+                }
     }//GEN-LAST:event_txtPesqKeyReleased
 
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            new PrincipalView().setVisible (true);             
+           new PrincipalView().setVisible(true);                                 
             }
         });
     }
@@ -808,8 +775,27 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+  //ATUALIZA A HORA DO LABE 'LBDATA'  
  private void iniciaAtualizadorDeData(){
     ah.start();    
     }    
+ 
+ 
+ 
+ //METODO PARA LIMPAR AS TABELAS
+ private void limparTabela(JTable table) {
+    for (int x = 0; x < table.getRowCount(); x++) {
+        table.setValueAt("", x, 0);
+        table.setValueAt("", x, 1);
+        table.setValueAt("", x, 2);
+    }
+}
+ 
+ //METODO PARA INICIAR O FORM MAXIMIZADO 
+ private void maximize( ){
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+ }
 
 }
