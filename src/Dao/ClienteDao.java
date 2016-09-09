@@ -2,10 +2,13 @@
 package Dao;
 
 import Interfaces.interfaceDao;
+import Models.ClienteModel;
+import java.util.ArrayList;
 
 
 public class ClienteDao implements interfaceDao{
-    
+    ClienteModel clienteModel;
+    ArrayList clientes;
     
 
     @Override
@@ -24,10 +27,11 @@ public class ClienteDao implements interfaceDao{
     }
 
     @Override
-    public Object pesquisar(Object object) {
+    public ArrayList pesquisar(String pesq) {
+        clienteModel = new ClienteModel();
         
         
-     return object;    
+     return clientes;    
     }
 
    

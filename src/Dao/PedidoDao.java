@@ -2,9 +2,12 @@
 package Dao;
 
 import Interfaces.interfaceDao;
+import java.util.ArrayList;
 
 
 public class PedidoDao implements interfaceDao{
+    
+    ArrayList usuarios;
 
     @Override
     public Boolean inserir(Object object) {
@@ -22,8 +25,9 @@ public class PedidoDao implements interfaceDao{
     }
 
     @Override
-    public Object pesquisar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList pesquisar(String pesq) {
+
+        return usuarios;
     }
     
 }

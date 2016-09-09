@@ -29,7 +29,7 @@ public class AtualizadorDeHorario extends Thread{
                     Date d = new Date();       
                     StringBuilder data = new StringBuilder();
                     SimpleDateFormat dia = new SimpleDateFormat("dd");
-                    data.append("São Paulo, ");
+                    data.append("Sistema de Gerenciamento de Pizzaria - São Paulo, ");
                     data.append (dia.format(d));
                     data.append(" de ");
               

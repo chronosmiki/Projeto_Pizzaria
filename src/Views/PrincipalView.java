@@ -5,22 +5,31 @@
  */
 package Views;
 
+import ClassesAuxiliares.AtualizadorDeHorario;
 import ClassesAuxiliares.Modal;
+import ClassesAuxiliares.Msg;
+import Controls.OperadorControl;
+import Controls.ProdutoControl;
+import Models.ProdutoModel;
 import java.awt.Frame;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
-/**
- *
- * @author BANCO DE DADOS
- */
+
 public class PrincipalView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PrincipalView
-     */
+   ProdutoControl produtoControl;
+   ProdutoModel produtoModel;
+   OperadorControl operadorControl;
+   ProdutoModel produtoPesquisado;
+   ArrayList <ProdutoModel> array = new ArrayList<>();
+   private static AtualizadorDeHorario ah;
+    
     public PrincipalView() {
         initComponents();
+         ah = new AtualizadorDeHorario(lbDate); 
+         iniciaAtualizadorDeData();
     }
 
     /**
@@ -50,7 +59,7 @@ public class PrincipalView extends javax.swing.JFrame {
         painelPesquisaProdutos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtProdutos = new javax.swing.JTable();
-        txtPesquisaProduto = new javax.swing.JTextField();
+        txtPesq = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -60,7 +69,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lb4 = new javax.swing.JLabel();
         lb5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbDate = new javax.swing.JLabel();
         painelDeFerramentas = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
         btnCadastrarCliente = new javax.swing.JButton();
@@ -175,7 +184,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb3)
                     .addComponent(lb1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +236,100 @@ public class PrincipalView extends javax.swing.JFrame {
         painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
 
+        jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -243,21 +344,34 @@ public class PrincipalView extends javax.swing.JFrame {
             new String [] {
                 "Cod", "Nome", "Valor Unit"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jtProdutos);
         if (jtProdutos.getColumnModel().getColumnCount() > 0) {
-            jtProdutos.getColumnModel().getColumn(0).setMinWidth(20);
-            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
+            jtProdutos.getColumnModel().getColumn(0).setMinWidth(5);
+            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
             jtProdutos.getColumnModel().getColumn(1).setMinWidth(200);
             jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
-        txtPesquisaProduto.setBackground(new java.awt.Color(0, 0, 0));
-        txtPesquisaProduto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtPesquisaProduto.setForeground(new java.awt.Color(255, 255, 0));
-        txtPesquisaProduto.setToolTipText("Pesquisa");
-        txtPesquisaProduto.setCaretColor(new java.awt.Color(204, 204, 204));
-        txtPesquisaProduto.setMargin(new java.awt.Insets(10, 2, 2, 2));
+        txtPesq.setBackground(new java.awt.Color(0, 0, 0));
+        txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtPesq.setForeground(new java.awt.Color(255, 255, 0));
+        txtPesq.setToolTipText("Pesquisa");
+        txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
+        txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
+        txtPesq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesqKeyReleased(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(51, 102, 0));
@@ -315,16 +429,16 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPesquisaProduto)
+                    .addComponent(txtPesq)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         painelPesquisaProdutosLayout.setVerticalGroup(
@@ -335,9 +449,9 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(txtPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,14 +465,14 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel2.setText("Camargo Aranha Desenvolvimento de Sistemas S/A - Todos os direitos Reservados c 2016");
         jLabel2.setFocusTraversalPolicyProvider(true);
 
-        lb4.setFont(new java.awt.Font("Arial Narrow", 1, 36)); // NOI18N
+        lb4.setFont(new java.awt.Font("Arial Narrow", 1, 40)); // NOI18N
         lb4.setForeground(new java.awt.Color(51, 255, 51));
         lb4.setText("LIVRE");
 
         lb5.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lb5.setForeground(new java.awt.Color(255, 255, 255));
         lb5.setText("Status do Caixa: ");
-        lb5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lb5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
@@ -375,30 +489,31 @@ public class PrincipalView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lb4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb4))
+                            .addComponent(lb4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
+        lbDate.setBackground(new java.awt.Color(0, 0, 0));
+        lbDate.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        lbDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbDate.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
 
         painelDeFerramentas.setBackground(new java.awt.Color(255, 255, 255));
         painelDeFerramentas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -539,31 +654,31 @@ public class PrincipalView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                    .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDeFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                    .addComponent(jSeparator2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel3.getAccessibleContext().setAccessibleName("");
@@ -586,9 +701,34 @@ public class PrincipalView extends javax.swing.JFrame {
         new CadastroProdutoView().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
+           OperadorControl.pesq = ""; 
+           array.clear();
+           
+           if(txtPesq.getText().equals("") || txtPesq.getText().equals(null)){
+                for (int x = 0; x < jtProdutos.getRowCount(); x++ ){
+                         jtProdutos.removeRowSelectionInterval(x, x);               
+                 }           
+           }else{
+           
+            for (int x = 0; x < jtProdutos.getRowCount(); x++ ){
+                    jtProdutos.removeRowSelectionInterval(x, x);               
+            }
+        
+            operadorControl = new OperadorControl();
+            OperadorControl.pesq = txtPesq.getText();             
+            array = operadorControl.pesquisarProduto();
+                                   
+            for (int x = 0 ; x < array.size(); x++){
+               produtoPesquisado = (ProdutoModel) array.get(x);
+               jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
+               jtProdutos.setValueAt(produtoPesquisado.getNomeProduto(), x, 1);
+               jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);                     
+            }      
+           }
+    }//GEN-LAST:event_txtPesqKeyReleased
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -633,7 +773,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
@@ -654,6 +793,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lb3;
     private javax.swing.JLabel lb4;
     private javax.swing.JLabel lb5;
+    private javax.swing.JLabel lbDate;
     private javax.swing.JLabel lbSubtotal;
     private javax.swing.JLabel lbTotal;
     private javax.swing.JPanel painelCalculo;
@@ -665,6 +805,11 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JSeparator sep2;
     private javax.swing.JSeparator sep3;
     private javax.swing.JLabel tbSubtotal;
-    private javax.swing.JTextField txtPesquisaProduto;
+    private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
+
+ private void iniciaAtualizadorDeData(){
+    ah.start();    
+    }    
+
 }

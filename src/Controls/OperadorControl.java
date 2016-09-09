@@ -4,6 +4,7 @@ package Controls;
 import ClassesAuxiliares.Msg;
 import Dao.*;
 import Models.*;
+import java.util.ArrayList;
 
 public class OperadorControl {
     
@@ -16,7 +17,9 @@ public class OperadorControl {
    private ClienteModel clienteModel;  
    private ProdutoModel produtoModel; 
    private UsuarioModel usuarioModel;
-    private PedidoModel pedidoModel;
+   private PedidoModel pedidoModel;
+   
+   public static String pesq;
    
    
    //RECEBE A INSTANCIA DO OBJETO A SER TRATADO NO CONSTRUTOR
@@ -36,9 +39,13 @@ public class OperadorControl {
    }
  }
    
+    public OperadorControl(){            
+    
+   }
    
    
    
+     
    
     //METODOS DE MANIPULAÇÃO DO CLIENTE
     public Boolean inserirCliente(){
@@ -50,8 +57,8 @@ public class OperadorControl {
     public Boolean excluirCliente() {
            return clienteDao.excluir(clienteModel);                 
     }     
-    public Object pesquisarCliente() {
-           return clienteDao.pesquisar(clienteModel);                           
+    public ArrayList pesquisarCliente(String p) {
+           return clienteDao.pesquisar(pesq);
     }
     
     
@@ -59,9 +66,8 @@ public class OperadorControl {
     
     
     //METODOS DE MANIPULACAO DOS PRODUTOS
-    public Boolean inserirProduto(){    
-        Msg.confirm(produtoModel.getNomeProduto() );
-          return produtoDao.inserir(produtoModel);
+    public Boolean inserirProduto(){           
+        return produtoDao.inserir(produtoModel);
     }        
     public Boolean alterarProduto() {
           return produtoDao.alterar(produtoModel);                          
@@ -69,8 +75,9 @@ public class OperadorControl {
     public Boolean excluirProduto() {
          return produtoDao.excluir(produtoModel);                 
     }      
-    public Object pesquisarProduto() {
-         return produtoDao.pesquisar(produtoModel);                           
+    public ArrayList pesquisarProduto() {
+         return produtoDao.pesquisar(pesq);  
+        
     }
     
    
@@ -87,8 +94,8 @@ public class OperadorControl {
     public Boolean excluirUsuario() {
          return usuarioDao.excluir(usuarioModel);                 
     }      
-    public Object pesquisarUsuario() {
-         return usuarioDao.pesquisar(usuarioModel);                           
+    public ArrayList pesquisarUsuario() {
+         return usuarioDao.pesquisar(pesq);                           
     }
                   
     

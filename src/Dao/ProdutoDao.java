@@ -5,9 +5,11 @@ import ClassesAuxiliares.Msg;
 import Interfaces.interfaceDao;
 import Models.ProdutoModel;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,12 +19,13 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
           ProdutoModel produtoModel;
           ResultSet resultado = null;   
           String sql = "";          
-          Statement stmt;       
-          Connection conn;
-          Boolean success = false;         
+          Statement stmt;
+          PreparedStatement pstm;
+          Boolean success = false;    
+          ArrayList <ProdutoModel> produtos = new ArrayList<>();
    
         
-//INSERE PRODUTOS    
+    //INSERE PRODUTOS    
     @Override
     public Boolean inserir(Object object) {              
             produtoModel = (ProdutoModel) object;            
@@ -33,12 +36,12 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                     Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
                     Msg.exclamation(Msg.erroConexao + ex.getMessage());
               }
-                    sql = "INSERT INTO produtor (nome, precoUnitario)"
-                    + "VALUES (' "
+                    sql = "INSERT INTO produtos (nome, precoUnitario)"
+                    + "VALUES ('"
                     + produtoModel.getNomeProduto() 
-                    + " ',' " 
+                    + "'," 
                     + produtoModel.getValorUnitario() 
-                    +"' );";
+                    +");";
                     
                try {                   
                         stmt.execute(sql);
@@ -53,19 +56,91 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
 
 
 
+    //ALTERA PRODUTOS
     @Override
     public Boolean alterar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        produtoModel = (ProdutoModel) object;
+        
+        sql = "update produtos set nome = ?, precoUnitario = ? where id = ?;";
+        
+        try{            
+            try {
+                pstm = open().prepareStatement(sql);
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pstm.setInt(3, produtoModel.getIdProduto());
+            pstm.setString(1,produtoModel.getNomeProduto());
+            pstm.setDouble(2,produtoModel.getValorUnitario());          
+                        
+            pstm.execute();
+            success = true;
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }        
+        return success;
     }
 
+    
+    
+    //EXCLUI PRODUTO
     @Override
     public Boolean excluir(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object pesquisar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        produtoModel = (ProdutoModel) object;
+        
+        sql = "delete from produtos where id = ?;";
+        
+        try{            
+            try {
+                pstm = open().prepareStatement(sql);
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pstm.setInt(1,produtoModel.getIdProduto());            
+            pstm.execute();
+            success = true;
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }        
+        return success;        
     }
     
+    
+    
+    
+    //PESQUISA PRODUTO
+    @Override
+    public ArrayList pesquisar(String pesq) {        
+        
+        sql = "select * from produtos where nome like '" + pesq + "%';";
+            
+        try{
+            try {
+                pstm = open().prepareStatement(sql);
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            resultado = pstm.executeQuery(sql);
+            produtos.clear();
+            while(resultado.next())
+            {
+                produtoModel = new ProdutoModel();  
+                produtoModel.setIdProduto(resultado.getInt("id_produto"));
+                produtoModel.setNomeProduto(resultado.getString("nome"));
+                produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                  
+               
+                produtos.add(produtoModel);
+            }           
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }
+        close();
+        return produtos;
+    }    
 }

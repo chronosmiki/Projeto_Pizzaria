@@ -45,6 +45,6 @@ public class ClienteControl extends OperadorControl implements interfaceControl{
     
     @Override
     public Object pesquisarBd() {     
-        return pesquisarCliente();      
+        return pesquisarCliente(pesq);      
     }                      
 }

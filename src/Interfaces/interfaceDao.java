@@ -1,6 +1,8 @@
 
 package Interfaces;
 
+import java.util.ArrayList;
+
 
 public interface interfaceDao {
     
@@ -11,6 +13,5 @@ public interface interfaceDao {
     
     Boolean excluir (Object object);
     
-    Object pesquisar (Object object);       
-    
+    ArrayList pesquisar (String pesq);
 }
