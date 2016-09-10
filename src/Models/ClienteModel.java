@@ -14,7 +14,7 @@ public class ClienteModel {
     private int idCliente;
     private String nome;
     private String sobrenome;
-    private int idTelefone;
+    private int Telefone;
     private String dataCadastro;
     private String email;
     private int idEndereco; 
@@ -53,12 +53,12 @@ public class ClienteModel {
         this.sobrenome = sobrenome;
     }
 
-    public int getIdTelefone() {
-        return idTelefone;
+    public int getTelefone() {
+        return Telefone;
     }
 
-    public void setIdTelefone(int idTelefone) {
-        this.idTelefone = idTelefone;
+    public void setTelefone(int Telefone) {
+        this.Telefone = Telefone;
     }
 
     public String getDataCadastro() {
