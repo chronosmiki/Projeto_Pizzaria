@@ -1,87 +1,81 @@
-CREATE DATABASE  IF NOT EXISTS `projeto_pizzaria` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `projeto_pizzaria`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1    Database: projeto_pizzaria
--- ------------------------------------------------------
--- Server version	5.5.5-10.1.10-MariaDB
+-- Host: 127.0.0.1
+-- Generation Time: 16-Set-2016 às 17:00
+-- Versão do servidor: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `clientes`
+-- Database: `projeto_pizzaria`
 --
 
-DROP TABLE IF EXISTS `clientes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `clientes`
+--
+
 CREATE TABLE `clientes` (
-  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `idCliente` int(11) NOT NULL,
   `nome` tinytext NOT NULL,
   `sobrenome` tinytext NOT NULL,
   `telefone` int(11) NOT NULL,
   `id_endereco` int(11) DEFAULT NULL,
   `data_cad` date NOT NULL,
-  `email` varchar(300) NOT NULL,
-  PRIMARY KEY (`idCliente`),
-  KEY `id_endereco_idx` (`id_endereco`),
-  CONSTRAINT `id_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`idendereco`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena informações dos clientes..';
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `email` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena informações dos clientes..';
 
 --
--- Dumping data for table `clientes`
+-- Extraindo dados da tabela `clientes`
 --
 
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Vitor','Pereira',21158425,1,'2016-09-05','vitorj0829@hotmail.com');
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `clientes` (`idCliente`, `nome`, `sobrenome`, `telefone`, `id_endereco`, `data_cad`, `email`) VALUES
+(1, 'Vitor', 'Pereira', 21158425, 1, '2016-09-05', 'vitorj0829@hotmail.com');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `det_pedidos`
+-- Estrutura da tabela `detalhes_fornecedores`
 --
 
-DROP TABLE IF EXISTS `det_pedidos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `det_pedidos` (
-  `id_detalhes` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `detalhes_fornecedores` (
+  `id_detalhes_fornecedores` int(11) NOT NULL,
+  `id_fornecedor` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `detalhes_pedidos`
+--
+
+CREATE TABLE `detalhes_pedidos` (
+  `id_detalhes` int(11) NOT NULL,
   `num_pedido` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  PRIMARY KEY (`id_detalhes`)
+  `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela de união entre produtos e pedidos';
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `det_pedidos`
+-- Estrutura da tabela `enderecos`
 --
 
-LOCK TABLES `det_pedidos` WRITE;
-/*!40000 ALTER TABLE `det_pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `det_pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `enderecos`
---
-
-DROP TABLE IF EXISTS `enderecos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `enderecos` (
-  `idendereco` int(11) NOT NULL AUTO_INCREMENT,
+  `idendereco` int(11) NOT NULL,
   `tipo` varchar(45) NOT NULL,
   `logradouro` text NOT NULL,
   `numero` int(11) NOT NULL,
@@ -89,109 +83,220 @@ CREATE TABLE `enderecos` (
   `municipio` tinytext NOT NULL,
   `estado` tinytext NOT NULL,
   `cep` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  PRIMARY KEY (`idendereco`),
-  KEY `id_cliente_idx` (`id_cliente`),
-  CONSTRAINT `id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabela para armazenar endereços dos clientes.';
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_cliente` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela para armazenar endereços dos clientes.';
 
 --
--- Dumping data for table `enderecos`
+-- Extraindo dados da tabela `enderecos`
 --
 
-LOCK TABLES `enderecos` WRITE;
-/*!40000 ALTER TABLE `enderecos` DISABLE KEYS */;
-INSERT INTO `enderecos` VALUES (1,'Rua','Costa Barros',131,'Vila Alpina','São Paulo','São Paulo',3210000,1);
-/*!40000 ALTER TABLE `enderecos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `enderecos` (`idendereco`, `tipo`, `logradouro`, `numero`, `bairro`, `municipio`, `estado`, `cep`, `id_cliente`) VALUES
+(1, 'Rua', 'Costa Barros', 131, 'Vila Alpina', 'São Paulo', 'São Paulo', 3210000, 1);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos`
+-- Estrutura da tabela `estoque`
 --
 
-DROP TABLE IF EXISTS `pedidos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estoque` (
+  `id_estoque` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  `id_detalhes_fornecedores` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL,
+  `dataUltimaCompra` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `fornecedores`
+--
+
+CREATE TABLE `fornecedores` (
+  `id_fornecedor` int(11) NOT NULL,
+  `razaoSocial` text NOT NULL,
+  `cnpj` text NOT NULL,
+  `id_endereco` text NOT NULL,
+  `dataCadastro` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pedidos`
+--
+
 CREATE TABLE `pedidos` (
-  `num_pedido` int(11) NOT NULL AUTO_INCREMENT,
+  `num_pedido` int(11) NOT NULL,
   `valor_total` decimal(10,0) NOT NULL,
   `data` date NOT NULL,
   `metod_pag` text NOT NULL,
   `delivery` tinyint(1) NOT NULL,
-  `id_detalhe` varchar(45) NOT NULL,
-  PRIMARY KEY (`num_pedido`)
+  `id_detalhe` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena os pedidos feitos';
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `pedidos`
+-- Estrutura da tabela `produtos`
 --
 
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `produtos`
---
-
-DROP TABLE IF EXISTS `produtos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `produtos` (
-  `id_produto` int(11) NOT NULL AUTO_INCREMENT,
-  `id_detalhes` int(11) NOT NULL,
-  `nome` text NOT NULL,
-  `valor` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`id_produto`)
+  `id_produto` int(11) NOT NULL,
+  `tipoProduto` text,
+  `detalheProduto` text NOT NULL,
+  `precoUnitario` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena produtos.';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `produtos`
+-- Extraindo dados da tabela `produtos`
 --
 
-LOCK TABLES `produtos` WRITE;
-/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `produtos` (`id_produto`, `tipoProduto`, `detalheProduto`, `precoUnitario`) VALUES
+(1, 'Pizza', 'Musarella', 30),
+(2, 'Bebida', 'Coca Cola 2L', 4.5);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
-  `idusuarios` int(11) NOT NULL AUTO_INCREMENT,
+  `idusuarios` int(11) NOT NULL,
   `nome` tinytext NOT NULL,
   `sobrenome` tinytext NOT NULL,
   `login` tinytext NOT NULL,
   `password` tinytext NOT NULL,
-  `nivel` int(11) NOT NULL COMMENT 'Nivel do usuário no sistema...\n\n1-)Adm;\n2-)Usuário;',
-  PRIMARY KEY (`idusuarios`)
+  `nivel` int(11) NOT NULL COMMENT 'Nivel do usuário no sistema...\n\n1-)Adm;\n2-)Usuário;'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela de cadastros para usuários do sistema.';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Indexes for dumped tables
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Indexes for table `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`idCliente`),
+  ADD KEY `id_endereco_idx` (`id_endereco`);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for table `detalhes_fornecedores`
+--
+ALTER TABLE `detalhes_fornecedores`
+  ADD PRIMARY KEY (`id_detalhes_fornecedores`);
+
+--
+-- Indexes for table `detalhes_pedidos`
+--
+ALTER TABLE `detalhes_pedidos`
+  ADD PRIMARY KEY (`id_detalhes`);
+
+--
+-- Indexes for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD PRIMARY KEY (`idendereco`),
+  ADD KEY `id_cliente_idx` (`id_cliente`);
+
+--
+-- Indexes for table `estoque`
+--
+ALTER TABLE `estoque`
+  ADD PRIMARY KEY (`id_estoque`);
+
+--
+-- Indexes for table `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  ADD PRIMARY KEY (`id_fornecedor`);
+
+--
+-- Indexes for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`num_pedido`);
+
+--
+-- Indexes for table `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`id_produto`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idusuarios`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `detalhes_fornecedores`
+--
+ALTER TABLE `detalhes_fornecedores`
+  MODIFY `id_detalhes_fornecedores` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `detalhes_pedidos`
+--
+ALTER TABLE `detalhes_pedidos`
+  MODIFY `id_detalhes` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `estoque`
+--
+ALTER TABLE `estoque`
+  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `num_pedido` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `id_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`idendereco`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD CONSTRAINT `id_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-09-05 21:14:48
