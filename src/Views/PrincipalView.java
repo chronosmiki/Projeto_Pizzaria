@@ -8,8 +8,10 @@ package Views;
 import ClassesAuxiliares.*;
 import Controls.*;
 import Models.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
@@ -18,10 +20,13 @@ public class PrincipalView extends javax.swing.JFrame {
 
    private ControleProdutosControl produtoControl;
    private ProdutoModel produtoModel;
+   private static Double subTotal = 0.0;
+   private static Double total = 0.0;
    private OperadorControl operadorControl;
    private ProdutoModel produtoPesquisado;
    private ArrayList <ProdutoModel> array = new ArrayList<>();
    private static AtualizadorDeHorario ah;
+   private int linha = 0;
     
     public PrincipalView() {
         initComponents();
@@ -51,9 +56,9 @@ public class PrincipalView extends javax.swing.JFrame {
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         lb3 = new javax.swing.JLabel();
-        lbTotal = new javax.swing.JLabel();
-        lbSubtotal = new javax.swing.JLabel();
-        tbSubtotal = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
         painelPesquisaProdutos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtProdutos = new javax.swing.JTable();
@@ -65,7 +70,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        lb4 = new javax.swing.JLabel();
+        lblStatusCaixa = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
         painelDeFerramentas = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
@@ -100,68 +105,70 @@ public class PrincipalView extends javax.swing.JFrame {
         painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
 
+        jtDetalhesVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtDetalhesVenda.setForeground(new java.awt.Color(51, 0, 204));
         jtDetalhesVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cód", "Produto", "Quant", "Preço Unitario", "Excluir"
+                "Cód", "Produto", "Quant", "Preço Unitario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,17 +208,17 @@ public class PrincipalView extends javax.swing.JFrame {
         lb3.setForeground(new java.awt.Color(102, 255, 0));
         lb3.setText("TOTAL - R$");
 
-        lbTotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        lbTotal.setForeground(new java.awt.Color(102, 255, 0));
-        lbTotal.setText("25,00");
+        lblTotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(102, 255, 0));
+        lblTotal.setText("00,00");
 
-        lbSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        lbSubtotal.setForeground(new java.awt.Color(255, 255, 255));
-        lbSubtotal.setText("00,00");
+        lblDesc.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("00.00");
 
-        tbSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        tbSubtotal.setForeground(new java.awt.Color(255, 204, 0));
-        tbSubtotal.setText("25,00");
+        lblSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblSubtotal.setForeground(new java.awt.Color(255, 204, 0));
+        lblSubtotal.setText("00,00");
 
         javax.swing.GroupLayout painelCalculoLayout = new javax.swing.GroupLayout(painelCalculo);
         painelCalculo.setLayout(painelCalculoLayout);
@@ -225,9 +232,9 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         painelCalculoLayout.setVerticalGroup(
@@ -236,15 +243,15 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb1)
-                    .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -343,6 +350,11 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jtProdutos.setRowHeight(20);
+        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtProdutos);
         if (jtProdutos.getColumnModel().getColumnCount() > 0) {
             jtProdutos.getColumnModel().getColumn(0).setMinWidth(5);
@@ -453,20 +465,20 @@ public class PrincipalView extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status do Caixa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        lb4.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
-        lb4.setForeground(new java.awt.Color(51, 255, 51));
-        lb4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb4.setText("LIVRE");
+        lblStatusCaixa.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
+        lblStatusCaixa.setForeground(new java.awt.Color(51, 255, 51));
+        lblStatusCaixa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblStatusCaixa.setText("LIVRE");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lb4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(lb4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
@@ -695,7 +707,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
         if(!txtPesq.getText().equals("")){
-
             OperadorControl.pesq = txtPesq.getText();
             array = operadorControl.pesquisarProduto();
         }
@@ -708,6 +719,34 @@ public class PrincipalView extends javax.swing.JFrame {
             jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);
         }
     }//GEN-LAST:event_txtPesqKeyReleased
+
+    private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
+                
+        int quant = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade do Produto"));
+
+            if(quant > 0){
+
+                if(!lblStatusCaixa.getText().equals("Realizando Venda")){
+                lblStatusCaixa.setText("Realizando Venda");
+                lblStatusCaixa.setForeground(Color.red);
+                }    
+
+                Double valor = Double.parseDouble(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 2).toString()) * quant;
+
+                jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0),linha, 0);
+                jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 1),linha, 1);
+                jtDetalhesVenda.setValueAt(quant,linha, 2);
+                jtDetalhesVenda.setValueAt(valor, linha, 3);  
+
+                subTotal += valor;
+                total = subTotal - (Double.parseDouble(lblDesc.getText()));
+
+                lblSubtotal.setText("R$ " + subTotal);
+                lblTotal.setText("R$ " + total);
+
+                linha++;
+            }           
+    }//GEN-LAST:event_jtProdutosMouseClicked
 
     
     
@@ -750,10 +789,11 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;
-    private javax.swing.JLabel lb4;
     private javax.swing.JLabel lbDate;
-    private javax.swing.JLabel lbSubtotal;
-    private javax.swing.JLabel lbTotal;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblStatusCaixa;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel painelCalculo;
     private javax.swing.JPanel painelDeFerramentas;
     private javax.swing.JPanel painelDetalhesVenda;
@@ -762,7 +802,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JSeparator sep1;
     private javax.swing.JSeparator sep2;
     private javax.swing.JSeparator sep3;
-    private javax.swing.JLabel tbSubtotal;
     private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 

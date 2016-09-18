@@ -249,13 +249,18 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="jtDetalhesVenda">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="18" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="0" red="33" type="rgb"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="50">
+                      <Table columnCount="4" rowCount="50">
                         <Column editable="false" title="C&#xf3;d" type="java.lang.Integer"/>
                         <Column editable="false" title="Produto" type="java.lang.String"/>
                         <Column editable="false" title="Quant" type="java.lang.Integer"/>
                         <Column editable="false" title="Pre&#xe7;o Unitario" type="java.lang.Double"/>
-                        <Column editable="true" title="Excluir" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -276,11 +281,6 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -328,9 +328,9 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tbSubtotal" min="-2" pref="85" max="-2" attributes="0"/>
-                              <Component id="lbSubtotal" min="-2" pref="88" max="-2" attributes="0"/>
-                              <Component id="lbTotal" min="-2" pref="115" max="-2" attributes="0"/>
+                              <Component id="lblSubtotal" min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="lblDesc" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="lblTotal" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
@@ -342,17 +342,17 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lb1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tbSubtotal" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="lblSubtotal" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lb2" min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="lbSubtotal" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="lblDesc" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lb3" min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="lbTotal" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="lblTotal" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -396,7 +396,7 @@
                     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="TOTAL R$"/>
                   </AccessibilityProperties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbTotal">
+                <Component class="javax.swing.JLabel" name="lblTotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Narrow" size="24" style="1"/>
@@ -404,10 +404,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="ff" red="66" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="25,00"/>
+                    <Property name="text" type="java.lang.String" value="00,00"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lbSubtotal">
+                <Component class="javax.swing.JLabel" name="lblDesc">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Narrow" size="24" style="1"/>
@@ -415,10 +415,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="00,00"/>
+                    <Property name="text" type="java.lang.String" value="00.00"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="tbSubtotal">
+                <Component class="javax.swing.JLabel" name="lblSubtotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Narrow" size="24" style="1"/>
@@ -426,7 +426,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="cc" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="25,00"/>
+                    <Property name="text" type="java.lang.String" value="00,00"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -543,6 +543,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtProdutosMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -709,17 +712,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lb4" alignment="1" max="32767" attributes="0"/>
+                  <Component id="lblStatusCaixa" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="lb4" max="32767" attributes="0"/>
+                  <Component id="lblStatusCaixa" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lb4">
+            <Component class="javax.swing.JLabel" name="lblStatusCaixa">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Narrow" size="48" style="1"/>
