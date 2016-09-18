@@ -36,12 +36,14 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                     Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
                     Msg.exclamation(Msg.erroConexao + ex.getMessage());
               }
-                    sql = "INSERT INTO produtos (nome, precoUnitario)"
+                    sql = "INSERT INTO produtos (tipoProduto, detalheProduto, precoUnitario)"
                     + "VALUES ('"
-                    + produtoModel.getNomeProduto() 
-                    + "'," 
-                    + produtoModel.getValorUnitario() 
-                    +");";
+                    + produtoModel.getTipoProduto()
+                    + "','" 
+                    + produtoModel.getDetalheProduto()
+                    + "','"
+                    + produtoModel.getValorUnitario()
+                    +"');";
                     
                try {                   
                         stmt.execute(sql);
@@ -61,7 +63,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
     public Boolean alterar(Object object) {
         produtoModel = (ProdutoModel) object;
         
-        sql = "update produtos set nome = ?, precoUnitario = ? where id = ?;";
+        sql = "update produtos set tipoProduto = ?, detalheProduto = ?, precoUnitario = ? where id = ?;";
         
         try{            
             try {
@@ -70,7 +72,8 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                 Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
             pstm.setInt(3, produtoModel.getIdProduto());
-            pstm.setString(1,produtoModel.getNomeProduto());
+            pstm.setString(1,produtoModel.getTipoProduto());
+            pstm.setString(1,produtoModel.getDetalheProduto());
             pstm.setDouble(2,produtoModel.getValorUnitario());          
                         
             pstm.execute();
@@ -130,7 +133,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
             {
                 produtoModel = new ProdutoModel();  
                 produtoModel.setIdProduto(resultado.getInt("id_produto"));
-                produtoModel.setNomeProduto(resultado.getString("tipoProduto") + " - " + resultado.getString("detalheProduto"));
+                produtoModel.setDetalheProduto(resultado.getString("tipoProduto") + " - " + resultado.getString("detalheProduto"));
                 produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                  
                
                 produtos.add(produtoModel);

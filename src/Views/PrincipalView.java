@@ -704,7 +704,7 @@ public class PrincipalView extends javax.swing.JFrame {
         for (int x = 0 ; x < array.size(); x++){
             produtoPesquisado = (ProdutoModel) array.get(x);
             jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
-            jtProdutos.setValueAt(produtoPesquisado.getNomeProduto(), x, 1);
+            jtProdutos.setValueAt(produtoPesquisado.getDetalheProduto(), x, 1);
             jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);
         }
     }//GEN-LAST:event_txtPesqKeyReleased

@@ -6,7 +6,8 @@ public class ProdutoModel {
     
     
     private int idProduto;
-    private String  nomeProduto;
+    private String  tipoProduto;    
+    private String  detalheProduto;
     private int quantidadeProduto;
     private Double valorUnitario;
 
@@ -20,12 +21,28 @@ public class ProdutoModel {
         this.idProduto = idProduto;
     }
     
-    public String getNomeProduto() {
-        return nomeProduto;
+    public String getTipoProduto() {
+        return tipoProduto;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
+
+    public String getDetalheProduto() {
+        return detalheProduto;
+    }
+
+    public void setDetalheProduto(String detalheProduto) {
+        this.detalheProduto = detalheProduto;
+    }
+
+    public int getQuantidadeProduto() {
+        return quantidadeProduto;
+    }
+
+    public void setQuantidadeProduto(int quantidadeProduto) {
+        this.quantidadeProduto = quantidadeProduto;
     }
 
     public Double getValorUnitario() {
