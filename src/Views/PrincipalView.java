@@ -33,6 +33,9 @@ public class PrincipalView extends javax.swing.JFrame {
          ah = new AtualizadorDeHorario(lbDate); 
          iniciaAtualizadorDeData();
          maximize();
+         
+         PesquisaClienteView pesquisa =  new PesquisaClienteView();
+         pesquisa.setVisible(true);
     }
 
     /**
@@ -64,7 +67,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jtProdutos = new javax.swing.JTable();
         txtPesq = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
@@ -381,11 +383,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jButton6.setText("Finalizar Venda");
         jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton2.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/confirma.png"))); // NOI18N
-        jButton2.setText("  Adicionar");
-
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Complementos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -431,25 +428,20 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPesquisaProdutosLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txtPesq))
+                    .addComponent(txtPesq)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         painelPesquisaProdutosLayout.setVerticalGroup(
             painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -535,11 +527,16 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCadastrarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
-        btnCadastrarCliente.setText("Cadastrar Cliente");
+        btnCadastrarCliente.setText("Controle de  Clientes");
         btnCadastrarCliente.setBorder(null);
         btnCadastrarCliente.setFocusable(false);
         btnCadastrarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCadastrarCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
 
         btnLocalizarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnLocalizarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -748,6 +745,10 @@ public class PrincipalView extends javax.swing.JFrame {
             }           
     }//GEN-LAST:event_jtProdutosMouseClicked
 
+    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+         new PesquisaClienteView().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+
     
     
     public static void main(String args[]) {
@@ -766,7 +767,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnLocalizarCliente1;
     private javax.swing.JMenu btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
