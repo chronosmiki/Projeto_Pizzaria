@@ -36,7 +36,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
         ah = new AtualizadorDeHorario(lbDate); 
         iniciaAtualizadorDeData();
         maximize();
-        preencheTabela();  
+        tabela.preencherTabela("produto", jtProdutos);  
         
     }
 
@@ -374,7 +374,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
         array.clear();
 
         //LIMPA A TABELA
-        limparTabela(jtProdutos);
+        tabela.limparTabela(jtProdutos);   
 
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
         if(!txtPesq.getText().equals("")){
@@ -390,13 +390,13 @@ public class ControleProdutosView extends javax.swing.JFrame {
                  jtProdutos.setValueAt(produto.getValorUnitario(), x, 3);
              }
         }else{
-             preencheTabela();   
+              tabela.preencherTabela("produto", jtProdutos);   
         }                  
     }//GEN-LAST:event_txtPesqKeyReleased
 
     private void btnAtualizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarListaActionPerformed
-           limparTabela(jtProdutos);
-            preencheTabela();   
+            tabela.limparTabela(jtProdutos);
+            tabela.preencherTabela("produto", jtProdutos);   
     }//GEN-LAST:event_btnAtualizarListaActionPerformed
 
     private void txtTipoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoProdutoActionPerformed
@@ -508,33 +508,15 @@ public class ControleProdutosView extends javax.swing.JFrame {
   //ATUALIZA A HORA DO LABE 'LBDATA'  
  private void iniciaAtualizadorDeData(){
     ah.start();    
-    }    
+ }    
  
  
  
- //METODO PARA LIMPAR AS TABELAS
- private void limparTabela(JTable table) {
-    for (int x = 0; x < table.getRowCount(); x++) {
-        table.setValueAt("", x, 0);
-        table.setValueAt("", x, 1);
-        table.setValueAt("", x, 2);
-    }
-}
  
  //METODO PARA INICIAR O FORM MAXIMIZADO 
  private void maximize( ){
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
  }
  
- 
- private void preencheTabela(){
-        for(int x = 0; x < tabela.preencherTabela("produto").size(); x++){            
-            produto =  (ProdutoModel)tabela.preencherTabela("produto").get(x);           
-            jtProdutos.setValueAt(produto.getIdProduto(), x, 0);
-            jtProdutos.setValueAt(produto.getTipoProduto(), x, 1);
-            jtProdutos.setValueAt(produto.getDetalheProduto(), x, 2);
-            jtProdutos.setValueAt(produto.getValorUnitario(), x, 3);     
-         }       
- }
 
 }
