@@ -16,7 +16,7 @@ import javax.swing.JTable;
 
 public class PrincipalView extends javax.swing.JFrame {
 
-   private ProdutoControl produtoControl;
+   private ControleProdutosControl produtoControl;
    private ProdutoModel produtoModel;
    private OperadorControl operadorControl;
    private ProdutoModel produtoPesquisado;
@@ -507,7 +507,8 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCadastrarProduto.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCadastrarProduto.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_produto.png"))); // NOI18N
-        btnCadastrarProduto.setText("Cadastrar Produto");
+        btnCadastrarProduto.setText("Controle de Produtos");
+        btnCadastrarProduto.setActionCommand("Produtos");
         btnCadastrarProduto.setBorder(null);
         btnCadastrarProduto.setFocusable(false);
         btnCadastrarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -680,9 +681,8 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseClicked
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        new Modal(this);
-        Modal.setDisable();;
-        new CadastroProdutoView().setVisible(true);        // TODO add your handling code here:
+       
+        new ControleProdutosView().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased

@@ -2,7 +2,7 @@
 package Views;
 
 import ClassesAuxiliares.Modal;
-import Controls.ProdutoControl;
+import Controls.ControleProdutosControl;
 import Models.ProdutoModel;
 
 
@@ -10,7 +10,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
 
     
     
-    ProdutoControl produtoControl;
+    ControleProdutosControl produtoControl;
     ProdutoModel produtoModel = new ProdutoModel();
     
    
@@ -172,7 +172,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         produtoModel.setTipoProduto(txtTipoProduto.getSelectedItem().toString());
         produtoModel.setDetalheProduto(txtNomeProduto.getText());
         produtoModel.setValorUnitario( Double.parseDouble(txtValorUnitario.getText()));
-        produtoControl = new ProdutoControl(produtoModel);
+        produtoControl = new ControleProdutosControl(produtoModel);
         produtoControl.inserirBd();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

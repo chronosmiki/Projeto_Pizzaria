@@ -814,7 +814,8 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagens/cadastro_produto.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cadastrar Produto"/>
+            <Property name="text" type="java.lang.String" value="Controle de Produtos"/>
+            <Property name="actionCommand" type="java.lang.String" value="Produtos"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
