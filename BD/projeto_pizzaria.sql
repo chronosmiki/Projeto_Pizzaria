@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 16-Set-2016 às 17:00
+-- Generation Time: 18-Set-2016 às 23:57
 -- Versão do servidor: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -154,8 +154,13 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id_produto`, `tipoProduto`, `detalheProduto`, `precoUnitario`) VALUES
-(1, 'Pizza', 'Musarella', 30),
-(2, 'Bebida', 'Coca Cola 2L', 4.5);
+(1, 'Pizza', 'Mussarela', 30),
+(2, 'Bebida', 'Coca Cola 2L', 4.5),
+(3, 'calabreza', 'calabreza', 20),
+(4, 'Pizza Doce', 'Romeu e Julieta', 35),
+(5, 'Bebida', 'Guarana Antartica', 4.5),
+(6, 'Bebida', 'Suco Del Valle', 3),
+(7, 'Esfiha Doce', 'chocolate', 10);
 
 -- --------------------------------------------------------
 
@@ -275,7 +280,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
