@@ -61,10 +61,9 @@ public class Tabela {
     //Metodo Para Limpar  a JTable
     public void limparTabela(JTable table) {
             for (int x = 0; x < table.getRowCount(); x++) {
-                table.setValueAt("", x, 0);
-                table.setValueAt("", x, 1);
-                table.setValueAt("", x, 2);
+                 for(int y = 0; y < table.getColumnCount(); y++){                
+                    table.setValueAt(null, x, y);                  
+                 }
             }
-    }
-                   
+    }                   
 }

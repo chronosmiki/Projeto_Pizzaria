@@ -10,17 +10,13 @@ import Controls.*;
 import Models.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JTable;
-
 
 
 public class ControleProdutosView extends javax.swing.JFrame {
 
-   private ControleProdutosControl produtoControl;
-   private ProdutoModel produtoModel;
    private final Tabela tabela = new Tabela();
    private OperadorControl operadorControl;
-   private ProdutoModel produto;
+   private ProdutoModel produtoModel;
    private ArrayList <ProdutoModel> array = new ArrayList<>();
    private static AtualizadorDeHorario ah;
     
@@ -383,11 +379,11 @@ public class ControleProdutosView extends javax.swing.JFrame {
             
              //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
             for (int x = 0 ; x < array.size(); x++){
-                 produto = (ProdutoModel) array.get(x);
-                 jtProdutos.setValueAt(produto.getIdProduto(), x, 0);
-                 jtProdutos.setValueAt(produto.getTipoProduto(), x, 1);
-                 jtProdutos.setValueAt(produto.getDetalheProduto(), x, 2);
-                 jtProdutos.setValueAt(produto.getValorUnitario(), x, 3);
+                 produtoModel = (ProdutoModel) array.get(x);
+                 jtProdutos.setValueAt(produtoModel.getIdProduto(), x, 0);
+                 jtProdutos.setValueAt(produtoModel.getTipoProduto(), x, 1);
+                 jtProdutos.setValueAt(produtoModel.getDetalheProduto(), x, 2);
+                 jtProdutos.setValueAt(produtoModel.getValorUnitario(), x, 3);
              }
         }else{
               tabela.preencherTabela("produto", jtProdutos);   
@@ -425,6 +421,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
         
         if(altera){
         btnNovo.setText("Salvar");
+        
         
         txtTipoProduto.setEnabled(true);
         txtDetalheProduto.setEnabled(true);
