@@ -58,7 +58,33 @@ public class ClienteDao implements interfaceDao{
 
     @Override
     public Boolean alterar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        clienteModel = (ClienteModel) object;
+        
+        sql = "update clientee set nome = ?, sobrenome = ?, telefone = ?, email =? where idCliente = ?";
+        
+        try{
+            try{
+                pstm = open().prepareStatement(sql);
+               }catch(Exception ex)
+                    {
+                        Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+                        Msg.exclamation(Msg.erroConexao + ex.getMessage());
+                    }
+                pstm.setString(1, clienteModel.getNome());
+                pstm.setString(2, clienteModel.getSobrenome());
+                pstm.setInt(3, clienteModel.getTelefone());
+                pstm.setString(4, clienteModel.getEmail());
+                
+                pstm.setInt(5, clienteModel.getIdCliente());
+                pstm.execute();
+                success = true;
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }
+        
+        return success;
     }
 
     @Override
@@ -94,7 +120,7 @@ public class ClienteDao implements interfaceDao{
             try {
                 pstm = open().prepareStatement(sql);
             } catch (Exception ex) {
-                Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
             }
             resultado = pstm.executeQuery(sql);
             clientes.clear();
@@ -113,7 +139,7 @@ public class ClienteDao implements interfaceDao{
             }           
         }catch(SQLException ex)
         {
-            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
             Msg.exclamation(Msg.erroConexao + ex.getMessage());
         }
         close();
