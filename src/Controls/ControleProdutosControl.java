@@ -7,10 +7,10 @@ import Interfaces.interfaceControl;
 
 
 
-public class ProdutoControl extends OperadorControl implements interfaceControl
+public class ControleProdutosControl extends OperadorControl implements interfaceControl
 {   
     
-    public ProdutoControl(Object object) {      
+    public ControleProdutosControl(Object object) {      
         super(object);       
     }
     
@@ -38,13 +38,6 @@ public class ProdutoControl extends OperadorControl implements interfaceControl
     @Override
     public Object pesquisarBd() {
         return pesquisarProduto();
-    }
-    
-    
-   
-       
-    
-    
-  
-            
+    } 
+                                 
 }

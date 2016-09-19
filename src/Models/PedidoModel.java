@@ -1,14 +1,14 @@
 
 package Models;
 
-import java.util.Date;
+import java.sql.Date;
 
 
 public class PedidoModel {
     
     
     private int numPedido; 
-    private int [] idProduto;
+    private int idDetalhe;
     private int [] nomeProduto;
     private int [] quantProduto;
     private Double [] precoUnitario;
@@ -28,12 +28,12 @@ public class PedidoModel {
         this.numPedido = numPedido;
     }
     
-       public int[] getIdProduto() {
-        return idProduto;
+       public int getIdDetalhe() {
+        return idDetalhe;
     }
 
-    public void setIdProduto(int[] idProduto) {
-        this.idProduto = idProduto;
+    public void setIdDetalhe(int idDetalhe) {
+        this.idDetalhe = idDetalhe;
     }
 
     public int[] getNomeProduto() {

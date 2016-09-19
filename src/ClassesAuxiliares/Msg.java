@@ -10,11 +10,11 @@ public class Msg {
     
     //Confirmações
     public static String confimaCadastro = "Cadastro realizado com Sucesso !";
-    public static String confirmaAlteracao = "Alteração realizada com Sucesso !";
+    public static String confirmaAlteracao = "Alterações realizada com Sucesso !";
     public static String confirmaExcluisao = "Excluido com Sucesso !";
     
     //Perguntas
-    public static String perguntaAlteracao = "Tem certeza que deseja realizar estas alterações ?";
+    public static String perguntaAlteracao = "Tem certeza que deseja alterar o registro ?";
     public static String perguntaExclusao = "Tem certeza que deseja realizar esta exclusão ?";
    
     //Exclamações

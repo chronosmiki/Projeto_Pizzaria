@@ -16,13 +16,13 @@ import java.util.logging.Logger;
 
 public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
 
-          ProdutoModel produtoModel;
-          ResultSet resultado = null;   
-          String sql = "";          
-          Statement stmt;
-          PreparedStatement pstm;
-          Boolean success = false;    
-          ArrayList <ProdutoModel> produtos = new ArrayList<>();
+          private ProdutoModel produtoModel;
+          private ResultSet resultado = null;   
+          private String sql = "";          
+          private Statement stmt;
+          private PreparedStatement pstm;
+          private Boolean success = false;    
+          private ArrayList <ProdutoModel> produtos = new ArrayList<>();
    
         
     //INSERE PRODUTOS    
@@ -36,12 +36,14 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                     Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
                     Msg.exclamation(Msg.erroConexao + ex.getMessage());
               }
-                    sql = "INSERT INTO produtos (nome, precoUnitario)"
+                    sql = "INSERT INTO produtos (tipoProduto, detalheProduto, precoUnitario)"
                     + "VALUES ('"
-                    + produtoModel.getNomeProduto() 
-                    + "'," 
-                    + produtoModel.getValorUnitario() 
-                    +");";
+                    + produtoModel.getTipoProduto()
+                    + "','" 
+                    + produtoModel.getDetalheProduto()
+                    + "','"
+                    + produtoModel.getValorUnitario()
+                    +"');";
                     
                try {                   
                         stmt.execute(sql);
@@ -61,7 +63,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
     public Boolean alterar(Object object) {
         produtoModel = (ProdutoModel) object;
         
-        sql = "update produtos set nome = ?, precoUnitario = ? where id = ?;";
+        sql = "update produtos set tipoProduto = ?, detalheProduto = ?, precoUnitario = ? where id = ?;";
         
         try{            
             try {
@@ -70,7 +72,8 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                 Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
             pstm.setInt(3, produtoModel.getIdProduto());
-            pstm.setString(1,produtoModel.getNomeProduto());
+            pstm.setString(1,produtoModel.getTipoProduto());
+            pstm.setString(1,produtoModel.getDetalheProduto());
             pstm.setDouble(2,produtoModel.getValorUnitario());          
                         
             pstm.execute();
@@ -116,7 +119,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
     @Override
     public ArrayList pesquisar(String pesq) {        
         
-        sql = "select * from produtos where nome like '" + pesq + "%';";
+        sql = "select * from produtos where detalheProduto like '" + pesq + "%' OR tipoProduto like '" + pesq + "%' ;";
             
         try{
             try {
@@ -130,8 +133,42 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
             {
                 produtoModel = new ProdutoModel();  
                 produtoModel.setIdProduto(resultado.getInt("id_produto"));
-                produtoModel.setNomeProduto(resultado.getString("nome"));
+                produtoModel.setTipoProduto(resultado.getString("tipoProduto"));
+                produtoModel.setDetalheProduto(resultado.getString("detalheProduto"));
                 produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                  
+               
+                produtos.add(produtoModel);
+            }           
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }
+        close();
+        return produtos;
+    }    
+    
+    
+    //MÉTODO PARA PREENCHER A TABELA
+     public ArrayList retornaProdutos() {        
+        
+        sql = "select * from produtos;";
+            
+        try{
+            try {
+                pstm = open().prepareStatement(sql);
+            } catch (Exception ex) {
+                Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            resultado = pstm.executeQuery(sql);
+            produtos.clear();
+            while(resultado.next())
+            {
+                produtoModel = new ProdutoModel();  
+                produtoModel.setIdProduto(resultado.getInt("id_produto"));
+                produtoModel.setTipoProduto(resultado.getString("tipoProduto"));
+                produtoModel.setDetalheProduto(resultado.getString("detalheProduto"));
+                produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                     
                
                 produtos.add(produtoModel);
             }           

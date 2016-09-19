@@ -8,26 +8,36 @@ package Views;
 import ClassesAuxiliares.*;
 import Controls.*;
 import Models.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
 
 public class PrincipalView extends javax.swing.JFrame {
 
-   private ProdutoControl produtoControl;
+   private ControleProdutosControl produtoControl;
    private ProdutoModel produtoModel;
+   Tabela tabela = new Tabela();
+   private static Double subTotal = 0.0;
+   private static Double total = 0.0;
    private OperadorControl operadorControl;
    private ProdutoModel produtoPesquisado;
    private ArrayList <ProdutoModel> array = new ArrayList<>();
    private static AtualizadorDeHorario ah;
+   private int linha = 0;
+   private int quant; 
     
     public PrincipalView() {
         initComponents();
          ah = new AtualizadorDeHorario(lbDate); 
          iniciaAtualizadorDeData();
          maximize();
+         
+         PesquisaClienteView pesquisa =  new PesquisaClienteView();
+         pesquisa.setVisible(true);
     }
 
     /**
@@ -51,22 +61,17 @@ public class PrincipalView extends javax.swing.JFrame {
         lb1 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         lb3 = new javax.swing.JLabel();
-        lbTotal = new javax.swing.JLabel();
-        lbSubtotal = new javax.swing.JLabel();
-        tbSubtotal = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        lblSubtotal = new javax.swing.JLabel();
         painelPesquisaProdutos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtProdutos = new javax.swing.JTable();
         txtPesq = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        lb4 = new javax.swing.JLabel();
-        lb5 = new javax.swing.JLabel();
+        btnCancelarVenda = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblStatusCaixa = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
         painelDeFerramentas = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
@@ -77,7 +82,7 @@ public class PrincipalView extends javax.swing.JFrame {
         sep3 = new javax.swing.JSeparator();
         btnLocalizarCliente1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jmenuPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -101,68 +106,70 @@ public class PrincipalView extends javax.swing.JFrame {
         painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
 
+        jtDetalhesVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtDetalhesVenda.setForeground(new java.awt.Color(51, 0, 204));
         jtDetalhesVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cód", "Produto", "Quant", "Preço Unitario", "Excluir"
+                "Cód", "Produto", "Quant", "Preço Unitario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -177,7 +184,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jtDetalhesVenda.setRowHeight(20);
         jScrollPane1.setViewportView(jtDetalhesVenda);
         if (jtDetalhesVenda.getColumnModel().getColumnCount() > 0) {
-            jtDetalhesVenda.getColumnModel().getColumn(0).setPreferredWidth(35);
+            jtDetalhesVenda.getColumnModel().getColumn(0).setMinWidth(35);
+            jtDetalhesVenda.getColumnModel().getColumn(0).setPreferredWidth(50);
             jtDetalhesVenda.getColumnModel().getColumn(1).setMinWidth(200);
             jtDetalhesVenda.getColumnModel().getColumn(1).setPreferredWidth(200);
             jtDetalhesVenda.getColumnModel().getColumn(2).setMinWidth(40);
@@ -197,21 +205,21 @@ public class PrincipalView extends javax.swing.JFrame {
         lb2.setForeground(new java.awt.Color(255, 255, 255));
         lb2.setText("Desconto - R$");
 
-        lb3.setFont(new java.awt.Font("Arial Narrow", 1, 36)); // NOI18N
+        lb3.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lb3.setForeground(new java.awt.Color(102, 255, 0));
         lb3.setText("TOTAL - R$");
 
-        lbTotal.setFont(new java.awt.Font("Arial Narrow", 1, 36)); // NOI18N
-        lbTotal.setForeground(new java.awt.Color(102, 255, 0));
-        lbTotal.setText("25,00");
+        lblTotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(102, 255, 0));
+        lblTotal.setText("00,00");
 
-        lbSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 30)); // NOI18N
-        lbSubtotal.setForeground(new java.awt.Color(255, 255, 255));
-        lbSubtotal.setText("00,00");
+        lblDesc.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(255, 255, 255));
+        lblDesc.setText("00.00");
 
-        tbSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 30)); // NOI18N
-        tbSubtotal.setForeground(new java.awt.Color(255, 204, 0));
-        tbSubtotal.setText("25,00");
+        lblSubtotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
+        lblSubtotal.setForeground(new java.awt.Color(255, 204, 0));
+        lblSubtotal.setText("00,00");
 
         javax.swing.GroupLayout painelCalculoLayout = new javax.swing.GroupLayout(painelCalculo);
         painelCalculo.setLayout(painelCalculoLayout);
@@ -223,11 +231,11 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb3)
                     .addComponent(lb1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
         painelCalculoLayout.setVerticalGroup(
@@ -236,15 +244,15 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb1)
-                    .addComponent(tbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lb2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -265,10 +273,10 @@ public class PrincipalView extends javax.swing.JFrame {
             painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDetalhesVendaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(painelCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(painelCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
@@ -279,63 +287,63 @@ public class PrincipalView extends javax.swing.JFrame {
         jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Cod", "Nome", "Valor Unit"
+                "Cod", "Produto", "Detalhe", "Valor Unit"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -343,12 +351,22 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jtProdutos.setRowHeight(20);
+        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtProdutos);
         if (jtProdutos.getColumnModel().getColumnCount() > 0) {
-            jtProdutos.getColumnModel().getColumn(0).setMinWidth(5);
-            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jtProdutos.getColumnModel().getColumn(1).setMinWidth(200);
-            jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jtProdutos.getColumnModel().getColumn(0).setMinWidth(40);
+            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jtProdutos.getColumnModel().getColumn(0).setMaxWidth(40);
+            jtProdutos.getColumnModel().getColumn(1).setMinWidth(150);
+            jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jtProdutos.getColumnModel().getColumn(1).setMaxWidth(150);
+            jtProdutos.getColumnModel().getColumn(3).setMinWidth(70);
+            jtProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
+            jtProdutos.getColumnModel().getColumn(3).setMaxWidth(70);
         }
 
         txtPesq.setBackground(new java.awt.Color(0, 0, 0));
@@ -369,48 +387,18 @@ public class PrincipalView extends javax.swing.JFrame {
         jButton6.setText("Finalizar Venda");
         jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/confirma.png"))); // NOI18N
-        jButton2.setText("  Adicionar");
-
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Complementos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jCheckBox1.setBackground(new java.awt.Color(0, 51, 153));
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Borda de Cheddar");
-
-        jCheckBox2.setBackground(new java.awt.Color(0, 51, 153));
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Borda de Catupiry");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jButton3.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
-        jButton3.setText("Cancelar Venda");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnCancelarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
+        btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
+        btnCancelarVenda.setText("Cancelar Venda");
+        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelarVenda.setEnabled(false);
+        btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarVendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelPesquisaProdutosLayout = new javax.swing.GroupLayout(painelPesquisaProdutos);
         painelPesquisaProdutos.setLayout(painelPesquisaProdutosLayout);
@@ -419,50 +407,47 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPesquisaProdutosLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(txtPesq))
                 .addContainerGap())
         );
         painelPesquisaProdutosLayout.setVerticalGroup(
             painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarVenda))
+                .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Arial Narrow", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Camargo Aranha Desenvolvimento de Sistemas S/A - Todos os direitos Reservados c 2016");
-        jLabel2.setFocusTraversalPolicyProvider(true);
+        jPanel2.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status do Caixa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        lb4.setFont(new java.awt.Font("Arial Narrow", 1, 40)); // NOI18N
-        lb4.setForeground(new java.awt.Color(51, 255, 51));
-        lb4.setText("LIVRE");
+        lblStatusCaixa.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
+        lblStatusCaixa.setForeground(new java.awt.Color(51, 255, 51));
+        lblStatusCaixa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblStatusCaixa.setText("LIVRE");
 
-        lb5.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
-        lb5.setForeground(new java.awt.Color(255, 255, 255));
-        lb5.setText("Status do Caixa: ");
-        lb5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
@@ -471,38 +456,27 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(painelPrincipalLayout.createSequentialGroup()
-                                .addComponent(lb5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lb4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(98, 98, 98))
         );
 
         lbDate.setBackground(new java.awt.Color(0, 0, 0));
         lbDate.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        lbDate.setForeground(new java.awt.Color(153, 0, 0));
         lbDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbDate.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
 
@@ -513,7 +487,8 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCadastrarProduto.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCadastrarProduto.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_produto.png"))); // NOI18N
-        btnCadastrarProduto.setText("Cadastrar Produto");
+        btnCadastrarProduto.setText("Controle de Produtos");
+        btnCadastrarProduto.setActionCommand("Produtos");
         btnCadastrarProduto.setBorder(null);
         btnCadastrarProduto.setFocusable(false);
         btnCadastrarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -528,11 +503,16 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCadastrarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
-        btnCadastrarCliente.setText("Cadastrar Cliente");
+        btnCadastrarCliente.setText("Controle de  Clientes");
         btnCadastrarCliente.setBorder(null);
         btnCadastrarCliente.setFocusable(false);
         btnCadastrarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCadastrarCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
 
         btnLocalizarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnLocalizarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -567,21 +547,21 @@ public class PrincipalView extends javax.swing.JFrame {
         painelDeFerramentasLayout.setHorizontalGroup(
             painelDeFerramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDeFerramentasLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(sep3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(308, 308, 308))
+                .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDeFerramentasLayout.setVerticalGroup(
             painelDeFerramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,14 +575,14 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sep3)
                     .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
 
         jLabel3.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Operador : Roberto - Login em : 08/09/2016 - 13:17");
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jmenuPrincipal.setBackground(new java.awt.Color(0, 0, 153));
         jmenuPrincipal.setBorder(new javax.swing.border.MatteBorder(null));
@@ -645,31 +625,30 @@ public class PrincipalView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDeFerramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 522, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jSeparator3)))
         );
 
         jLabel3.getAccessibleContext().setAccessibleName("");
@@ -687,37 +666,82 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseClicked
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        new Modal(this);
-        Modal.setDisable();;
-        new CadastroProdutoView().setVisible(true);        // TODO add your handling code here:
+       
+        new ControleProdutosView().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
-    
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-               operadorControl = new OperadorControl();                    
-               //LIMPA O ARRAY
-                array.clear();  
+        operadorControl = new OperadorControl();
+        //LIMPA O ARRAY
+        array.clear();
 
-                //LIMPA A TABELA
-                limparTabela(jtProdutos);          
-          
+        //LIMPA A TABELA
+        limparTabela(jtProdutos);
 
-               //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
-                if(!txtPesq.getText().equals("")){
-                    
-                    OperadorControl.pesq = txtPesq.getText();   
-                    array = operadorControl.pesquisarProduto();           
-                }
-                                   
-                //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
-                for (int x = 0 ; x < array.size(); x++){
-                    produtoPesquisado = (ProdutoModel) array.get(x);
-                   jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
-                   jtProdutos.setValueAt(produtoPesquisado.getNomeProduto(), x, 1);
-                   jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);                              
-                }
+        //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
+        if(!txtPesq.getText().equals("")){
+            OperadorControl.pesq = txtPesq.getText();
+            array = operadorControl.pesquisarProduto();
+        }
+
+        //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
+        for (int x = 0 ; x < array.size(); x++){
+            produtoPesquisado = (ProdutoModel) array.get(x);
+            jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
+            jtProdutos.setValueAt(produtoPesquisado.getTipoProduto(), x, 1);
+            jtProdutos.setValueAt(produtoPesquisado.getDetalheProduto(), x, 2);
+            jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 3);
+        }
     }//GEN-LAST:event_txtPesqKeyReleased
 
+    private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
+                   
+       if(!jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0).equals("")){
+           
+            try{
+                quant = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade do Produto"));
+                     if(quant < 1){
+                             Msg.exclamation("Digite uma quantidade válida !");                          
+                     }   
+                     else{
+
+                     if(!lblStatusCaixa.getText().equals("Realizando Venda")){
+                     lblStatusCaixa.setText("Realizando Venda");
+                     lblStatusCaixa.setForeground(Color.red);
+                      btnCancelarVenda.setEnabled(true);
+                     }    
+
+                     Double valor = Double.parseDouble(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString()) * quant;
+
+                     jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0),linha, 0);
+                     jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 1),linha, 1);
+                     jtDetalhesVenda.setValueAt(quant,linha, 2);
+                     jtDetalhesVenda.setValueAt(valor, linha, 3);  
+
+                     subTotal += valor;
+                     total = subTotal - (Double.parseDouble(lblDesc.getText()));
+
+                     lblSubtotal.setText(subTotal.toString());
+                     lblTotal.setText(total.toString());
+
+                     linha++;
+                     }
+                }
+            catch(NumberFormatException ex){
+                Msg.exclamation("Digite uma quantidade Válida !");                                                                
+            }
+        }                         
+    }//GEN-LAST:event_jtProdutosMouseClicked
+
+    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+         new PesquisaClienteView().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+
+    private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
+        cancelarVenda();
+    }//GEN-LAST:event_btnCancelarVendaActionPerformed
+
+    
     
     public static void main(String args[]) {
 
@@ -731,38 +755,34 @@ public class PrincipalView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCliente;
     private javax.swing.JButton btnCadastrarProduto;
+    private javax.swing.JButton btnCancelarVenda;
     private javax.swing.JButton btnLocalizarCliente;
     private javax.swing.JButton btnLocalizarCliente1;
     private javax.swing.JMenu btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JMenuBar jmenuPrincipal;
     private javax.swing.JTable jtDetalhesVenda;
     private javax.swing.JTable jtProdutos;
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;
-    private javax.swing.JLabel lb4;
-    private javax.swing.JLabel lb5;
     private javax.swing.JLabel lbDate;
-    private javax.swing.JLabel lbSubtotal;
-    private javax.swing.JLabel lbTotal;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblStatusCaixa;
+    private javax.swing.JLabel lblSubtotal;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel painelCalculo;
     private javax.swing.JPanel painelDeFerramentas;
     private javax.swing.JPanel painelDetalhesVenda;
@@ -771,7 +791,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JSeparator sep1;
     private javax.swing.JSeparator sep2;
     private javax.swing.JSeparator sep3;
-    private javax.swing.JLabel tbSubtotal;
     private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 
@@ -798,4 +817,22 @@ public class PrincipalView extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
  }
 
+ private void cancelarVenda(){
+        Boolean retorno = Msg.question("Tem certeza que deseja Cancelar a Venda");
+        if(retorno){
+        subTotal = 0.0;
+        total = 0.0;
+        lblSubtotal.setText("0.00");
+        lblDesc.setText("0.00"); 
+        lblTotal.setText("0.00");       
+        lblStatusCaixa.setText("Caixa Livre");
+        txtPesq.setText("");
+        lblStatusCaixa.setForeground(Color.green);        
+        tabela.limparTabela(jtProdutos);        
+        tabela.limparTabela(jtDetalhesVenda);
+        btnCancelarVenda.setEnabled(false);
+        Msg.confirm("Venda Cancelada !");       
+    }            
+ } 
+ 
 }
