@@ -9,7 +9,7 @@ public class FormataDouble {
         Esse metodo so deve ser usado para retorno final, impressoes em caixa de texto, relatorios e afins..
         Nao usar esse metodo antes de fazer contas ou no meio delas, o metodo transforma numeros, doubles em STRING!!!
     */
-    public String formata(Double x)
+    public String format(Double x)
     {
         DecimalFormat.getCurrencyInstance(new Locale("pt", "BR"));
         DecimalFormat df = new DecimalFormat();

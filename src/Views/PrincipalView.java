@@ -8,7 +8,6 @@ package Views;
 import ClassesAuxiliares.*;
 import Controls.*;
 import Models.*;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,12 +22,15 @@ public class PrincipalView extends javax.swing.JFrame {
    Tabela tabela = new Tabela();
    private static Double subTotal = 0.0;
    private static Double total = 0.0;
+   private static Double desc;
    private OperadorControl operadorControl;
    private ProdutoModel produtoPesquisado;
    private ArrayList <ProdutoModel> array = new ArrayList<>();
    private static AtualizadorDeHorario ah;
    private int linha = 0;
    private int quant; 
+   Double valorUnitario;
+   private FormataDouble formatarDouble = new FormataDouble();
     
     public PrincipalView() {
         initComponents();
@@ -55,6 +57,12 @@ public class PrincipalView extends javax.swing.JFrame {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         painelPrincipal = new javax.swing.JPanel();
         painelDetalhesVenda = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtProdutos = new javax.swing.JTable();
+        txtPesq = new javax.swing.JTextField();
+        painelPesquisaProdutos = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
+        btnCancelarVenda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalhesVenda = new javax.swing.JTable();
         painelCalculo = new javax.swing.JPanel();
@@ -64,14 +72,13 @@ public class PrincipalView extends javax.swing.JFrame {
         lblTotal = new javax.swing.JLabel();
         lblDesc = new javax.swing.JLabel();
         lblSubtotal = new javax.swing.JLabel();
-        painelPesquisaProdutos = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtProdutos = new javax.swing.JTable();
-        txtPesq = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        btnCancelarVenda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        lblStatusCaixa = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
         painelDeFerramentas = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
@@ -87,6 +94,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         btnSair = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -94,17 +102,171 @@ public class PrincipalView extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(1024, 768));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         painelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelDetalhesVenda.setBackground(new java.awt.Color(0, 51, 153));
-        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes da Venda", 0, 0, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
+
+        jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
+        jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cod", "Produto", "Detalhe", "Valor Unit"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtProdutos.setRowHeight(20);
+        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtProdutos);
+        if (jtProdutos.getColumnModel().getColumnCount() > 0) {
+            jtProdutos.getColumnModel().getColumn(0).setMinWidth(40);
+            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jtProdutos.getColumnModel().getColumn(0).setMaxWidth(40);
+            jtProdutos.getColumnModel().getColumn(1).setMinWidth(150);
+            jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(150);
+            jtProdutos.getColumnModel().getColumn(1).setMaxWidth(150);
+            jtProdutos.getColumnModel().getColumn(3).setMinWidth(90);
+            jtProdutos.getColumnModel().getColumn(3).setPreferredWidth(90);
+            jtProdutos.getColumnModel().getColumn(3).setMaxWidth(90);
+        }
+
+        txtPesq.setBackground(new java.awt.Color(0, 0, 0));
+        txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtPesq.setForeground(new java.awt.Color(255, 255, 0));
+        txtPesq.setToolTipText("Pesquisa");
+        txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
+        txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
+        txtPesq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesqKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelDetalhesVendaLayout = new javax.swing.GroupLayout(painelDetalhesVenda);
+        painelDetalhesVenda.setLayout(painelDetalhesVendaLayout);
+        painelDetalhesVendaLayout.setHorizontalGroup(
+            painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDetalhesVendaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPesq)
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
+        );
+        painelDetalhesVendaLayout.setVerticalGroup(
+            painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDetalhesVendaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes da Venda", 0, 0, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
+
+        jButton6.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(51, 102, 0));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
+        jButton6.setText("Finalizar Venda");
+        jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnCancelarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
+        btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
+        btnCancelarVenda.setText("Cancelar Venda");
+        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btnCancelarVenda.setEnabled(false);
+        btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarVendaActionPerformed(evt);
+            }
+        });
 
         jtDetalhesVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtDetalhesVenda.setForeground(new java.awt.Color(51, 0, 204));
@@ -166,7 +328,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -194,20 +356,20 @@ public class PrincipalView extends javax.swing.JFrame {
         }
 
         painelCalculo.setBackground(new java.awt.Color(0, 51, 153));
-        painelCalculo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calculo de venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
+        painelCalculo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Calculo de venda", 0, 0, new java.awt.Font("Arial", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         painelCalculo.setForeground(new java.awt.Color(255, 255, 0));
 
         lb1.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lb1.setForeground(new java.awt.Color(255, 204, 0));
-        lb1.setText("Subtotal - R$");
+        lb1.setText("Subtotal");
 
         lb2.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lb2.setForeground(new java.awt.Color(255, 255, 255));
-        lb2.setText("Desconto - R$");
+        lb2.setText("Desconto");
 
         lb3.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lb3.setForeground(new java.awt.Color(102, 255, 0));
-        lb3.setText("TOTAL - R$");
+        lb3.setText("TOTAL");
 
         lblTotal.setFont(new java.awt.Font("Arial Narrow", 1, 24)); // NOI18N
         lblTotal.setForeground(new java.awt.Color(102, 255, 0));
@@ -226,22 +388,22 @@ public class PrincipalView extends javax.swing.JFrame {
         painelCalculoLayout.setHorizontalGroup(
             painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCalculoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(77, 77, 77)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb2)
                     .addComponent(lb3)
                     .addComponent(lb1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblDesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
         painelCalculoLayout.setVerticalGroup(
             painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCalculoLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb1)
                     .addComponent(lblSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,148 +420,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         lb3.getAccessibleContext().setAccessibleName("TOTAL R$");
 
-        javax.swing.GroupLayout painelDetalhesVendaLayout = new javax.swing.GroupLayout(painelDetalhesVenda);
-        painelDetalhesVenda.setLayout(painelDetalhesVendaLayout);
-        painelDetalhesVendaLayout.setHorizontalGroup(
-            painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelDetalhesVendaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(painelCalculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        painelDetalhesVendaLayout.setVerticalGroup(
-            painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelDetalhesVendaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelCalculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
-
-        jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
-        jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Cod", "Produto", "Detalhe", "Valor Unit"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtProdutos.setRowHeight(20);
-        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtProdutosMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jtProdutos);
-        if (jtProdutos.getColumnModel().getColumnCount() > 0) {
-            jtProdutos.getColumnModel().getColumn(0).setMinWidth(40);
-            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jtProdutos.getColumnModel().getColumn(0).setMaxWidth(40);
-            jtProdutos.getColumnModel().getColumn(1).setMinWidth(150);
-            jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(150);
-            jtProdutos.getColumnModel().getColumn(1).setMaxWidth(150);
-            jtProdutos.getColumnModel().getColumn(3).setMinWidth(70);
-            jtProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
-            jtProdutos.getColumnModel().getColumn(3).setMaxWidth(70);
-        }
-
-        txtPesq.setBackground(new java.awt.Color(0, 0, 0));
-        txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtPesq.setForeground(new java.awt.Color(255, 255, 0));
-        txtPesq.setToolTipText("Pesquisa");
-        txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
-        txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
-        txtPesq.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPesqKeyReleased(evt);
-            }
-        });
-
-        jButton6.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(51, 102, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
-        jButton6.setText("Finalizar Venda");
-        jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        btnCancelarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
-        btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
-        btnCancelarVenda.setText("Cancelar Venda");
-        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnCancelarVenda.setEnabled(false);
-        btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarVendaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelPesquisaProdutosLayout = new javax.swing.GroupLayout(painelPesquisaProdutos);
         painelPesquisaProdutos.setLayout(painelPesquisaProdutosLayout);
         painelPesquisaProdutosLayout.setHorizontalGroup(
@@ -409,19 +429,23 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txtPesq))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPesquisaProdutosLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(painelCalculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)))
                 .addContainerGap())
         );
         painelPesquisaProdutosLayout.setVerticalGroup(
             painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(painelCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,23 +454,66 @@ public class PrincipalView extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 153));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status do Caixa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente", 0, 0, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(255, 255, 153));
 
-        lblStatusCaixa.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
-        lblStatusCaixa.setForeground(new java.awt.Color(51, 255, 51));
-        lblStatusCaixa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblStatusCaixa.setText("LIVRE");
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cliente :");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Telefone :");
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Endereço :");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel5.setText("Maria do Rosário");
+
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel6.setText("(11) 2919-3365");
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel7.setText("Rua dos Trilhos, 22 - Mooca");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(lblStatusCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
@@ -458,19 +525,22 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(painelPrincipalLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -608,9 +678,20 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jmenuPrincipal.add(jMenu2);
 
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu3.setText("Sobre");
+        jMenu3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jmenuPrincipal.add(jMenu3);
+
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
         btnSair.setText("Fazer Logout");
         btnSair.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSair.setHideActionText(true);
         btnSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSairMouseClicked(evt);
@@ -627,15 +708,15 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
+                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelDeFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -689,7 +770,8 @@ public class PrincipalView extends javax.swing.JFrame {
             jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
             jtProdutos.setValueAt(produtoPesquisado.getTipoProduto(), x, 1);
             jtProdutos.setValueAt(produtoPesquisado.getDetalheProduto(), x, 2);
-            jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 3);
+            valorUnitario = produtoPesquisado.getValorUnitario();
+            jtProdutos.setValueAt(formatarDouble.format(valorUnitario), x, 3);
         }
     }//GEN-LAST:event_txtPesqKeyReleased
 
@@ -699,35 +781,26 @@ public class PrincipalView extends javax.swing.JFrame {
            
             try{
                 quant = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade do Produto"));
-                     if(quant < 1){
+                    if(quant < 1){
                              Msg.exclamation("Digite uma quantidade válida !");                          
-                     }   
-                     else{
-
-                     if(!lblStatusCaixa.getText().equals("Realizando Venda")){
-                     lblStatusCaixa.setText("Realizando Venda");
-                     lblStatusCaixa.setForeground(Color.red);
-                      btnCancelarVenda.setEnabled(true);
-                     }    
-
-                     Double valor = Double.parseDouble(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString()) * quant;
+                    }                  
+                     String valor = jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString();
 
                      jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0),linha, 0);
                      jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 1),linha, 1);
                      jtDetalhesVenda.setValueAt(quant,linha, 2);
                      jtDetalhesVenda.setValueAt(valor, linha, 3);  
 
-                     subTotal += valor;
+                     subTotal += valorUnitario;
                      total = subTotal - (Double.parseDouble(lblDesc.getText()));
 
-                     lblSubtotal.setText(subTotal.toString());
-                     lblTotal.setText(total.toString());
+                     lblSubtotal.setText(formatarDouble.format(subTotal));
+                     lblTotal.setText(formatarDouble.format(total));
 
                      linha++;
-                     }
-                }
+                     }                
             catch(NumberFormatException ex){
-                Msg.exclamation("Digite uma quantidade Válida !");                                                                
+                Msg.exclamation("Digite uma quantidade Válida !" + ex.getMessage());                                                                
             }
         }                         
     }//GEN-LAST:event_jtProdutosMouseClicked
@@ -739,6 +812,19 @@ public class PrincipalView extends javax.swing.JFrame {
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
         cancelarVenda();
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+             new Modal(this);
+             Modal.setDisable();
+             new SobreView().setVisible(true);
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+            int x = JOptionPane.showConfirmDialog(null, "Deseja Realmente Sair do Sistema ?", "Sair",JOptionPane.YES_NO_OPTION, -1);
+              if(x == JOptionPane.YES_OPTION){
+                  System.exit(0);
+              }
+    }//GEN-LAST:event_formWindowClosing
 
     
     
@@ -760,9 +846,16 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
@@ -779,7 +872,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JLabel lb3;
     private javax.swing.JLabel lbDate;
     private javax.swing.JLabel lblDesc;
-    private javax.swing.JLabel lblStatusCaixa;
     private javax.swing.JLabel lblSubtotal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel painelCalculo;
@@ -824,9 +916,7 @@ public class PrincipalView extends javax.swing.JFrame {
         lblSubtotal.setText("0.00");
         lblDesc.setText("0.00"); 
         lblTotal.setText("0.00");       
-        lblStatusCaixa.setText("Caixa Livre");
         txtPesq.setText("");
-        lblStatusCaixa.setForeground(Color.green);        
         tabela.limparTabela(jtProdutos);        
         tabela.limparTabela(jtDetalhesVenda);
         btnCancelarVenda.setEnabled(false);
