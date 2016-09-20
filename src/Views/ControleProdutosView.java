@@ -73,16 +73,17 @@ public class ControleProdutosView extends javax.swing.JFrame {
             }
         });
 
-        painelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
+        painelPrincipal.setBackground(new java.awt.Color(166, 88, 0));
         painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        painelPesquisaProdutos.setBackground(new java.awt.Color(255, 208, 115));
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Controle de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
 
+        jtProdutos.setBackground(new java.awt.Color(255, 165, 64));
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
+        jtProdutos.setForeground(new java.awt.Color(166, 88, 0));
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -148,7 +149,10 @@ public class ControleProdutosView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtProdutos.setGridColor(new java.awt.Color(204, 204, 204));
         jtProdutos.setRowHeight(20);
+        jtProdutos.setSelectionBackground(new java.awt.Color(255, 208, 115));
+        jtProdutos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtProdutosMouseClicked(evt);
@@ -162,9 +166,9 @@ public class ControleProdutosView extends javax.swing.JFrame {
             jtProdutos.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
-        txtPesq.setBackground(new java.awt.Color(0, 0, 0));
+        txtPesq.setBackground(new java.awt.Color(166, 88, 0));
         txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtPesq.setForeground(new java.awt.Color(255, 255, 0));
+        txtPesq.setForeground(new java.awt.Color(255, 255, 255));
         txtPesq.setToolTipText("Pesquisa");
         txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
         txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
@@ -174,25 +178,28 @@ public class ControleProdutosView extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 208, 115));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtValorUnitario.setToolTipText("");
         jPanel1.add(txtValorUnitario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 760, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(166, 88, 0));
         jLabel4.setText("Tipo do Produto:");
+        jLabel4.setToolTipText("");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(166, 88, 0));
         jLabel2.setText("Detalhe do Produto:");
+        jLabel2.setToolTipText("");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(166, 88, 0));
         jLabel5.setText("Valor Unitário:");
+        jLabel5.setToolTipText("");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 90, -1));
 
         txtTipoProduto.setToolTipText("");
@@ -212,10 +219,12 @@ public class ControleProdutosView extends javax.swing.JFrame {
         jPanel1.add(txtQuant, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 760, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(166, 88, 0));
         jLabel6.setText("Quantidade em Estoque:");
+        jLabel6.setToolTipText("");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
+        txtUltimaCompra.setForeground(new java.awt.Color(255, 255, 255));
         txtUltimaCompra.setToolTipText("");
         txtUltimaCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,8 +234,9 @@ public class ControleProdutosView extends javax.swing.JFrame {
         jPanel1.add(txtUltimaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 760, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setForeground(new java.awt.Color(166, 88, 0));
         jLabel7.setText("Data da Ultima Compra:");
+        jLabel7.setToolTipText("");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 152, -1));
 
         txtDetalheProduto.setToolTipText("");
@@ -248,7 +258,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
         jPanel1.add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(166, 88, 0));
         jLabel1.setText("Pesquisar");
         jLabel1.setToolTipText("");
 
@@ -263,7 +273,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Arial Narrow", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(166, 88, 0));
         jLabel8.setText("* Clique na linha desejada para realizar uma alteração");
         jLabel8.setToolTipText("");
 
@@ -326,6 +336,7 @@ public class ControleProdutosView extends javax.swing.JFrame {
 
         lbDate.setBackground(new java.awt.Color(0, 0, 0));
         lbDate.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        lbDate.setForeground(new java.awt.Color(166, 88, 0));
         lbDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbDate.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
 
@@ -337,21 +348,18 @@ public class ControleProdutosView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)))
+                .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -486,8 +494,6 @@ public class ControleProdutosView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTable jtProdutos;
     private javax.swing.JLabel lbDate;
     private javax.swing.JPanel painelPesquisaProdutos;

@@ -65,20 +65,19 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(680, 600));
-        setPreferredSize(new java.awt.Dimension(680, 600));
         setSize(new java.awt.Dimension(680, 600));
 
-        painelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
+        painelPrincipal.setBackground(new java.awt.Color(166, 88, 0));
         painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setMinimumSize(new java.awt.Dimension(650, 385));
 
-        painelPesquisaProdutos.setBackground(new java.awt.Color(0, 51, 153));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        painelPesquisaProdutos.setBackground(new java.awt.Color(255, 208, 115));
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jtProdutos.setForeground(new java.awt.Color(51, 0, 204));
+        jtProdutos.setForeground(new java.awt.Color(166, 88, 0));
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -145,6 +144,8 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             }
         });
         jtProdutos.setRowHeight(20);
+        jtProdutos.setSelectionBackground(new java.awt.Color(255, 208, 115));
+        jtProdutos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtProdutosMouseClicked(evt);
@@ -158,9 +159,9 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
-        txtPesq.setBackground(new java.awt.Color(0, 0, 0));
+        txtPesq.setBackground(new java.awt.Color(166, 88, 0));
         txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtPesq.setForeground(new java.awt.Color(255, 255, 0));
+        txtPesq.setForeground(new java.awt.Color(255, 255, 255));
         txtPesq.setToolTipText("Pesquisa");
         txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
         txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
@@ -171,7 +172,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Arial Narrow", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(166, 88, 0));
         jLabel8.setText("* Clique no Cliente para Realizar uma venda");
         jLabel8.setToolTipText("");
 
@@ -182,7 +183,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
                     .addComponent(txtPesq, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +196,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel8)
                 .addContainerGap())
@@ -207,7 +208,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
@@ -218,10 +219,10 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelClientes.setBackground(new java.awt.Color(255, 255, 255));
+        painelClientes.setBackground(new java.awt.Color(255, 208, 115));
         painelClientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnCadastrarCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btnCadastrarCliente.setBackground(new java.awt.Color(255, 208, 115));
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCadastrarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
@@ -238,7 +239,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             .addGroup(painelClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
         painelClientesLayout.setVerticalGroup(
             painelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,16 +249,18 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jmenuPrincipal.setBackground(new java.awt.Color(0, 0, 153));
+        jmenuPrincipal.setBackground(new java.awt.Color(166, 88, 0));
         jmenuPrincipal.setBorder(new javax.swing.border.MatteBorder(null));
-        jmenuPrincipal.setForeground(new java.awt.Color(255, 255, 255));
+        jmenuPrincipal.setForeground(new java.awt.Color(255, 208, 115));
         jmenuPrincipal.setBorderPainted(false);
         jmenuPrincipal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setForeground(new java.awt.Color(255, 208, 115));
         jMenu1.setText("Relatórios");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
+        jMenuItem2.setBackground(new java.awt.Color(166, 88, 0));
+        jMenuItem2.setForeground(new java.awt.Color(255, 208, 115));
         jMenuItem2.setText("Melhores Clientes");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
