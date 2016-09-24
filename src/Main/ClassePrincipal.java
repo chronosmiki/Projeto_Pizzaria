@@ -11,7 +11,10 @@ public class ClassePrincipal {
     
     public static void main(String[] args){
         
-        SplashScreem splash = new SplashScreem();
-        splash.mostraSplash();                          
+        //SplashScreem splash = new SplashScreem();
+       // splash.mostraSplash();                   
+       
+       new PrincipalView().setVisible(true);
+        
     }    
 }
