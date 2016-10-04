@@ -14,6 +14,8 @@ public class PrincipalView extends javax.swing.JFrame {
    private static Double total = 0.0;
    private static Double desc = 0.0;
    private Double valorUnitario;
+   public static int privilegio; 
+   
    
    private int linha = 0;
    private int quant; 
@@ -32,12 +34,12 @@ public class PrincipalView extends javax.swing.JFrame {
     
    public PrincipalView() {
         initComponents();
-         ah = new AtualizadorDeHorario(lbDate); 
-         iniciaAtualizadorDeData();
-         maximize();
+        ah = new AtualizadorDeHorario(lbDate); 
+        iniciaAtualizadorDeData();
+        maximize();
          
-         PesquisaClienteView pesquisa =  new PesquisaClienteView();
-         pesquisa.setVisible(true);
+        // PesquisaClienteView pesquisa =  new PesquisaClienteView();
+       //  pesquisa.setVisible(true);
     }
 
 

@@ -2,6 +2,8 @@
 package Views;
 import ClassesAuxiliares.AtualizadorDeHorario;
 import ClassesAuxiliares.Msg;
+import Controls.UsuarioControl;
+import Models.UsuarioModel;
 
 
 public class LoginView extends javax.swing.JFrame {
@@ -10,9 +12,9 @@ public class LoginView extends javax.swing.JFrame {
      private static AtualizadorDeHorario ah;
      private String getLogin;
      private String getSenha;
+     private UsuarioControl usuarioControl;
+     private UsuarioModel usuarioModel = new UsuarioModel();
      
-         
-
     public LoginView() {
         initComponents();   
         ah = new AtualizadorDeHorario(lbDate); 
@@ -240,10 +242,13 @@ public class LoginView extends javax.swing.JFrame {
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
 
-        getLogin = txtLogin.getText();
-        getSenha = new String(txtSenha.getPassword());
+        usuarioModel.setLogin(txtLogin.getText());
+        String senha = new String (txtSenha.getPassword());
+        usuarioModel.setPassword(senha);
+        usuarioControl = new UsuarioControl(usuarioModel);          
 
-        if(getLogin.equals("admin") && getSenha.equals("123")){
+        if(usuarioControl.login()){
+            Msg.exclamation("Login realizado com sucesso !");
             this.dispose();
             new PrincipalView().setVisible(true);
         }

@@ -174,5 +174,30 @@ public class UsuarioDao  extends ConexaoMysql implements interfaceDao {
         return usuarios;
     }    
     
-    
+   
+     
+   //METODO DE LOGIN
+    public Boolean getLogin(UsuarioModel usuarioModel) {     
+      
+        sql = "select login, password from usuarios where login = '" + usuarioModel.getLogin() + "' and password = '" + usuarioModel.getPassword() + "' ;";
+ 
+        try{
+            try {
+                pstm = open().prepareStatement(sql);
+            } catch (Exception ex) {
+                Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            resultado = pstm.executeQuery(sql);
+           
+            if(resultado.next()){            
+              success = true;                                           
+            }           
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+            Msg.exclamation(Msg.erroConexao + ex.getMessage());
+        }
+        close();      
+        return success;    
+    }        
 }
