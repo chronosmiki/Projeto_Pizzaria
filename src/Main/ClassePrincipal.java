@@ -14,8 +14,8 @@ public class ClassePrincipal {
         //SplashScreem splash = new SplashScreem();
        // splash.mostraSplash();                   
        
-       //new PrincipalView().setVisible(true);
-       new LoginView().setVisible(true);
+       new PrincipalView().setVisible(true);
+       //new LoginView().setVisible(true);
         
     }    
 }
