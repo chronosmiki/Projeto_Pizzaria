@@ -67,17 +67,16 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(680, 600));
         setSize(new java.awt.Dimension(680, 600));
 
-        painelPrincipal.setBackground(new java.awt.Color(166, 88, 0));
+        painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
         painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setMinimumSize(new java.awt.Dimension(650, 385));
 
-        painelPesquisaProdutos.setBackground(new java.awt.Color(255, 208, 115));
+        painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
         painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jtProdutos.setForeground(new java.awt.Color(166, 88, 0));
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -159,9 +158,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
-        txtPesq.setBackground(new java.awt.Color(166, 88, 0));
         txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtPesq.setForeground(new java.awt.Color(255, 255, 255));
         txtPesq.setToolTipText("Pesquisa");
         txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
         txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
@@ -172,7 +169,6 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Arial Narrow", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(166, 88, 0));
         jLabel8.setText("* Clique no Cliente para Realizar uma venda");
         jLabel8.setToolTipText("");
 
@@ -196,7 +192,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel8)
                 .addContainerGap())
@@ -215,16 +211,15 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        painelClientes.setBackground(new java.awt.Color(255, 208, 115));
+        painelClientes.setBackground(new java.awt.Color(95, 211, 134));
         painelClientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnCadastrarCliente.setBackground(new java.awt.Color(255, 208, 115));
+        btnCadastrarCliente.setBackground(new java.awt.Color(95, 211, 134));
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnCadastrarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
         btnCadastrarCliente.setText("Cadastrar Cliente");
         btnCadastrarCliente.setBorder(null);
@@ -249,18 +244,18 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jmenuPrincipal.setBackground(new java.awt.Color(166, 88, 0));
+        jmenuPrincipal.setBackground(new java.awt.Color(0, 108, 81));
         jmenuPrincipal.setBorder(new javax.swing.border.MatteBorder(null));
-        jmenuPrincipal.setForeground(new java.awt.Color(255, 208, 115));
+        jmenuPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         jmenuPrincipal.setBorderPainted(false);
         jmenuPrincipal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jMenu1.setForeground(new java.awt.Color(255, 208, 115));
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Relatórios");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jMenuItem2.setBackground(new java.awt.Color(166, 88, 0));
-        jMenuItem2.setForeground(new java.awt.Color(255, 208, 115));
+        jMenuItem2.setBackground(new java.awt.Color(0, 108, 81));
+        jMenuItem2.setForeground(new java.awt.Color(255, 255, 255));
         jMenuItem2.setText("Melhores Clientes");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,8 +279,8 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();

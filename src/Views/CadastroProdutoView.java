@@ -40,23 +40,20 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(460, 300));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(166, 88, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 108, 81));
 
-        jPanel2.setBackground(new java.awt.Color(255, 208, 115));
+        jPanel2.setBackground(new java.awt.Color(95, 211, 134));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        txtTipoProduto.setBackground(new java.awt.Color(166, 88, 0));
+        txtTipoProduto.setBackground(new java.awt.Color(95, 211, 182));
         txtTipoProduto.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        txtTipoProduto.setForeground(new java.awt.Color(255, 208, 115));
         txtTipoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pizza Salgada", "Pizza Doce", "Esfiha Salgada", "Esfiha Doce", "Bebida" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(166, 88, 0));
         jLabel1.setText("Detalhe do Produto:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(166, 88, 0));
         jLabel2.setText("Valor Unitário:");
 
         txtNomeProduto.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -71,7 +68,6 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtValorUnitario.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(166, 88, 0));
         jLabel3.setText("Tipo do Produto:");
 
         jToggleButton1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N

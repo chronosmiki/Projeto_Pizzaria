@@ -107,15 +107,14 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        painelPrincipal.setBackground(new java.awt.Color(166, 88, 0));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        painelDetalhesVenda.setBackground(new java.awt.Color(255, 208, 115));
-        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelDetalhesVenda.setBackground(new java.awt.Color(95, 211, 134));
+        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
 
-        jtProdutos.setBackground(new java.awt.Color(255, 165, 64));
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,8 +190,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jtProdutos.setGridColor(new java.awt.Color(51, 51, 51));
         jtProdutos.setRowHeight(20);
-        jtProdutos.setSelectionBackground(new java.awt.Color(255, 208, 115));
-        jtProdutos.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jtProdutos.setSelectionBackground(new java.awt.Color(255, 255, 0));
         jtProdutos.getTableHeader().setReorderingAllowed(false);
         jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,9 +210,7 @@ public class PrincipalView extends javax.swing.JFrame {
             jtProdutos.getColumnModel().getColumn(3).setMaxWidth(90);
         }
 
-        txtPesq.setBackground(new java.awt.Color(166, 88, 0));
         txtPesq.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        txtPesq.setForeground(new java.awt.Color(255, 255, 255));
         txtPesq.setToolTipText("Pesquisa");
         txtPesq.setCaretColor(new java.awt.Color(204, 204, 204));
         txtPesq.setMargin(new java.awt.Insets(10, 2, 2, 2));
@@ -245,8 +241,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelPesquisaProdutos.setBackground(new java.awt.Color(255, 208, 115));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(51, 51, 51));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(399, 595));
 
@@ -254,13 +250,13 @@ public class PrincipalView extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(51, 102, 0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
         jButton6.setText("Finalizar Venda");
-        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnCancelarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
         btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
         btnCancelarVenda.setText("Cancelar Venda");
-        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancelarVenda.setEnabled(false);
         btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +265,7 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        jtDetalhesVenda.setBackground(new java.awt.Color(255, 165, 64));
+        jtDetalhesVenda.setAutoCreateRowSorter(true);
         jtDetalhesVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtDetalhesVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,8 +341,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jtDetalhesVenda.setGridColor(new java.awt.Color(51, 51, 51));
         jtDetalhesVenda.setRowHeight(20);
-        jtDetalhesVenda.setSelectionBackground(new java.awt.Color(255, 208, 115));
-        jtDetalhesVenda.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jtDetalhesVenda.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jtDetalhesVenda.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtDetalhesVenda);
         if (jtDetalhesVenda.getColumnModel().getColumnCount() > 0) {
@@ -359,7 +354,7 @@ public class PrincipalView extends javax.swing.JFrame {
             jtDetalhesVenda.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        painelCalculo.setBackground(new java.awt.Color(166, 88, 0));
+        painelCalculo.setBackground(new java.awt.Color(0, 108, 81));
         painelCalculo.setForeground(new java.awt.Color(255, 255, 0));
 
         lb1.setFont(new java.awt.Font("Arial Narrow", 1, 36)); // NOI18N
@@ -397,14 +392,16 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb1)
                     .addGroup(painelCalculoLayout.createSequentialGroup()
-                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                         .addGap(35, 35, 35)))
-                .addGap(189, 189, 189)
+                .addGap(206, 206, 206)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDesc))
-                .addGap(27, 27, 27))
+                    .addGroup(painelCalculoLayout.createSequentialGroup()
+                        .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         painelCalculoLayout.setVerticalGroup(
             painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,20 +453,16 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 208, 115));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", 0, 0, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
-        jPanel2.setForeground(new java.awt.Color(166, 88, 0));
+        jPanel2.setBackground(new java.awt.Color(95, 211, 134));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(166, 88, 0));
         jLabel1.setText("Cliente :");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(166, 88, 0));
         jLabel2.setText("Telefone :");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(166, 88, 0));
         jLabel4.setText("Endereço :");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -526,7 +519,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
@@ -549,12 +542,11 @@ public class PrincipalView extends javax.swing.JFrame {
         lbDate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbDate.setText("Sistema de Gerenciamento de Pizzaria - São Paulo, 07 de setembro de 2016 - 09:59:20");
 
-        painelDeFerramentas.setBackground(new java.awt.Color(255, 208, 115));
+        painelDeFerramentas.setBackground(new java.awt.Color(95, 211, 134));
         painelDeFerramentas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnCadastrarProduto.setBackground(new java.awt.Color(255, 208, 115));
+        btnCadastrarProduto.setBackground(new java.awt.Color(95, 211, 134));
         btnCadastrarProduto.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnCadastrarProduto.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_produto.png"))); // NOI18N
         btnCadastrarProduto.setText("Controle de Produtos");
         btnCadastrarProduto.setToolTipText("");
@@ -569,9 +561,8 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrarCliente.setBackground(new java.awt.Color(255, 208, 115));
+        btnCadastrarCliente.setBackground(new java.awt.Color(95, 211, 134));
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnCadastrarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
         btnCadastrarCliente.setText("Controle de  Clientes");
         btnCadastrarCliente.setBorder(null);
@@ -584,9 +575,8 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btnLocalizarCliente.setBackground(new java.awt.Color(255, 208, 115));
+        btnLocalizarCliente.setBackground(new java.awt.Color(95, 211, 134));
         btnLocalizarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnLocalizarCliente.setForeground(new java.awt.Color(153, 0, 51));
         btnLocalizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisa_cliente.png"))); // NOI18N
         btnLocalizarCliente.setText("Localizar Cliente");
         btnLocalizarCliente.setActionCommand("Cadastrar Cliente");
@@ -601,9 +591,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         sep3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        btnLocalizarCliente1.setBackground(new java.awt.Color(255, 208, 115));
+        btnLocalizarCliente1.setBackground(new java.awt.Color(95, 211, 134));
         btnLocalizarCliente1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnLocalizarCliente1.setForeground(new java.awt.Color(153, 0, 51));
         btnLocalizarCliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pizza.png"))); // NOI18N
         btnLocalizarCliente1.setText("Controle de Pedidos");
         btnLocalizarCliente1.setActionCommand("Cadastrar Cliente");
@@ -641,10 +630,10 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(sep1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(sep2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(sep3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -652,14 +641,14 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Operador : Roberto - Login em : 08/09/2016 - 13:17");
 
-        jmenuPrincipal.setBackground(new java.awt.Color(166, 88, 0));
+        jmenuPrincipal.setBackground(new java.awt.Color(0, 108, 81));
         jmenuPrincipal.setBorder(new javax.swing.border.MatteBorder(null));
-        jmenuPrincipal.setForeground(new java.awt.Color(51, 51, 51));
+        jmenuPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         jmenuPrincipal.setBorderPainted(false);
         jmenuPrincipal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jmenuPrincipal.setMargin(new java.awt.Insets(10, 0, 0, 0));
 
-        jMenu1.setForeground(new java.awt.Color(255, 208, 115));
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Relatórios");
         jMenu1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -673,12 +662,12 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jmenuPrincipal.add(jMenu1);
 
-        jMenu2.setForeground(new java.awt.Color(255, 208, 115));
+        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText("Configurações");
         jMenu2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jmenuPrincipal.add(jMenu2);
 
-        jMenu3.setForeground(new java.awt.Color(255, 208, 115));
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Sobre");
         jMenu3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -688,7 +677,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jmenuPrincipal.add(jMenu3);
 
-        btnSair.setForeground(new java.awt.Color(255, 208, 115));
+        btnSair.setForeground(new java.awt.Color(255, 255, 255));
         btnSair.setText("Fazer Logout");
         btnSair.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnSair.setHideActionText(true);
