@@ -1,6 +1,9 @@
 
 package Models;
 
+import java.sql.Date;
+
+
 
 public class ClienteModel {
     
@@ -8,7 +11,7 @@ public class ClienteModel {
     private String nome;
     private String sobrenome;
     private int Telefone;
-    private String dataCadastro;
+    private Date dataCadastro;
     private String email;
     private int idEndereco; 
     private String tipo;
@@ -54,11 +57,11 @@ public class ClienteModel {
         this.Telefone = Telefone;
     }
 
-    public String getDataCadastro() {
+    public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(String dataCadastro) {
+    public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
     

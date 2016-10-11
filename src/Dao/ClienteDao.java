@@ -6,6 +6,7 @@ import static Dao.ConexaoMysql.close;
 import static Dao.ConexaoMysql.open;
 import Interfaces.interfaceDao;
 import Models.ClienteModel;
+import Models.EnderecoModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,12 +18,15 @@ import java.util.logging.Logger;
 
 public class ClienteDao implements interfaceDao{
     ClienteModel clienteModel;
+    EnderecoModel enderecoModel;
     ResultSet resultado = null;   
     String sql = "";          
-    Statement stmt;
+    Statement stmt;    
     PreparedStatement pstm;
     Boolean success = false;    
     ArrayList <ClienteModel> clientes = new ArrayList();
+    ArrayList <EnderecoModel> enderecos = new ArrayList();
+  
     
 
     @Override
@@ -60,8 +64,7 @@ public class ClienteDao implements interfaceDao{
     public Boolean alterar(Object object) {
         clienteModel = (ClienteModel) object;
         
-        sql = "update clientee set nome = ?, sobrenome = ?, telefone = ?, email =? where idCliente = ?";
-        
+        sql = "update clientes set nome = ?, sobrenome = ?, telefone = ?, email =? where idCliente = ?";        
         try{
             try{
                 pstm = open().prepareStatement(sql);
@@ -114,8 +117,8 @@ public class ClienteDao implements interfaceDao{
     @Override
     public ArrayList pesquisar(String pesq) {
                 
-        sql = "select * from clientes where nome like '" + pesq + "%';";
-            
+        sql = "select c.*, ie.* from clientes c join enderecos ie on ie.id_cliente = c.idCliente where nome like '" + pesq + "%';";
+      
         try{
             try {
                 pstm = open().prepareStatement(sql);
@@ -132,10 +135,20 @@ public class ClienteDao implements interfaceDao{
                 clienteModel.setSobrenome(resultado.getString("sobrenome"));
                 clienteModel.setTelefone(resultado.getInt("telefone"));
                 clienteModel.setIdEndereco(resultado.getInt("id_endereco"));
-           //   clienteModel.setDataCadastro(resultado.getDate("data_cad"));   VERIFICAR!!!!!!!!!!
+                clienteModel.setDataCadastro(resultado.getDate("data_cad"));
                 clienteModel.setEmail(resultado.getString("email"));
                
+                enderecoModel.setIdEndereco(resultado.getInt("idendereco"));
+                enderecoModel.setTipo(resultado.getString("tipo"));
+                enderecoModel.setLogradouro(resultado.getString("logradouro"));
+                enderecoModel.setNumero(resultado.getInt("numero"));
+                enderecoModel.setBairro(resultado.getString("bairro"));
+                enderecoModel.setMunicipio(resultado.getString("municipio"));
+                enderecoModel.setEstado(resultado.getString("estado"));
+                enderecoModel.setCep(resultado.getInt("cep"));              
+                        
                 clientes.add(clienteModel);
+                enderecos.add(enderecoModel);
             }           
         }catch(SQLException ex)
         {
@@ -143,10 +156,14 @@ public class ClienteDao implements interfaceDao{
             Msg.exclamation(Msg.erroConexao + ex.getMessage());
         }
         close();
-        return clientes;
-       
+        return clientes;               
     }
-
-   
     
+    public ArrayList retornaEnd()
+    {
+        return enderecos;
+    }
+    
+    
+       
 }

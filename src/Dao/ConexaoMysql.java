@@ -15,7 +15,7 @@ public class ConexaoMysql {
               String driverName = "com.mysql.jdbc.Driver";                        
               Class.forName(driverName);
                 
-              conn = DriverManager.getConnection("jdbc:mysql://localhost/projeto_pizzaria","root","@#$ucesso#@");                                                                                                                                                         
+              conn = DriverManager.getConnection("jdbc:mysql://localhost/projeto_pizzaria","root","");                                                                                                                                                         
               return conn;
             }
 

@@ -3,48 +3,47 @@ package Controls;
 
 
 import ClassesAuxiliares.Msg;
-import Interfaces.interfaceControl;
+import Dao.ClienteDao;
 import Models.ClienteModel;
+import Models.EnderecoModel;
+import java.util.ArrayList;
 
 
 
-public class ClienteControl extends OperadorControl implements interfaceControl{
+public class ClienteControl extends ClienteDao {
     
-    public ClienteModel model = new ClienteModel();
+    public ClienteModel model = new ClienteModel();    
 
-    public ClienteControl(Object object) {
-        super(object);
-    }
-    
-   
-  
-    
-    @Override
     public void inserirBd() {
-           if(inserirCliente()){
+           if(inserir(model)){
            Msg.confirm(Msg.confimaCadastro);    
         }            
     }
 
     
-    @Override
+
     public void alterarBd() {
-           if(alterarCliente()){
+           if(alterar(model)){
            Msg.question(Msg.confimaCadastro);    
         }     
     }
     
     
-    @Override
+ 
     public void excluirBd() {
-           if(excluirCliente()){
+           if(excluir(model)){
            Msg.confirm(Msg.confimaCadastro);    
         }     
     }
 
     
-    @Override
-    public Object pesquisarBd() {     
-        return pesquisarCliente(pesq);      
-    }                      
+
+    public Object pesquisarBd(String pesq) {     
+        return pesquisar(pesq);      
+    }  
+    
+     public ArrayList<EnderecoModel> enderecos() {     
+        return retornaEnd();      
+    }  
+    
 }

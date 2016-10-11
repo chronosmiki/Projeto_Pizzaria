@@ -8,24 +8,18 @@ package Views;
 import ClassesAuxiliares.*;
 import Controls.*;
 import Models.*;
-import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 
 
 public class PesquisaClienteView extends javax.swing.JFrame {
 
-   private ControleProdutosControl produtoControl;
-   private ProdutoModel produtoModel;
-   private static Double subTotal = 0.0;
-   private static Double total = 0.0;
-   private OperadorControl operadorControl;
-   private ProdutoModel produtoPesquisado;
-   private ArrayList <ProdutoModel> array = new ArrayList<>();
-   private static AtualizadorDeHorario ah;
+   private ClienteControl clienteControl;
+  private final OperadorControl operadorControl = new OperadorControl();
+   private EnderecoModel enderecoModel;
+   private ClienteModel clienteModel;
+   private ArrayList <ClienteModel> arrayClientes = new ArrayList<>();
+   private ArrayList <EnderecoModel> arrayEnderecos = new ArrayList<>();
    private int linha = 0;
     
     public PesquisaClienteView() {
@@ -48,7 +42,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         painelPrincipal = new javax.swing.JPanel();
         painelPesquisaProdutos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtProdutos = new javax.swing.JTable();
+        jtClientes = new javax.swing.JTable();
         txtPesq = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         painelClientes = new javax.swing.JPanel();
@@ -68,16 +62,16 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(680, 600));
 
         painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
         painelPrincipal.setMinimumSize(new java.awt.Dimension(650, 385));
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        jtClientes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -131,7 +125,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Cod", "Nome", "Valor Unit"
+                "Telefone", "Nome", "Endereço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -142,20 +136,20 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtProdutos.setRowHeight(20);
-        jtProdutos.setSelectionBackground(new java.awt.Color(255, 208, 115));
-        jtProdutos.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jtProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtClientes.setRowHeight(20);
+        jtClientes.setSelectionBackground(new java.awt.Color(255, 208, 115));
+        jtClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jtClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtProdutosMouseClicked(evt);
+                jtClientesMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jtProdutos);
-        if (jtProdutos.getColumnModel().getColumnCount() > 0) {
-            jtProdutos.getColumnModel().getColumn(0).setMinWidth(5);
-            jtProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jtProdutos.getColumnModel().getColumn(1).setMinWidth(200);
-            jtProdutos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jScrollPane2.setViewportView(jtClientes);
+        if (jtClientes.getColumnModel().getColumnCount() > 0) {
+            jtClientes.getColumnModel().getColumn(0).setMinWidth(5);
+            jtClientes.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jtClientes.getColumnModel().getColumn(1).setMinWidth(200);
+            jtClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
         txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -226,6 +220,11 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         btnCadastrarCliente.setFocusable(false);
         btnCadastrarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCadastrarCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelClientesLayout = new javax.swing.GroupLayout(painelClientes);
         painelClientes.setLayout(painelClientesLayout);
@@ -292,29 +291,39 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-        operadorControl = new OperadorControl();
+        clienteControl = new ClienteControl();
+        
         //LIMPA O ARRAY
-        array.clear();
+        arrayClientes.clear();
 
 
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
         if(!txtPesq.getText().equals("")){
+            
             OperadorControl.pesq = txtPesq.getText();
-            array = operadorControl.pesquisarProduto();
+            arrayClientes = (ArrayList) operadorControl.pesquisarCliente();
+            arrayEnderecos = (ArrayList) clienteControl.enderecos();
         }
 
         //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
-        for (int x = 0 ; x < array.size(); x++){
-            produtoPesquisado = (ProdutoModel) array.get(x);
-            jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
-            jtProdutos.setValueAt(produtoPesquisado.getDetalheProduto(), x, 1);
-            jtProdutos.setValueAt(produtoPesquisado.getValorUnitario(), x, 2);
+        for (int x = 0 ; x < arrayClientes.size(); x++){
+                                               
+                clienteModel = (ClienteModel) arrayClientes.get(x);
+                enderecoModel = (EnderecoModel) arrayEnderecos.get(x);
+                jtClientes.setValueAt(clienteModel.getTelefone(), x, 0);
+                jtClientes.setValueAt(clienteModel.getNome(), x, 1);
+            
+               jtClientes.setValueAt(enderecoModel.getTipo(), x, 2);
         }
     }//GEN-LAST:event_txtPesqKeyReleased
 
-    private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
+    private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
                                               
-    }//GEN-LAST:event_jtProdutosMouseClicked
+    }//GEN-LAST:event_jtClientesMouseClicked
+
+    private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
+        new CadastroClienteView().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     
     
@@ -338,7 +347,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar jmenuPrincipal;
-    private javax.swing.JTable jtProdutos;
+    private javax.swing.JTable jtClientes;
     public javax.swing.JPanel painelClientes;
     private javax.swing.JPanel painelPesquisaProdutos;
     private javax.swing.JPanel painelPrincipal;

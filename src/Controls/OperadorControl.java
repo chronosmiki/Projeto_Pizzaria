@@ -56,7 +56,7 @@ public class OperadorControl {
     public Boolean excluirCliente() {
            return clienteDao.excluir(clienteModel);                 
     }     
-    public ArrayList pesquisarCliente(String p) {
+    public ArrayList pesquisarCliente() {
            return clienteDao.pesquisar(pesq);
     }
     
