@@ -302,7 +302,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
 
                     clienteModel = (ClienteModel) arrayClientes.get(x);
                     jtClientes.setValueAt(clienteModel.getTelefone(), x, 0);
-                    jtClientes.setValueAt(clienteModel.getNome(), x, 1);            
+                    jtClientes.setValueAt(clienteModel.getNome() + " " + clienteModel.getSobrenome(), x, 1);            
                     jtClientes.setValueAt(clienteModel.getTipo() + " " + clienteModel.getLogradouro() +
                             ", " + clienteModel.getNumero(), x, 2);
             }
