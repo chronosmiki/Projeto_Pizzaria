@@ -21,8 +21,7 @@ public class ClienteModel {
     private String municipio;
     private String estado;
     private String cep;
-
-   
+       
         
 
     public int getIdCliente() {

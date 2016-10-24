@@ -5,7 +5,6 @@ package Controls;
 import ClassesAuxiliares.Msg;
 import Dao.ClienteDao;
 import Models.ClienteModel;
-import Models.EnderecoModel;
 import java.util.ArrayList;
 
 
@@ -40,10 +39,6 @@ public class ClienteControl extends ClienteDao {
 
     public Object pesquisarBd(String pesq) {     
         return pesquisar(pesq);      
-    }  
-    
-     public ArrayList<EnderecoModel> enderecos() {     
-        return retornaEnd();      
-    }  
-    
+    }     
+        
 }

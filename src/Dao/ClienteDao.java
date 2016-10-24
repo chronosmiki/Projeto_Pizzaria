@@ -6,7 +6,6 @@ import static Dao.ConexaoMysql.close;
 import static Dao.ConexaoMysql.open;
 import Interfaces.interfaceDao;
 import Models.ClienteModel;
-import Models.EnderecoModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,15 +16,13 @@ import java.util.logging.Logger;
 
 
 public class ClienteDao implements interfaceDao{
-    ClienteModel clienteModel;
-    EnderecoModel enderecoModel;
+    ClienteModel clienteModel;   
     ResultSet resultado = null;   
     String sql = "";          
     Statement stmt;    
     PreparedStatement pstm;
     Boolean success = false;    
-    ArrayList <ClienteModel> clientes = new ArrayList();
-    ArrayList <EnderecoModel> enderecos = new ArrayList();
+    ArrayList <ClienteModel> clientes = new ArrayList();  
   
     
 
@@ -138,17 +135,15 @@ public class ClienteDao implements interfaceDao{
                 clienteModel.setDataCadastro(resultado.getDate("data_cad"));
                 clienteModel.setEmail(resultado.getString("email"));
                
-                enderecoModel.setIdEndereco(resultado.getInt("idendereco"));
-                enderecoModel.setTipo(resultado.getString("tipo"));
-                enderecoModel.setLogradouro(resultado.getString("logradouro"));
-                enderecoModel.setNumero(resultado.getInt("numero"));
-                enderecoModel.setBairro(resultado.getString("bairro"));
-                enderecoModel.setMunicipio(resultado.getString("municipio"));
-                enderecoModel.setEstado(resultado.getString("estado"));
-                enderecoModel.setCep(resultado.getInt("cep"));              
-                        
-                clientes.add(clienteModel);
-                enderecos.add(enderecoModel);
+                clienteModel.setIdEndereco(resultado.getInt("idendereco"));
+                clienteModel.setTipo(resultado.getString("tipo"));
+                clienteModel.setLogradouro(resultado.getString("logradouro"));
+                clienteModel.setNumero(resultado.getString("numero"));
+                clienteModel.setBairro(resultado.getString("bairro"));
+                clienteModel.setMunicipio(resultado.getString("municipio"));
+                clienteModel.setEstado(resultado.getString("estado"));
+                clienteModel.setCep(resultado.getString("cep"));                               
+                clientes.add(clienteModel);              
             }           
         }catch(SQLException ex)
         {
@@ -157,12 +152,7 @@ public class ClienteDao implements interfaceDao{
         }
         close();
         return clientes;               
-    }
-    
-    public ArrayList retornaEnd()
-    {
-        return enderecos;
-    }
+    }     
     
     
        

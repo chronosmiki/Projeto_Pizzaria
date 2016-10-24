@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Vitor/Documents/NetBeansProjects/projeto_pizzaria/projeto_pizzaria/src/Views/LoginView.java</file>
-            <file>file:/C:/Users/Vitor/Documents/NetBeansProjects/projeto_pizzaria/projeto_pizzaria/src/Views/SobreView.java</file>
+            <file>file:/C:/GitHub/projeto_pizzaria/src/Views/PesquisaClienteView.java</file>
+            <file>file:/C:/GitHub/projeto_pizzaria/src/Controls/ClienteControl.java</file>
+            <file>file:/C:/GitHub/projeto_pizzaria/src/Models/ClienteModel.java</file>
         </group>
     </open-files>
 </project-private>

@@ -15,11 +15,9 @@ import java.util.ArrayList;
 public class PesquisaClienteView extends javax.swing.JFrame {
 
    private ClienteControl clienteControl;
-  private final OperadorControl operadorControl = new OperadorControl();
-   private EnderecoModel enderecoModel;
+   private final OperadorControl operadorControl = new OperadorControl();
    private ClienteModel clienteModel;
-   private ArrayList <ClienteModel> arrayClientes = new ArrayList<>();
-   private ArrayList <EnderecoModel> arrayEnderecos = new ArrayList<>();
+   private ArrayList <ClienteModel> arrayClientes = new ArrayList<>();  
    private int linha = 0;
     
     public PesquisaClienteView() {
@@ -291,30 +289,25 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-        clienteControl = new ClienteControl();
-        
+        clienteControl = new ClienteControl();        
         //LIMPA O ARRAY
         arrayClientes.clear();
-
-
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
         if(!txtPesq.getText().equals("")){
             
             OperadorControl.pesq = txtPesq.getText();
-            arrayClientes = (ArrayList) operadorControl.pesquisarCliente();
-            arrayEnderecos = (ArrayList) clienteControl.enderecos();
-        }
+            arrayClientes = (ArrayList) operadorControl.pesquisarCliente();             
+            //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
+            for (int x = 0 ; x < arrayClientes.size(); x++){
 
-        //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
-        for (int x = 0 ; x < arrayClientes.size(); x++){
-                                               
-                clienteModel = (ClienteModel) arrayClientes.get(x);
-                enderecoModel = (EnderecoModel) arrayEnderecos.get(x);
-                jtClientes.setValueAt(clienteModel.getTelefone(), x, 0);
-                jtClientes.setValueAt(clienteModel.getNome(), x, 1);
-            
-               jtClientes.setValueAt(enderecoModel.getTipo(), x, 2);
+                    clienteModel = (ClienteModel) arrayClientes.get(x);
+                    jtClientes.setValueAt(clienteModel.getTelefone(), x, 0);
+                    jtClientes.setValueAt(clienteModel.getNome(), x, 1);            
+                    jtClientes.setValueAt(clienteModel.getTipo() + " " + clienteModel.getLogradouro() +
+                            ", " + clienteModel.getNumero(), x, 2);
+            }
         }
+        
     }//GEN-LAST:event_txtPesqKeyReleased
 
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
