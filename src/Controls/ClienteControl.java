@@ -4,41 +4,47 @@ package Controls;
 
 import ClassesAuxiliares.Msg;
 import Dao.ClienteDao;
+import Interfaces.interfaceControl;
 import Models.ClienteModel;
 import java.util.ArrayList;
 
 
 
-public class ClienteControl extends ClienteDao {
+public class ClienteControl extends OperadorControl implements interfaceControl {
     
-    public ClienteModel model = new ClienteModel();    
-
+    public ClienteModel model = new ClienteModel(); 
+    
+    public ClienteControl(Object object)
+    {
+        super(object);
+    }
+    
+    @Override
     public void inserirBd() {
-           if(inserir(model)){
+           if(inserirCliente()){
            Msg.confirm(Msg.confimaCadastro);    
         }            
     }
 
     
-
+    @Override
     public void alterarBd() {
-           if(alterar(model)){
-           Msg.question(Msg.confimaCadastro);    
+           if(alterarCliente()){
+           Msg.question(Msg.confirmaAlteracao);    
         }     
     }
     
     
- 
+    @Override
     public void excluirBd() {
-           if(excluir(model)){
+           if(excluirCliente()){
            Msg.confirm(Msg.confimaCadastro);    
         }     
     }
-
     
-
-    public Object pesquisarBd(String pesq) {     
-        return pesquisar(pesq);      
+    @Override
+    public Object pesquisarBd() {     
+        return pesquisarCliente();      
     }     
         
 }

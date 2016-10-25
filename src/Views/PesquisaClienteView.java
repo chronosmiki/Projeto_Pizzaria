@@ -289,7 +289,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-        clienteControl = new ClienteControl();        
+        clienteControl = new ClienteControl(clienteModel);        
         //LIMPA O ARRAY
         arrayClientes.clear();
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR

@@ -7,6 +7,7 @@ package Views;
 
 import Controls.ClienteControl;
 import Models.ClienteModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,8 +16,8 @@ import Models.ClienteModel;
 public class CadastroClienteView extends javax.swing.JFrame {
 
  
-    ClienteModel model;
-    ClienteControl control;
+    ClienteModel clienteModel = new ClienteModel();
+    ClienteControl clienteControl;
     
     
     
@@ -35,7 +36,6 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -53,21 +53,27 @@ public class CadastroClienteView extends javax.swing.JFrame {
         txtSobrenome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtTel = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 108, 81));
+        setMaximumSize(new java.awt.Dimension(603, 444));
+        setMinimumSize(new java.awt.Dimension(603, 444));
 
         jPanel1.setBackground(new java.awt.Color(0, 108, 81));
 
         jPanel2.setBackground(new java.awt.Color(95, 211, 134));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
 
-        btnSalvar.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnSalvar.setText("Salvar");
-
         btnCancelar.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         btnCancelar.setText("Cancela");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nome:");
@@ -89,21 +95,51 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
         txtLogradouro.setText("Logradouro");
         txtLogradouro.setToolTipText("Nome da rua, avenida, etc...");
+        txtLogradouro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLogradouroFocusGained(evt);
+            }
+        });
 
         txtNumero.setText("Número");
         txtNumero.setToolTipText("número da casa, apto e etc..");
+        txtNumero.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNumeroFocusGained(evt);
+            }
+        });
 
         txtBairro.setText("Bairro");
         txtBairro.setToolTipText("Bairro");
+        txtBairro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtBairroFocusGained(evt);
+            }
+        });
 
         txtCidade.setText("Cidade");
         txtCidade.setToolTipText("Nome da cidade");
+        txtCidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCidadeFocusGained(evt);
+            }
+        });
 
         txtEstado.setText("Estado");
         txtEstado.setToolTipText("Nome do Estado");
+        txtEstado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEstadoFocusGained(evt);
+            }
+        });
 
         txtCep.setText("CEP");
         txtCep.setToolTipText("CEP do endereço");
+        txtCep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCepFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -113,9 +149,8 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtCep)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtNumero)
-                        .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(txtNumero)
+                    .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLogradouro)
@@ -143,6 +178,16 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 .addGap(0, 73, Short.MAX_VALUE))
         );
 
+        jButton1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jButton1.setText("Salvar");
+        jButton1.setMaximumSize(new java.awt.Dimension(85, 29));
+        jButton1.setMinimumSize(new java.awt.Dimension(85, 29));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,21 +197,19 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 355, Short.MAX_VALUE)
+                        .addGap(0, 345, Short.MAX_VALUE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(47, 47, 47)
-                        .addComponent(txtNome))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome)
                             .addComponent(txtSobrenome)
                             .addComponent(txtEmail)
                             .addComponent(txtTel))))
@@ -194,9 +237,9 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -231,6 +274,52 @@ public class CadastroClienteView extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtLogradouroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLogradouroFocusGained
+        txtLogradouro.setText("");        
+    }//GEN-LAST:event_txtLogradouroFocusGained
+
+    private void txtNumeroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumeroFocusGained
+        txtNumero.setText("");
+    }//GEN-LAST:event_txtNumeroFocusGained
+
+    private void txtBairroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBairroFocusGained
+        txtBairro.setText("");
+    }//GEN-LAST:event_txtBairroFocusGained
+
+    private void txtCidadeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCidadeFocusGained
+        txtCidade.setText("");
+    }//GEN-LAST:event_txtCidadeFocusGained
+
+    private void txtEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstadoFocusGained
+        txtEstado.setText("");
+    }//GEN-LAST:event_txtEstadoFocusGained
+
+    private void txtCepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCepFocusGained
+        txtCep.setText("");
+    }//GEN-LAST:event_txtCepFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                     
+        clienteModel.setNome(txtNome.getText());
+        clienteModel.setSobrenome(txtSobrenome.getText());
+        clienteModel.setEmail(txtEmail.getText());
+        clienteModel.setTelefone(Integer.parseInt(txtTel.getText()));
+        clienteModel.setTipo(cbTipo.getSelectedItem().toString());
+        clienteModel.setLogradouro(txtLogradouro.getText());
+        clienteModel.setNumero(txtNumero.getText());
+        clienteModel.setBairro(txtBairro.getText());
+        clienteModel.setMunicipio(txtCidade.getText());
+        clienteModel.setEstado(txtEstado.getText());
+        clienteModel.setCep(Integer.parseInt(txtCep.getText()));
+        
+        clienteControl = new ClienteControl(clienteModel);
+        clienteControl.inserirBd();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,8 +358,8 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

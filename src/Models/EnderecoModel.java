@@ -1,28 +1,29 @@
 
 package Models;
 
-import java.sql.Date;
 
-
-
-public class ClienteModel {
+public class EnderecoModel {
     
+    private int idEndereco;
     private int idCliente;
-    private String nome;
-    private String sobrenome;
-    private int Telefone;
-    private Date dataCadastro;
-    private String email;
-    private int idEndereco; 
     private String tipo;
     private String logradouro;
-    private String numero;
+    private int numero;
     private String bairro;
     private String municipio;
     private String estado;
     private int cep;
-       
-        
+
+    
+    
+    
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
 
     public int getIdCliente() {
         return idCliente;
@@ -30,46 +31,6 @@ public class ClienteModel {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public int getTelefone() {
-        return Telefone;
-    }
-
-    public void setTelefone(int Telefone) {
-        this.Telefone = Telefone;
-    }
-
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-    
-     public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
     }
 
     public String getTipo() {
@@ -88,11 +49,11 @@ public class ClienteModel {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -127,15 +88,6 @@ public class ClienteModel {
     public void setCep(int cep) {
         this.cep = cep;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     
     
 }
