@@ -19,11 +19,12 @@ public class UsuarioControl extends OperadorControl implements interfaceControl{
        this.usuarioModel = model;
     }
     
-        @Override
-    public void inserirBd() {
+    @Override
+    public Boolean inserirBd() {
            if(inserirUsuario()){
            Msg.confirm(Msg.confimaCadastro);    
-        }            
+        }      
+           return null;
     }
 
     

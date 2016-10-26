@@ -55,16 +55,15 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(680, 600));
         setSize(new java.awt.Dimension(680, 600));
 
         painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setMinimumSize(new java.awt.Dimension(650, 385));
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -171,7 +170,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
                     .addComponent(txtPesq, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,7 +183,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel8)
                 .addContainerGap())
@@ -196,7 +195,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
@@ -289,7 +288,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
-        clienteControl = new ClienteControl();        
+        clienteControl = new ClienteControl(clienteModel);        
         //LIMPA O ARRAY
         arrayClientes.clear();
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
@@ -311,7 +310,12 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesqKeyReleased
 
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
-                                              
+                                 
+        PrincipalView.txtNome.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
+        PrincipalView.txtFone.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
+        PrincipalView.txtEndereco.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());    
+        
+        dispose();
     }//GEN-LAST:event_jtClientesMouseClicked
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed

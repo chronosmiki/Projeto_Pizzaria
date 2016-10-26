@@ -6,7 +6,7 @@ public interface interfaceControl {
     
     
     //Insere no Bd
-    void inserirBd ();
+    Boolean inserirBd ();
     
     void alterarBd ();
     

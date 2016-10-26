@@ -17,10 +17,11 @@ public class ControleProdutosControl extends OperadorControl implements interfac
 
     
     @Override
-    public void inserirBd() {      
+    public Boolean inserirBd() {      
          if(inserirProduto()){
              Msg.confirm(Msg.confimaCadastro);
          }
+         return null;
     }
 
     @Override

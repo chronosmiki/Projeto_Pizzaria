@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ClienteDao implements interfaceDao{
     ClienteModel clienteModel;   
     ResultSet resultado = null;   
-    String sql = "";          
+    String sql, sql1 = "";          
     Statement stmt;    
     PreparedStatement pstm;
     Boolean success = false;    
@@ -40,13 +40,18 @@ public class ClienteDao implements interfaceDao{
             Msg.exclamation(Msg.erroConexao + ex.getMessage());
         }
         
-        sql = "insert into clientes (nome, sobrenome, telefone, id_endereco, data_cad, email) "+
+        sql = "insert into clientes (nome, sobrenome, telefone, data_cad, email) "+
                 "values ('" + clienteModel.getNome() + "', '" + clienteModel.getSobrenome() + "',"
-                + clienteModel.getTelefone() + "," + clienteModel.getIdEndereco() + ", curtime(), " + "'" + clienteModel.getEmail() + "');";
+                + clienteModel.getTelefone() + ", curtime(), " + "'" + clienteModel.getEmail() + "');";
+        sql1 = "insert into enderecos (tipo, logradouro, numero, bairro, municipio, estado, cep, id_cliente)"
+                + "values ('" + clienteModel.getTipo() + "', '" + clienteModel.getLogradouro() + "'," + 
+                clienteModel.getNumero() + ",'" + clienteModel.getBairro() + "','" + clienteModel.getMunicipio() + 
+                "','" + clienteModel.getEstado() + "'," + clienteModel.getCep() + ", (select LAST_INSERT_ID()));";        
         
         try{
             
             stmt.execute(sql);
+            stmt.execute(sql1);           
             success = true;
         }catch(SQLException ex)
         {
@@ -56,6 +61,9 @@ public class ClienteDao implements interfaceDao{
         close();
         return success;
     }
+    
+    
+    
 
     @Override
     public Boolean alterar(Object object) {
@@ -131,7 +139,6 @@ public class ClienteDao implements interfaceDao{
                 clienteModel.setNome(resultado.getString("nome"));
                 clienteModel.setSobrenome(resultado.getString("sobrenome"));
                 clienteModel.setTelefone(resultado.getInt("telefone"));
-                clienteModel.setIdEndereco(resultado.getInt("id_endereco"));
                 clienteModel.setDataCadastro(resultado.getDate("data_cad"));
                 clienteModel.setEmail(resultado.getString("email"));
                
@@ -142,7 +149,7 @@ public class ClienteDao implements interfaceDao{
                 clienteModel.setBairro(resultado.getString("bairro"));
                 clienteModel.setMunicipio(resultado.getString("municipio"));
                 clienteModel.setEstado(resultado.getString("estado"));
-                clienteModel.setCep(resultado.getString("cep"));                               
+                clienteModel.setCep(Integer.parseInt(resultado.getString("cep")));                               
                 clientes.add(clienteModel);              
             }           
         }catch(SQLException ex)

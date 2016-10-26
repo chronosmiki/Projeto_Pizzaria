@@ -9,16 +9,35 @@ public class PedidoModel {
     
     private int numPedido; 
     private int idDetalhe;
+    
     private int [] nomeProduto;
     private int [] quantProduto;
+    private int[] idProduto;    
     private Double [] precoUnitario;
     
-    private double valorTotal;
-    private Date dataPedido;
+    private double valorSubTotal;
+    private Date dataPedido;    
     private Boolean delivery;
     private String metodoPagamento;
 
     
+    
+    public int[] getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int[] idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public double getValorSubTotal() {
+        return valorSubTotal;
+    }
+
+    public void setValorSubTotal(double valorSubTotal) {
+        this.valorSubTotal = valorSubTotal;
+    }
+    private double valorTotal;    
     
     public int getNumPedido() {
         return numPedido;

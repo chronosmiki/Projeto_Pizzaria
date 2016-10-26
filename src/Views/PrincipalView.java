@@ -57,7 +57,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jtProdutos = new javax.swing.JTable();
         txtPesq = new javax.swing.JTextField();
         painelPesquisaProdutos = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        btnFinalizarVenda = new javax.swing.JButton();
         btnCancelarVenda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalhesVenda = new javax.swing.JTable();
@@ -72,17 +72,15 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JLabel();
+        txtFone = new javax.swing.JLabel();
+        txtEndereco = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
         painelDeFerramentas = new javax.swing.JPanel();
         btnCadastrarProduto = new javax.swing.JButton();
         btnCadastrarCliente = new javax.swing.JButton();
-        btnLocalizarCliente = new javax.swing.JButton();
         sep1 = new javax.swing.JSeparator();
         sep2 = new javax.swing.JSeparator();
-        sep3 = new javax.swing.JSeparator();
         btnLocalizarCliente1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jmenuPrincipal = new javax.swing.JMenuBar();
@@ -99,7 +97,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         setSize(new java.awt.Dimension(1024, 768));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -108,11 +105,11 @@ public class PrincipalView extends javax.swing.JFrame {
         });
 
         painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelDetalhesVenda.setBackground(new java.awt.Color(95, 211, 134));
-        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
 
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -242,21 +239,27 @@ public class PrincipalView extends javax.swing.JFrame {
         );
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(51, 51, 51));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(399, 595));
 
-        jButton6.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(51, 102, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
-        jButton6.setText("Finalizar Venda");
-        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btnFinalizarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        btnFinalizarVenda.setForeground(new java.awt.Color(51, 102, 0));
+        btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
+        btnFinalizarVenda.setText("Finalizar Venda");
+        btnFinalizarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinalizarVenda.setEnabled(false);
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
 
         btnCancelarVenda.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
         btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
         btnCancelarVenda.setText("Cancelar Venda");
-        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancelarVenda.setEnabled(false);
         btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -392,11 +395,11 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb1)
                     .addGroup(painelCalculoLayout.createSequentialGroup()
-                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                         .addGap(35, 35, 35)))
                 .addGap(206, 206, 206)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelCalculoLayout.createSequentialGroup()
                         .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,7 +438,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(painelCalculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(painelPesquisaProdutosLayout.createSequentialGroup()
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
@@ -447,14 +450,14 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(painelPesquisaProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
+                    .addComponent(btnFinalizarVenda))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(95, 211, 134));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", 0, 0, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Cliente :");
@@ -465,14 +468,12 @@ public class PrincipalView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Endereço :");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setText("Maria do Rosário");
+        txtNome.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel6.setText("(11) 2919-3365");
+        txtFone.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("Rua dos Trilhos, 22 - Mooca");
+        txtEndereco.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtEndereco.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -486,9 +487,9 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtFone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
@@ -496,18 +497,21 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(txtNome)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6))
+                    .addComponent(txtFone))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                    .addComponent(txtEndereco))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        txtNome.getAccessibleContext().setAccessibleName("");
+        txtFone.getAccessibleContext().setAccessibleName("3365");
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
@@ -519,7 +523,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
@@ -527,7 +531,7 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -563,8 +567,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
         btnCadastrarCliente.setBackground(new java.awt.Color(95, 211, 134));
         btnCadastrarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadastro_cliente.png"))); // NOI18N
-        btnCadastrarCliente.setText("Controle de  Clientes");
+        btnCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisa_cliente.png"))); // NOI18N
+        btnCadastrarCliente.setText("Pesquisar  Clientes");
         btnCadastrarCliente.setBorder(null);
         btnCadastrarCliente.setFocusable(false);
         btnCadastrarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -575,21 +579,9 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
 
-        btnLocalizarCliente.setBackground(new java.awt.Color(95, 211, 134));
-        btnLocalizarCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        btnLocalizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisa_cliente.png"))); // NOI18N
-        btnLocalizarCliente.setText("Localizar Cliente");
-        btnLocalizarCliente.setActionCommand("Cadastrar Cliente");
-        btnLocalizarCliente.setBorder(null);
-        btnLocalizarCliente.setFocusable(false);
-        btnLocalizarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLocalizarCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         sep1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         sep2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        sep3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnLocalizarCliente1.setBackground(new java.awt.Color(95, 211, 134));
         btnLocalizarCliente1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -610,15 +602,11 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sep3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -629,10 +617,8 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addGroup(painelDeFerramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sep1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(sep2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(sep3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastrarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLocalizarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLocalizarCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
@@ -696,7 +682,7 @@ public class PrincipalView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(lbDate, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addComponent(lbDate, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -762,6 +748,8 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jtProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutosMouseClicked
                         
+       if(!txtNome.getText().equals("")){ 
+        
        if(!jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0).equals("")){     
            String aux = String.valueOf(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3)).replace(",", ".").replace("R$", "").replace(" ", "");
            valorUnitario = Double.parseDouble(aux);  
@@ -771,6 +759,7 @@ public class PrincipalView extends javax.swing.JFrame {
                              Msg.exclamation("Digite uma quantidade válida !");                          
                     }   
                     else{  
+                        btnFinalizarVenda.setEnabled(true);
                         btnCancelarVenda.setEnabled(true);
                         String valor = jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString();
 
@@ -779,6 +768,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         jtDetalhesVenda.setValueAt(quant,linha, 2);
                         jtDetalhesVenda.setValueAt(valor, linha, 3);  
 
+                        valorUnitario = valorUnitario * quant;
                         subTotal += valorUnitario;                                                                                                                              
                         
                         total = (subTotal - desc);
@@ -794,7 +784,11 @@ public class PrincipalView extends javax.swing.JFrame {
             catch(NumberFormatException ex){
                 Msg.exclamation("Digite uma quantidade Válida !");                                                                
             }
-        }                         
+        }    
+       }else{
+            Msg.exclamation("Pesquise um cliente para iniciar uma venda !");   
+       
+       }
     }//GEN-LAST:event_jtProdutosMouseClicked
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
@@ -802,6 +796,11 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
 
     private void btnCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarVendaActionPerformed
+       
+        btnFinalizarVenda.setEnabled(false);
+        txtNome.setText("");
+        txtEndereco.setText ("");
+        txtFone.setText("");       
         cancelarVenda();
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
@@ -818,6 +817,13 @@ public class PrincipalView extends javax.swing.JFrame {
               }
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+       int x = JOptionPane.showConfirmDialog(null, "Deseja encerrar a venda ?", "Encerrar Venda",JOptionPane.YES_NO_OPTION, -1);
+              if(x == JOptionPane.YES_OPTION){
+                 new FechaVendaView().setVisible(true);
+              }
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
+
     
     
     public static void main(String args[]) {
@@ -833,18 +839,14 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarCliente;
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCancelarVenda;
-    private javax.swing.JButton btnLocalizarCliente;
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.JButton btnLocalizarCliente1;
     private javax.swing.JMenu btnSair;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -871,8 +873,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JSeparator sep1;
     private javax.swing.JSeparator sep2;
-    private javax.swing.JSeparator sep3;
     private javax.swing.JFormattedTextField txtDesc;
+    public static javax.swing.JLabel txtEndereco;
+    public static javax.swing.JLabel txtFone;
+    public static javax.swing.JLabel txtNome;
     private javax.swing.JTextField txtPesq;
     // End of variables declaration//GEN-END:variables
 
@@ -895,6 +899,7 @@ public class PrincipalView extends javax.swing.JFrame {
         if(retorno){
         subTotal = 0.0;
         total = 0.0;
+        linha = 0;
         lblSubtotal.setText("0.00");
         txtDesc.setText("0,00"); 
         lblTotal.setText("0.00");       
