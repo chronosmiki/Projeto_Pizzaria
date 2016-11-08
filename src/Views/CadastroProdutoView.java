@@ -174,7 +174,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
 
         produtoModel.setTipoProduto(txtTipoProduto.getSelectedItem().toString());
         produtoModel.setDetalheProduto(txtNomeProduto.getText());
-        produtoModel.setValorUnitario( Double.parseDouble(txtValorUnitario.getText()));
+        produtoModel.setValorUnitario(txtValorUnitario.getText());
         produtoControl = new ControleProdutosControl(produtoModel);
         produtoControl.inserirBd();
     }//GEN-LAST:event_jToggleButton1ActionPerformed

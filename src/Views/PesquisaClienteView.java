@@ -183,7 +183,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(txtPesq, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel8)
                 .addContainerGap())
@@ -310,7 +310,12 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesqKeyReleased
 
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
-                                 
+           
+        PrincipalView.clienteModel = new ClienteModel();
+        PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
+        PrincipalView.clienteModel.setTelefone(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
+        PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
+
         PrincipalView.txtNome.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
         PrincipalView.txtFone.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
         PrincipalView.txtEndereco.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());    

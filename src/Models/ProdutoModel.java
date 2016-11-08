@@ -9,7 +9,7 @@ public class ProdutoModel {
     private String  tipoProduto;    
     private String  detalheProduto;
     private int quantidadeProduto;
-    private Double valorUnitario;
+    private String valorUnitario;
 
     
     
@@ -45,11 +45,11 @@ public class ProdutoModel {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public Double getValorUnitario() {
+    public String getValorUnitario() {
         return valorUnitario;
     }
 
-    public void setValorUnitario(Double valorUnitario) {
+    public void setValorUnitario(String valorUnitario) {
         this.valorUnitario = valorUnitario;
     }
     

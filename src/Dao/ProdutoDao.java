@@ -74,7 +74,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
             pstm.setInt(3, produtoModel.getIdProduto());
             pstm.setString(1,produtoModel.getTipoProduto());
             pstm.setString(1,produtoModel.getDetalheProduto());
-            pstm.setDouble(2,produtoModel.getValorUnitario());          
+            pstm.setDouble(2,Double.parseDouble(produtoModel.getValorUnitario()));          
                         
             pstm.execute();
             success = true;
@@ -135,7 +135,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                 produtoModel.setIdProduto(resultado.getInt("id_produto"));
                 produtoModel.setTipoProduto(resultado.getString("tipoProduto"));
                 produtoModel.setDetalheProduto(resultado.getString("detalheProduto"));
-                produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                  
+                produtoModel.setValorUnitario(resultado.getString("precoUnitario"));                  
                
                 produtos.add(produtoModel);
             }           
@@ -168,7 +168,7 @@ public class ProdutoDao  extends ConexaoMysql implements interfaceDao{
                 produtoModel.setIdProduto(resultado.getInt("id_produto"));
                 produtoModel.setTipoProduto(resultado.getString("tipoProduto"));
                 produtoModel.setDetalheProduto(resultado.getString("detalheProduto"));
-                produtoModel.setValorUnitario(resultado.getDouble("precoUnitario"));                     
+                produtoModel.setValorUnitario(resultado.getString("precoUnitario"));                     
                
                 produtos.add(produtoModel);
             }           

@@ -6,6 +6,7 @@ import Models.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class PrincipalView extends javax.swing.JFrame {
@@ -15,8 +16,13 @@ public class PrincipalView extends javax.swing.JFrame {
    private static Double desc = 0.0;
    private Double valorUnitario;
    public static int privilegio; 
-   
-   
+   public static PedidoModel pedidoModel;
+   private ProdutoModel produtoModel;
+   private ArrayList<ProdutoModel> arrayProdutos = new ArrayList<>();
+   public static ClienteModel  clienteModel;
+   private Boolean delivery;
+   private String metodoPagamento;
+      
    private int linha = 0;
    private int quant; 
        
@@ -33,6 +39,7 @@ public class PrincipalView extends javax.swing.JFrame {
     
     
    public PrincipalView() {
+   
         initComponents();
         ah = new AtualizadorDeHorario(lbDate); 
         iniciaAtualizadorDeData();
@@ -225,7 +232,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(painelDetalhesVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtPesq)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
                 .addContainerGap())
         );
         painelDetalhesVendaLayout.setVerticalGroup(
@@ -272,56 +279,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jtDetalhesVenda.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtDetalhesVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cód", "Produto", "Quant", "Preço Unitario"
@@ -395,11 +353,11 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(lb2)
                     .addComponent(lb1)
                     .addGroup(painelCalculoLayout.createSequentialGroup()
-                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(lb3, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                         .addGap(35, 35, 35)))
                 .addGap(206, 206, 206)
                 .addGroup(painelCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(painelCalculoLayout.createSequentialGroup()
                         .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,7 +468,6 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        txtNome.getAccessibleContext().setAccessibleName("");
         txtFone.getAccessibleContext().setAccessibleName("3365");
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
@@ -523,7 +480,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelDetalhesVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+                .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
@@ -531,7 +488,7 @@ public class PrincipalView extends javax.swing.JFrame {
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                    .addComponent(painelPesquisaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -687,7 +644,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(painelDeFerramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1191, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,7 +699,7 @@ public class PrincipalView extends javax.swing.JFrame {
             jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
             jtProdutos.setValueAt(produtoPesquisado.getTipoProduto(), x, 1);
             jtProdutos.setValueAt(produtoPesquisado.getDetalheProduto(), x, 2);           
-            jtProdutos.setValueAt(formatarDouble.format(produtoPesquisado.getValorUnitario()), x, 3);
+            jtProdutos.setValueAt(formatarDouble.format(Double.parseDouble(produtoPesquisado.getValorUnitario())), x, 3);
         }
     }//GEN-LAST:event_txtPesqKeyReleased
 
@@ -759,6 +716,9 @@ public class PrincipalView extends javax.swing.JFrame {
                              Msg.exclamation("Digite uma quantidade válida !");                          
                     }   
                     else{  
+                        
+                        DefaultTableModel model = (DefaultTableModel) jtDetalhesVenda.getModel();
+                        model.addRow(new Object[]{"","","",""});                       
                         btnFinalizarVenda.setEnabled(true);
                         btnCancelarVenda.setEnabled(true);
                         String valor = jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString();
@@ -818,9 +778,26 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-       int x = JOptionPane.showConfirmDialog(null, "Deseja encerrar a venda ?", "Encerrar Venda",JOptionPane.YES_NO_OPTION, -1);
-              if(x == JOptionPane.YES_OPTION){
-                 new FechaVendaView().setVisible(true);
+         this.pedidoModel = new PedidoModel();
+          this.pedidoModel.setValorSubTotal(subTotal);
+          this.pedidoModel.setDelivery(delivery);
+          this.pedidoModel.setMetodoPagamento(metodoPagamento);
+          
+          for(int x = 0; x < jtDetalhesVenda.getRowCount(); x++){  
+              System.out.print(jtDetalhesVenda.getRowCount());             
+              produtoModel = new ProdutoModel();
+              produtoModel.setIdProduto(Integer.parseInt(jtDetalhesVenda.getValueAt(x, 0).toString()));
+              produtoModel.setDetalheProduto(jtDetalhesVenda.getValueAt(x, 1).toString());
+              produtoModel.setQuantidadeProduto(Integer.parseInt(jtDetalhesVenda.getValueAt(x, 2).toString()));              
+              produtoModel.setValorUnitario(jtDetalhesVenda.getValueAt(x, 3).toString());                         
+              pedidoModel.setProdutos(produtoModel);                        
+          }
+
+
+        int x = JOptionPane.showConfirmDialog(null, "Deseja encerrar a venda ?", "Encerrar Venda",JOptionPane.YES_NO_OPTION, -1);
+              if(x == JOptionPane.YES_OPTION){              
+                 FechaVendaView fechaVendaView = new FechaVendaView();
+                 fechaVendaView.setVisible(true);
               }
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 

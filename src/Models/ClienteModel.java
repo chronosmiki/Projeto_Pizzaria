@@ -10,7 +10,7 @@ public class ClienteModel {
     private int idCliente;
     private String nome;
     private String sobrenome;
-    private int Telefone;
+    private String Telefone;
     private Date dataCadastro;
     private String email;
     private int idEndereco; 
@@ -48,11 +48,11 @@ public class ClienteModel {
         this.sobrenome = sobrenome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return Telefone;
     }
 
-    public void setTelefone(int Telefone) {
+    public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
 

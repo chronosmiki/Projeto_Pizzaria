@@ -2,33 +2,28 @@
 package Models;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 public class PedidoModel {
-    
-    
+        
     private int numPedido; 
-    private int idDetalhe;
-    
-    private int [] nomeProduto;
-    private int [] quantProduto;
-    private int[] idProduto;    
-    private Double [] precoUnitario;
-    
+    private int idDetalhe; 
     private double valorSubTotal;
     private Date dataPedido;    
     private Boolean delivery;
     private String metodoPagamento;
-
+    private ArrayList<ProdutoModel> produtos = new ArrayList<>(); 
+   
     
-    
-    public int[] getIdProduto() {
-        return idProduto;
+    public ArrayList<ProdutoModel> getProdutos() {
+        return produtos;
     }
 
-    public void setIdProduto(int[] idProduto) {
-        this.idProduto = idProduto;
+    public void setProdutos(ProdutoModel produtoModel) {
+        this.produtos.add(produtoModel);
     }
+ 
 
     public double getValorSubTotal() {
         return valorSubTotal;
@@ -54,31 +49,7 @@ public class PedidoModel {
     public void setIdDetalhe(int idDetalhe) {
         this.idDetalhe = idDetalhe;
     }
-
-    public int[] getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public void setNomeProduto(int[] nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
-    public int[] getQuantProduto() {
-        return quantProduto;
-    }
-
-    public void setQuantProduto(int[] quantProduto) {
-        this.quantProduto = quantProduto;
-    }
-
-        public Double[] getPrecoUnitario() {
-        return precoUnitario;
-    }
-
-    public void setPrecoUnitario(Double[] precoUnitario) {
-        this.precoUnitario = precoUnitario;
-    }
-    
+   
        public double getValorTotal() {
         return valorTotal;
     }

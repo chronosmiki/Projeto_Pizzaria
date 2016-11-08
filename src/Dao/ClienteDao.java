@@ -80,7 +80,7 @@ public class ClienteDao implements interfaceDao{
                     }
                 pstm.setString(1, clienteModel.getNome());
                 pstm.setString(2, clienteModel.getSobrenome());
-                pstm.setInt(3, clienteModel.getTelefone());
+                pstm.setString(3, clienteModel.getTelefone());
                 pstm.setString(4, clienteModel.getEmail());
                 
                 pstm.setInt(5, clienteModel.getIdCliente());
@@ -138,7 +138,7 @@ public class ClienteDao implements interfaceDao{
                 clienteModel.setIdCliente(resultado.getInt("idCliente"));
                 clienteModel.setNome(resultado.getString("nome"));
                 clienteModel.setSobrenome(resultado.getString("sobrenome"));
-                clienteModel.setTelefone(resultado.getInt("telefone"));
+                clienteModel.setTelefone(resultado.getString("telefone"));
                 clienteModel.setDataCadastro(resultado.getDate("data_cad"));
                 clienteModel.setEmail(resultado.getString("email"));
                

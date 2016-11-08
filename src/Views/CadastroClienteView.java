@@ -58,6 +58,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 108, 81));
         setMaximumSize(new java.awt.Dimension(603, 444));
         setMinimumSize(new java.awt.Dimension(603, 444));
@@ -308,7 +309,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         clienteModel.setNome(txtNome.getText());
         clienteModel.setSobrenome(txtSobrenome.getText());
         clienteModel.setEmail(txtEmail.getText());
-        clienteModel.setTelefone(Integer.parseInt(txtTel.getText()));
+        clienteModel.setTelefone(txtTel.getText());
         clienteModel.setTipo(cbTipo.getSelectedItem().toString());
         clienteModel.setLogradouro(txtLogradouro.getText());
         clienteModel.setNumero(txtNumero.getText());
