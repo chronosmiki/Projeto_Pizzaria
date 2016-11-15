@@ -314,7 +314,7 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         PrincipalView.clienteModel = new ClienteModel();
         PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
         PrincipalView.clienteModel.setTelefone(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
-        PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
+        PrincipalView.clienteModel.setLogradouro(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
 
         PrincipalView.txtNome.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
         PrincipalView.txtFone.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());

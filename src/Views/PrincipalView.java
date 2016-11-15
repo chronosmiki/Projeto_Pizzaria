@@ -724,7 +724,7 @@ public class PrincipalView extends javax.swing.JFrame {
                         String valor = jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString();
 
                         jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0),linha, 0);
-                        jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 1),linha, 1);
+                        jtDetalhesVenda.setValueAt(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 2) ,linha, 1);
                         jtDetalhesVenda.setValueAt(quant,linha, 2);
                         jtDetalhesVenda.setValueAt(valor, linha, 3);  
 
@@ -778,7 +778,8 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
-         this.pedidoModel = new PedidoModel();
+          this.pedidoModel = new PedidoModel();
+          this.pedidoModel.setValorTotal(total);
           this.pedidoModel.setValorSubTotal(subTotal);
           this.pedidoModel.setDelivery(delivery);
           this.pedidoModel.setMetodoPagamento(metodoPagamento);

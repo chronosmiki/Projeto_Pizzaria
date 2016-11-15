@@ -13,7 +13,7 @@ public class ClienteModel {
     private String Telefone;
     private Date dataCadastro;
     private String email;
-    private int idEndereco; 
+    private int IdEndereco; 
     private String tipo;
     private String logradouro;
     private String numero;
@@ -65,11 +65,11 @@ public class ClienteModel {
     }
     
      public int getIdEndereco() {
-        return idEndereco;
+        return IdEndereco;
     }
 
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setIdEndereco(int endereco) {
+        this.IdEndereco = IdEndereco;
     }
 
     public String getTipo() {
