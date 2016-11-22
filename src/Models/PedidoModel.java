@@ -10,8 +10,7 @@ public class PedidoModel {
     private int numPedido; 
     private int idDetalhe; 
     private double valorSubTotal;
-    private Date dataPedido;    
-    private Boolean delivery;
+    private int delivery;
     private String metodoPagamento;
     private ArrayList<ProdutoModel> produtos = new ArrayList<>(); 
    
@@ -58,19 +57,12 @@ public class PedidoModel {
         this.valorTotal = valorTotal;
     }
 
-    public Date getDataPedido() {
-        return dataPedido;
-    }
 
-    public void setDataPedido(Date dataPedido) {
-        this.dataPedido = dataPedido;
-    }
-
-    public Boolean getDelivery() {
+    public int getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(Boolean delivery) {
+    public void setDelivery(int delivery) {
         this.delivery = delivery;
     }
 

@@ -9,6 +9,7 @@ import ClassesAuxiliares.*;
 import Controls.*;
 import Models.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -21,7 +22,11 @@ public class PesquisaClienteView extends javax.swing.JFrame {
    private int linha = 0;
     
     public PesquisaClienteView() {
-        initComponents();       
+        initComponents();        
+        jtClientes.getColumnModel().getColumn( 0 ).setMaxWidth( 0 );  
+        jtClientes.getColumnModel().getColumn( 0 ).setMinWidth( 0 );  
+        jtClientes.getTableHeader().getColumnModel().getColumn( 0).setMaxWidth( 0 );  
+        jtClientes.getTableHeader().getColumnModel().getColumn( 0 ).setMinWidth( 0 );  
     }
 
     /**
@@ -59,75 +64,82 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(680, 600));
 
         painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
         painelPrincipal.setMinimumSize(new java.awt.Dimension(650, 385));
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(255, 255, 255));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jtClientes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Telefone", "Nome", "Endereço"
+                "idCliente", "Telefone", "Nome", "Endereço"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -143,10 +155,10 @@ public class PesquisaClienteView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jtClientes);
         if (jtClientes.getColumnModel().getColumnCount() > 0) {
-            jtClientes.getColumnModel().getColumn(0).setMinWidth(5);
-            jtClientes.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jtClientes.getColumnModel().getColumn(1).setMinWidth(200);
-            jtClientes.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jtClientes.getColumnModel().getColumn(1).setMinWidth(5);
+            jtClientes.getColumnModel().getColumn(1).setPreferredWidth(10);
+            jtClientes.getColumnModel().getColumn(2).setMinWidth(200);
+            jtClientes.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         txtPesq.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -300,10 +312,11 @@ public class PesquisaClienteView extends javax.swing.JFrame {
             for (int x = 0 ; x < arrayClientes.size(); x++){
 
                     clienteModel = (ClienteModel) arrayClientes.get(x);
-                    jtClientes.setValueAt(clienteModel.getTelefone(), x, 0);
-                    jtClientes.setValueAt(clienteModel.getNome() + " " + clienteModel.getSobrenome(), x, 1);            
+                    jtClientes.setValueAt(clienteModel.getIdCliente(), x, 0);
+                    jtClientes.setValueAt(clienteModel.getTelefone(), x, 1);
+                    jtClientes.setValueAt(clienteModel.getNome() + " " + clienteModel.getSobrenome(), x, 2);            
                     jtClientes.setValueAt(clienteModel.getTipo() + " " + clienteModel.getLogradouro() +
-                            ", " + clienteModel.getNumero(), x, 2);
+                            ", " + clienteModel.getNumero(), x, 3);
             }
         }
         
@@ -312,13 +325,14 @@ public class PesquisaClienteView extends javax.swing.JFrame {
     private void jtClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtClientesMouseClicked
            
         PrincipalView.clienteModel = new ClienteModel();
-        PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
-        PrincipalView.clienteModel.setTelefone(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
-        PrincipalView.clienteModel.setLogradouro(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
+        PrincipalView.clienteModel.setIdCliente(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
+        PrincipalView.clienteModel.setNome(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
+        PrincipalView.clienteModel.setTelefone(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
+        PrincipalView.clienteModel.setLogradouro(jtClientes.getValueAt(jtClientes.getSelectedRow(), 3).toString());
 
-        PrincipalView.txtNome.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
-        PrincipalView.txtFone.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 0).toString());
-        PrincipalView.txtEndereco.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());    
+        PrincipalView.txtNome.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 2).toString());
+        PrincipalView.txtFone.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 1).toString());
+        PrincipalView.txtEndereco.setText(jtClientes.getValueAt(jtClientes.getSelectedRow(), 3).toString());    
         
         dispose();
     }//GEN-LAST:event_jtClientesMouseClicked

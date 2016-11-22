@@ -21,7 +21,7 @@ public class PedidoControl extends PedidoDao implements interfaceControl {
     @Override
     public Boolean inserirBd() {
         calc = new CalcularPedido(pedidoModel);
-        inserir(calc.calcular());
+        inserir(calc.calcular(), null);
         return null;
     }
     

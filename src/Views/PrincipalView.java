@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 public class PrincipalView extends javax.swing.JFrame {
 
    private static Double subTotal = 0.0;
-   private static Double total = 0.0;
+   public static Double total = 0.0;
    private static Double desc = 0.0;
    private Double valorUnitario;
    public static int privilegio; 
@@ -779,11 +779,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
           this.pedidoModel = new PedidoModel();
-          this.pedidoModel.setValorTotal(total);
-          this.pedidoModel.setValorSubTotal(subTotal);
-          this.pedidoModel.setDelivery(delivery);
-          this.pedidoModel.setMetodoPagamento(metodoPagamento);
-          
+                
           for(int x = 0; x < jtDetalhesVenda.getRowCount(); x++){  
               System.out.print(jtDetalhesVenda.getRowCount());             
               produtoModel = new ProdutoModel();

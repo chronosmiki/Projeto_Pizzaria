@@ -6,6 +6,7 @@ import static Dao.ConexaoMysql.close;
 import static Dao.ConexaoMysql.open;
 import Interfaces.interfaceDao;
 import Models.PedidoModel;
+import Views.PrincipalView;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +14,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class PedidoDao implements interfaceDao{
+    
+    
     
     private PedidoModel pedidoModel;
     private ResultSet resultado= null;
@@ -24,25 +28,24 @@ public class PedidoDao implements interfaceDao{
     private boolean success;
     private String sql;
     private ArrayList <PedidoModel> pedidos = new ArrayList<>();
-
+    
+    
     @Override
-    public Boolean inserir(Object object) {
-        pedidoModel = (PedidoModel) object;
-        
+    public Boolean inserir(Object pedido) {
+        pedidoModel = (PedidoModel) pedido;
+               
          try {             
-                   stmt = open().createStatement();
+                stmt = open().createStatement();
               } catch (Exception ex) {
                     Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
                     Msg.exclamation(Msg.erroConexao + ex.getMessage());
               }
-                    sql = "INSERT INTO pedidos (valor_total, data, metod_pag, delivery)"
-                    + "VALUES ("
-                    + pedidoModel.getValorTotal()
-                    + "," 
-                    + pedidoModel.getDataPedido()
-                    + ","
+                    sql = "INSERT INTO pedidos (id_cliente, metod_pag, delivery)"
+                    + "VALUES ("+
+                    PrincipalView.clienteModel.getIdCliente()
+                    + ",'" 
                     + pedidoModel.getMetodoPagamento()
-                    +"," + pedidoModel.getDelivery() + ");";
+                    +"'," + pedidoModel.getDelivery() + ");";
                     
                try {                   
                         stmt.execute(sql);
@@ -59,7 +62,7 @@ public class PedidoDao implements interfaceDao{
     public Boolean alterar(Object object) {
         pedidoModel = (PedidoModel) object;
         
-        sql = "update pedidos set valor_total = ?, data = ?, metod_pag = ?, delivery = ? where num_pedido = ?";
+        sql = "update pedidos set idCliente = ?, metod_pag = ?, delivery = ? where num_pedido = ?";
         
         try{            
             try {
@@ -67,12 +70,10 @@ public class PedidoDao implements interfaceDao{
             } catch (Exception ex) {
                 Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            pstm.setDouble(1, pedidoModel.getValorTotal());
-            pstm.setDate(2, pedidoModel.getDataPedido());
-            pstm.setString(3, pedidoModel.getMetodoPagamento());
-            pstm.setBoolean(4, pedidoModel.getDelivery());
-            
-            pstm.setInt(5, pedidoModel.getNumPedido());
+            pstm.setString(1, PrincipalView.clienteModel.getIdCliente());
+            pstm.setString(2, pedidoModel.getMetodoPagamento());
+            pstm.setInt(3, pedidoModel.getDelivery());            
+            pstm.setInt(4, pedidoModel.getNumPedido());
             pstm.execute();
             success = true;
         }catch(SQLException ex)
@@ -122,10 +123,8 @@ public class PedidoDao implements interfaceDao{
             {
                 pedidoModel = new PedidoModel();  
                 pedidoModel.setNumPedido(resultado.getInt("num_pedido"));
-                pedidoModel.setValorTotal(resultado.getDouble("valor_total"));
-                pedidoModel.setDataPedido(resultado.getDate("data"));
                 pedidoModel.setMetodoPagamento(resultado.getString("metod_pag"));
-                pedidoModel.setDelivery(resultado.getBoolean("delivery"));
+                pedidoModel.setDelivery(resultado.getInt("delivery"));
                 pedidoModel.setIdDetalhe(resultado.getInt("id_detalhe"));
                
                 pedidos.add(pedidoModel);

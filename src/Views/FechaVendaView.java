@@ -1,9 +1,12 @@
 
 package Views;
 
+import ClassesAuxiliares.FormataDouble;
+import Dao.PedidoDao;
 import Models.ClienteModel;
 import Models.PedidoModel;
 import Models.ProdutoModel;
+import javax.swing.JOptionPane;
 
 
 public class FechaVendaView extends javax.swing.JFrame {
@@ -11,27 +14,27 @@ public class FechaVendaView extends javax.swing.JFrame {
    public static PedidoModel pedidoModel; 
    public static ClienteModel clienteModel;
    private ProdutoModel produtoModel;
+   private PedidoDao pedidoDao = new PedidoDao();
+   private FormataDouble fd = new FormataDouble();
     
     public FechaVendaView() {
         initComponents();
         this.clienteModel = PrincipalView.clienteModel;
-        this.pedidoModel = PrincipalView.pedidoModel;
-        
-        
-        
+        this.pedidoModel = PrincipalView.pedidoModel;      
+
+                       
         txtNomeCliente.setText(clienteModel.getNome());
         txtEndereco.setText(clienteModel.getLogradouro());
         txtFone.setText(clienteModel.getTelefone());
-        txtTotal.setText("R$ " + String.valueOf(pedidoModel.getValorTotal()));
+        txtTotal.setText(fd.format(PrincipalView.total));
         
         
          for (int x = 0 ; x < pedidoModel.getProdutos().size(); x++){
-
                     produtoModel = pedidoModel.getProdutos().get(x);                                       
                     jtProdutos.setValueAt(produtoModel.getDetalheProduto(), x, 0);
                     jtProdutos.setValueAt(produtoModel.getQuantidadeProduto(), x, 1);            
                     jtProdutos.setValueAt(produtoModel.getValorUnitario(), x, 2);
-            }
+        }
     }
 
 
@@ -56,6 +59,7 @@ public class FechaVendaView extends javax.swing.JFrame {
         cbPagamento = new javax.swing.JComboBox<>();
         txtFone = new javax.swing.JLabel();
         txtTotal = new javax.swing.JLabel();
+        btnFinalizarVenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Encerrar Venda");
@@ -64,7 +68,7 @@ public class FechaVendaView extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 108, 81));
 
         jPanel2.setBackground(new java.awt.Color(95, 211, 134));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Encerrar Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Encerrar Venda", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Cliente:");
@@ -120,6 +124,13 @@ public class FechaVendaView extends javax.swing.JFrame {
         txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtTotal.setText("jLabel2");
 
+        btnFinalizarVenda.setText("Finalizar venda");
+        btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarVendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -148,7 +159,8 @@ public class FechaVendaView extends javax.swing.JFrame {
                                 .addComponent(cbPagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnFinalizarVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -180,7 +192,9 @@ public class FechaVendaView extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinalizarVenda))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
@@ -219,6 +233,32 @@ public class FechaVendaView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarVendaActionPerformed
+        
+        int delivery;
+        
+        if(rbSim.isSelected()){
+            delivery = 1;
+        }
+        else{
+            delivery = 0;        
+        }
+        
+        this.pedidoModel.setDelivery(delivery);
+        this.pedidoModel.setMetodoPagamento(cbPagamento.getSelectedItem().toString());
+        
+        JOptionPane.showMessageDialog(null, PrincipalView.clienteModel.getIdCliente());                
+        JOptionPane.showMessageDialog(null, PrincipalView.pedidoModel.getDelivery());
+        JOptionPane.showMessageDialog(null, PrincipalView.pedidoModel.getMetodoPagamento());        
+        Boolean retorno = false;
+        pedidoDao.inserir(pedidoModel);        
+               if(retorno){
+               JOptionPane.showMessageDialog(null, "Pedido Finalizado com sucesso");
+               }else{
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar as informações no banco de dados");
+               }
+    }//GEN-LAST:event_btnFinalizarVendaActionPerformed
+
  
     public static void main(String args[]) {
 
@@ -230,6 +270,7 @@ public class FechaVendaView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFinalizarVenda;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbPagamento;
     private javax.swing.JLabel jLabel1;

@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class ClienteModel {
     
-    private int idCliente;
+    private String idCliente;
     private String nome;
     private String sobrenome;
     private String Telefone;
@@ -24,11 +24,11 @@ public class ClienteModel {
        
         
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 

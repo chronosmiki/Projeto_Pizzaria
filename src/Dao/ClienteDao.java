@@ -83,7 +83,7 @@ public class ClienteDao implements interfaceDao{
                 pstm.setString(3, clienteModel.getTelefone());
                 pstm.setString(4, clienteModel.getEmail());
                 
-                pstm.setInt(5, clienteModel.getIdCliente());
+                pstm.setInt(5, Integer.parseInt(clienteModel.getIdCliente()));
                 pstm.execute();
                 success = true;
         }catch(SQLException ex)
@@ -107,7 +107,7 @@ public class ClienteDao implements interfaceDao{
             } catch (Exception ex) {
                 Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            pstm.setInt(1,clienteModel.getIdCliente());            
+            pstm.setInt(1,Integer.parseInt(clienteModel.getIdCliente()));            
             pstm.execute();
             success = true;
         }catch(SQLException ex)
@@ -135,7 +135,7 @@ public class ClienteDao implements interfaceDao{
             while(resultado.next())
             {
                 clienteModel = new ClienteModel();  
-                clienteModel.setIdCliente(resultado.getInt("idCliente"));
+                clienteModel.setIdCliente(String.valueOf(resultado.getInt("idCliente")));
                 clienteModel.setNome(resultado.getString("nome"));
                 clienteModel.setSobrenome(resultado.getString("sobrenome"));
                 clienteModel.setTelefone(resultado.getString("telefone"));

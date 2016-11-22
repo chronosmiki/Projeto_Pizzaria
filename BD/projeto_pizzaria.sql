@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 18-Set-2016 às 23:57
--- Versão do servidor: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: 22-Nov-2016 às 01:48
+-- Versão do servidor: 10.1.19-MariaDB
+-- PHP Version: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,6 @@ CREATE TABLE `clientes` (
   `nome` tinytext NOT NULL,
   `sobrenome` tinytext NOT NULL,
   `telefone` int(11) NOT NULL,
-  `id_endereco` int(11) DEFAULT NULL,
   `data_cad` date NOT NULL,
   `email` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena informações dos clientes..';
@@ -40,8 +39,8 @@ CREATE TABLE `clientes` (
 -- Extraindo dados da tabela `clientes`
 --
 
-INSERT INTO `clientes` (`idCliente`, `nome`, `sobrenome`, `telefone`, `id_endereco`, `data_cad`, `email`) VALUES
-(1, 'Vitor', 'Pereira', 21158425, 1, '2016-09-05', 'vitorj0829@hotmail.com');
+INSERT INTO `clientes` (`idCliente`, `nome`, `sobrenome`, `telefone`, `data_cad`, `email`) VALUES
+(1, 'Vitor', 'Pereira', 21158425, '2016-09-05', 'vitorj0829@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -58,19 +57,6 @@ CREATE TABLE `detalhes_fornecedores` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `detalhes_pedidos`
---
-
-CREATE TABLE `detalhes_pedidos` (
-  `id_detalhes` int(11) NOT NULL,
-  `num_pedido` int(11) NOT NULL,
-  `id_produto` int(11) NOT NULL,
-  `quantidade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela de união entre produtos e pedidos';
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `enderecos`
 --
 
@@ -79,9 +65,9 @@ CREATE TABLE `enderecos` (
   `tipo` varchar(45) NOT NULL,
   `logradouro` text NOT NULL,
   `numero` int(11) NOT NULL,
-  `bairro` tinytext NOT NULL,
-  `municipio` tinytext NOT NULL,
-  `estado` tinytext NOT NULL,
+  `bairro` text NOT NULL,
+  `municipio` text NOT NULL,
+  `estado` text NOT NULL,
   `cep` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela para armazenar endereços dos clientes.';
@@ -124,17 +110,36 @@ CREATE TABLE `fornecedores` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `itens_pedido`
+--
+
+CREATE TABLE `itens_pedido` (
+  `id_itensPedido` int(11) NOT NULL,
+  `id_pedido` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Tabela de união entre produtos e pedidos';
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `pedidos`
 --
 
 CREATE TABLE `pedidos` (
-  `num_pedido` int(11) NOT NULL,
-  `valor_total` decimal(10,0) NOT NULL,
-  `data` date NOT NULL,
+  `id_pedido` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `metod_pag` text NOT NULL,
-  `delivery` tinyint(1) NOT NULL,
-  `id_detalhe` varchar(45) NOT NULL
+  `delivery` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela que armazena os pedidos feitos';
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id_pedido`, `id_cliente`, `data`, `metod_pag`, `delivery`) VALUES
+(1, 1, '2016-11-22 00:46:30', 'Item 1', 1);
 
 -- --------------------------------------------------------
 
@@ -185,20 +190,13 @@ CREATE TABLE `usuarios` (
 -- Indexes for table `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`idCliente`),
-  ADD KEY `id_endereco_idx` (`id_endereco`);
+  ADD PRIMARY KEY (`idCliente`);
 
 --
 -- Indexes for table `detalhes_fornecedores`
 --
 ALTER TABLE `detalhes_fornecedores`
   ADD PRIMARY KEY (`id_detalhes_fornecedores`);
-
---
--- Indexes for table `detalhes_pedidos`
---
-ALTER TABLE `detalhes_pedidos`
-  ADD PRIMARY KEY (`id_detalhes`);
 
 --
 -- Indexes for table `enderecos`
@@ -220,10 +218,16 @@ ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id_fornecedor`);
 
 --
+-- Indexes for table `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  ADD PRIMARY KEY (`id_itensPedido`);
+
+--
 -- Indexes for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`num_pedido`);
+  ADD PRIMARY KEY (`id_pedido`);
 
 --
 -- Indexes for table `produtos`
@@ -252,11 +256,6 @@ ALTER TABLE `clientes`
 ALTER TABLE `detalhes_fornecedores`
   MODIFY `id_detalhes_fornecedores` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `detalhes_pedidos`
---
-ALTER TABLE `detalhes_pedidos`
-  MODIFY `id_detalhes` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
@@ -272,10 +271,15 @@ ALTER TABLE `estoque`
 ALTER TABLE `fornecedores`
   MODIFY `id_fornecedor` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `itens_pedido`
+--
+ALTER TABLE `itens_pedido`
+  MODIFY `id_itensPedido` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `num_pedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `produtos`
 --
@@ -289,12 +293,6 @@ ALTER TABLE `usuarios`
 --
 -- Constraints for dumped tables
 --
-
---
--- Limitadores para a tabela `clientes`
---
-ALTER TABLE `clientes`
-  ADD CONSTRAINT `id_endereco` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`idendereco`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `enderecos`
