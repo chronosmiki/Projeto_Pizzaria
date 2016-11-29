@@ -21,8 +21,7 @@ public class PrincipalView extends javax.swing.JFrame {
    private ArrayList<ProdutoModel> arrayProdutos = new ArrayList<>();
    public static ClienteModel  clienteModel;
    private Boolean delivery;
-   private String metodoPagamento;
-      
+   private String metodoPagamento;       
    private int linha = 0;
    private int quant; 
        
@@ -112,66 +111,17 @@ public class PrincipalView extends javax.swing.JFrame {
         });
 
         painelPrincipal.setBackground(new java.awt.Color(0, 108, 81));
-        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelPrincipal.setBorder(new javax.swing.border.SoftBevelBorder(0));
         painelPrincipal.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         painelDetalhesVenda.setBackground(new java.awt.Color(95, 211, 134));
-        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelDetalhesVenda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes do Produto", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelDetalhesVenda.setForeground(new java.awt.Color(102, 0, 0));
 
         jtProdutos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jtProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cod", "Produto", "Detalhe", "Valor Unit"
@@ -246,7 +196,7 @@ public class PrincipalView extends javax.swing.JFrame {
         );
 
         painelPesquisaProdutos.setBackground(new java.awt.Color(95, 211, 134));
-        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
+        painelPesquisaProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Detalhes da Venda", 0, 0, new java.awt.Font("Arial Narrow", 1, 20))); // NOI18N
         painelPesquisaProdutos.setForeground(new java.awt.Color(51, 51, 51));
         painelPesquisaProdutos.setPreferredSize(new java.awt.Dimension(399, 595));
 
@@ -254,7 +204,7 @@ public class PrincipalView extends javax.swing.JFrame {
         btnFinalizarVenda.setForeground(new java.awt.Color(51, 102, 0));
         btnFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/finaliza_venda.png"))); // NOI18N
         btnFinalizarVenda.setText("Finalizar Venda");
-        btnFinalizarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinalizarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         btnFinalizarVenda.setEnabled(false);
         btnFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +216,7 @@ public class PrincipalView extends javax.swing.JFrame {
         btnCancelarVenda.setForeground(new java.awt.Color(204, 0, 0));
         btnCancelarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cancela_venda.png"))); // NOI18N
         btnCancelarVenda.setText("Cancelar Venda");
-        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCancelarVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         btnCancelarVenda.setEnabled(false);
         btnCancelarVenda.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +365,7 @@ public class PrincipalView extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(95, 211, 134));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Cliente", 0, 0, new java.awt.Font("Arial Narrow", 1, 20), new java.awt.Color(51, 51, 51))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setText("Cliente :");
@@ -682,10 +632,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private void txtPesqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesqKeyReleased
         
         //LIMPA O ARRAY
-        array.clear();
-
+        array.clear();                                     
         //LIMPA A TABELA
         Tabela.limparTabela(jtProdutos);
+        DefaultTableModel model = (DefaultTableModel) jtProdutos.getModel(); 
         
         //SOMENTE REALIZA A PESQUISA E A CAIXA DE PESQUISA TIVER VALOR
         if(!txtPesq.getText().equals("")){
@@ -695,6 +645,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         //RECUPERA OS OBJETOS RETORNADOS NA PESQUISA
         for (int x = 0 ; x < array.size(); x++){
+            model.addRow(new Object[]{"","","",""});    
             produtoPesquisado = (ProdutoModel) array.get(x);
             jtProdutos.setValueAt(produtoPesquisado.getIdProduto(), x, 0);
             jtProdutos.setValueAt(produtoPesquisado.getTipoProduto(), x, 1);
@@ -707,6 +658,9 @@ public class PrincipalView extends javax.swing.JFrame {
                         
        if(!txtNome.getText().equals("")){ 
         
+       DefaultTableModel model = (DefaultTableModel) jtDetalhesVenda.getModel();   
+       model.addRow(new Object[]{"","","",""});       
+           
        if(!jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 0).equals("")){     
            String aux = String.valueOf(jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3)).replace(",", ".").replace("R$", "").replace(" ", "");
            valorUnitario = Double.parseDouble(aux);  
@@ -715,10 +669,7 @@ public class PrincipalView extends javax.swing.JFrame {
                     if(quant < 1){
                              Msg.exclamation("Digite uma quantidade válida !");                          
                     }   
-                    else{  
-                        
-                        DefaultTableModel model = (DefaultTableModel) jtDetalhesVenda.getModel();
-                        model.addRow(new Object[]{"","","",""});                       
+                    else{                               
                         btnFinalizarVenda.setEnabled(true);
                         btnCancelarVenda.setEnabled(true);
                         String valor = jtProdutos.getValueAt(jtProdutos.getSelectedRow(), 3).toString();
@@ -781,7 +732,7 @@ public class PrincipalView extends javax.swing.JFrame {
           this.pedidoModel = new PedidoModel();
                 
           for(int x = 0; x < jtDetalhesVenda.getRowCount(); x++){  
-              System.out.print(jtDetalhesVenda.getRowCount());             
+              System.out.print("detalhes da venda " + jtDetalhesVenda.getRowCount());             
               produtoModel = new ProdutoModel();
               produtoModel.setIdProduto(Integer.parseInt(jtDetalhesVenda.getValueAt(x, 0).toString()));
               produtoModel.setDetalheProduto(jtDetalhesVenda.getValueAt(x, 1).toString());
@@ -795,6 +746,15 @@ public class PrincipalView extends javax.swing.JFrame {
               if(x == JOptionPane.YES_OPTION){              
                  FechaVendaView fechaVendaView = new FechaVendaView();
                  fechaVendaView.setVisible(true);
+                 
+                 Tabela.limparTabela(jtDetalhesVenda);
+                 Tabela.limparTabela(jtProdutos);
+                 
+                 txtNome.setText("");
+                 txtFone.setText("");
+                 txtEndereco.setText("");
+                 lblTotal.setText("00.00");
+                 lblSubtotal.setText("00.00");
               }
     }//GEN-LAST:event_btnFinalizarVendaActionPerformed
 

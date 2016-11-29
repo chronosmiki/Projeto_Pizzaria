@@ -55,15 +55,13 @@ public class Tabela {
         }                   
     }  
     
-    
-       
+          
     
     //Metodo Para Limpar  a JTable
-    public static void limparTabela(JTable table) {                 
-            for (int x = 0; x < table.getRowCount(); x++) {
-                for(int y = 0; y < table.getColumnCount(); y++){                
-                   table.setValueAt(null, x, y);                  
-                }
+    public static void limparTabela(JTable table) { 
+         DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for (int x = 0; x < model.getRowCount(); x++) {                           
+                 model.removeRow(x);                               
             }     
-    }                   
-}
+        }                   
+    }

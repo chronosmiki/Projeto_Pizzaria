@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Nov-2016 às 01:48
--- Versão do servidor: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: 29-Nov-2016 às 01:35
+-- Versão do servidor: 10.1.10-MariaDB
+-- PHP Version: 7.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -120,6 +120,25 @@ CREATE TABLE `itens_pedido` (
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Tabela de união entre produtos e pedidos';
 
+--
+-- Extraindo dados da tabela `itens_pedido`
+--
+
+INSERT INTO `itens_pedido` (`id_itensPedido`, `id_pedido`, `id_produto`, `quantidade`) VALUES
+(4, 16, 1, 1),
+(5, 16, 4, 1),
+(6, 16, 2, 1),
+(7, 16, 1, 1),
+(8, 16, 1, 1),
+(9, 16, 1, 1),
+(10, 16, 1, 14),
+(11, 16, 4, 1),
+(12, 16, 2, 1),
+(13, 16, 2, 1),
+(14, 16, 5, 1),
+(15, 16, 6, 1),
+(16, 16, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -139,7 +158,13 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id_pedido`, `id_cliente`, `data`, `metod_pag`, `delivery`) VALUES
-(1, 1, '2016-11-22 00:46:30', 'Item 1', 1);
+(24, 1, '2016-11-28 23:36:30', 'Item 1', 0),
+(25, 1, '2016-11-28 23:47:45', 'Cartão de Credito', 0),
+(26, 1, '2016-11-28 23:49:24', 'Cartão de Credito', 0),
+(27, 1, '2016-11-29 00:06:25', 'Cartão de Credito', 0),
+(28, 1, '2016-11-29 00:08:22', 'Cartão de Credito', 0),
+(29, 1, '2016-11-29 00:16:32', 'Cartão de Credito', 0),
+(30, 1, '2016-11-29 00:29:24', 'Cartão de Credito', 0);
 
 -- --------------------------------------------------------
 
@@ -274,12 +299,12 @@ ALTER TABLE `fornecedores`
 -- AUTO_INCREMENT for table `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
-  MODIFY `id_itensPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_itensPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `produtos`
 --

@@ -23,14 +23,12 @@ public class CalcularPedido  {
         for(ProdutoModel x : pedidoModel.getProdutos()){  
             int incremento = 0;
             p = pedidoModel.getProdutos().get(incremento);
-            valorUnitario = Double.parseDouble(p.getValorUnitario());
+            valorUnitario = Double.parseDouble(p.getValorUnitario().replace("R$", "").replace(" ", "").replace(",","."));
             int quantidade = p.getQuantidadeProduto();
             valorTotal +=  valorUnitario * quantidade;
             incremento++;    
         }        
-        pedidoModel.setValorTotal(valorTotal);   
-    
+        pedidoModel.setValorTotal(valorTotal);      
         return pedidoModel;
-    }    
-    
+    }        
 }

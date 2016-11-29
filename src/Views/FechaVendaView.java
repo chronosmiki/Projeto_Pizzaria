@@ -2,6 +2,7 @@
 package Views;
 
 import ClassesAuxiliares.FormataDouble;
+import Controls.PedidoControl;
 import Dao.PedidoDao;
 import Models.ClienteModel;
 import Models.PedidoModel;
@@ -13,6 +14,7 @@ public class FechaVendaView extends javax.swing.JFrame {
 
    public static PedidoModel pedidoModel; 
    public static ClienteModel clienteModel;
+   private PedidoControl pedidoControl;
    private ProdutoModel produtoModel;
    private PedidoDao pedidoDao = new PedidoDao();
    private FormataDouble fd = new FormataDouble();
@@ -114,7 +116,7 @@ public class FechaVendaView extends javax.swing.JFrame {
         txtNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtNomeCliente.setText("jLabel7");
 
-        cbPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cartão de Credito", "Cartão de Débito", "Cheque", "Dinheiro" }));
 
         txtFone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtFone.setText("jLabel8");
@@ -246,14 +248,12 @@ public class FechaVendaView extends javax.swing.JFrame {
         
         this.pedidoModel.setDelivery(delivery);
         this.pedidoModel.setMetodoPagamento(cbPagamento.getSelectedItem().toString());
-        
-        JOptionPane.showMessageDialog(null, PrincipalView.clienteModel.getIdCliente());                
-        JOptionPane.showMessageDialog(null, PrincipalView.pedidoModel.getDelivery());
-        JOptionPane.showMessageDialog(null, PrincipalView.pedidoModel.getMetodoPagamento());        
-        Boolean retorno = false;
-        pedidoDao.inserir(pedidoModel);        
-               if(retorno){
+                
+                pedidoControl = new PedidoControl(pedidoModel);;
+                    
+               if(pedidoControl.inserirBd()){
                JOptionPane.showMessageDialog(null, "Pedido Finalizado com sucesso");
+               dispose();
                }else{
                 JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar as informações no banco de dados");
                }

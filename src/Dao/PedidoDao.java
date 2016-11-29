@@ -6,6 +6,7 @@ import static Dao.ConexaoMysql.close;
 import static Dao.ConexaoMysql.open;
 import Interfaces.interfaceDao;
 import Models.PedidoModel;
+import Models.ProdutoModel;
 import Views.PrincipalView;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,37 +23,42 @@ public class PedidoDao implements interfaceDao{
     
     
     private PedidoModel pedidoModel;
+    private ProdutoModel produto;
     private ResultSet resultado= null;
     private PreparedStatement pstm;
     private Statement stmt;
-    private boolean success;
+    private boolean success = false;
     private String sql;
     private ArrayList <PedidoModel> pedidos = new ArrayList<>();
     
     
-    @Override
-    public Boolean inserir(Object pedido) {
-        pedidoModel = (PedidoModel) pedido;
-               
-         try {             
-                stmt = open().createStatement();
-              } catch (Exception ex) {
-                    Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
-                    Msg.exclamation(Msg.erroConexao + ex.getMessage());
-              }
-                    sql = "INSERT INTO pedidos (id_cliente, metod_pag, delivery)"
-                    + "VALUES ("+
-                    PrincipalView.clienteModel.getIdCliente()
-                    + ",'" 
-                    + pedidoModel.getMetodoPagamento()
-                    +"'," + pedidoModel.getDelivery() + ");";
-                    
-               try {                   
-                        stmt.execute(sql);
+
+    public Boolean inserirPedido(PedidoModel pedido) {
+        pedidoModel = (PedidoModel) pedido;               
+                try {             
+                       stmt = open().createStatement();   
+                       System.out.println(pedidoModel.getMetodoPagamento());
+                       sql = "INSERT INTO pedidos (id_cliente, metod_pag, delivery)"
+                        + "VALUES ("+
+                        PrincipalView.clienteModel.getIdCliente()
+                        + ",'" 
+                        + pedidoModel.getMetodoPagamento()
+                        +"'," + pedidoModel.getDelivery() + ");";      
+                        stmt.execute(sql);      
+                        
+                        for(int x = 0; x < pedidoModel.getProdutos().size(); x++){
+                        produto = pedidoModel.getProdutos().get(x);                     
+                        System.out.println("idProduto" + produto.getIdProduto() + " -  quantidade " + produto.getQuantidadeProduto());
+                        String sql1 = "INSERT INTO itens_pedido(id_pedido, id_Produto, quantidade)"
+                        + "VALUES(16,"
+                        + produto.getIdProduto() 
+                        + "," + produto.getQuantidadeProduto() + ");";
+                        stmt.execute(sql1);                         
+                        }                        
                         success = true;
-               } catch (SQLException ex) {
-                        Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
-                        Msg.exclamation(Msg.erroConexao + ex.getMessage());
+                } catch (Exception ex) {
+                    Logger.getLogger(PedidoDao.class.getName()).log(Level.SEVERE, null, ex);
+                    Msg.exclamation(Msg.erroConexao + ex.getMessage());                                       
                }   
                 close();       
         return success;
@@ -137,5 +143,10 @@ public class PedidoDao implements interfaceDao{
         close();        
         return pedidos;
     }
-    
+
+    @Override
+    public Boolean inserir(Object object) {   
+        return false;
+    }   
 }
+      
